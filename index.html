@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,621 +6,72 @@
   <title>Bibros Ben Sassi • BTS SIO SISR</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
     :root {
-      --bg: #0a0a0a;
-      --bg2: #111111;
-      --text: #e0e0e0;
-      --text2: #b0b0b0;
-      --accent: #5e60ce;
-      --accent-hover: #818cf8;
-      --card: #161616;
-      --border: #2a2a2a;
-      --tech-bg: #1e1e2e;
-      --gradient-start: #0f0f1f;
-      --gradient-end: #0a0015;
-      --success: #10b981;
-      --warning: #f59e0b;
+      --bg: #0a0a0a; --bg2: #111111; --text: #e0e0e0; --text2: #b0b0b0;
+      --accent: #5e60ce; --accent-hover: #818cf8; --card: #161616; --border: #2a2a2a;
+      --tech-bg: #1e1e2e; --gradient-start: #0f0f1f; --gradient-end: #0a0015;
     }
-
     body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
+      font-family: system-ui, sans-serif; background: var(--bg); color: var(--text);
+      line-height: 1.6; overflow-x: hidden;
     }
-
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Navigation */
+    html { scroll-behavior: smooth; }
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      background: rgba(10,10,10,0.6);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      z-index: 999;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: fixed; top:0; left:0; right:0; background: rgba(10,10,10,0.9);
+      backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index:999;
+      transition: all 0.4s;
     }
-
-    nav.scrolled {
-      background: rgba(10,10,10,0.95);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
-
+    nav.scrolled { background: rgba(10,10,10,0.98); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
     .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      max-width: 1200px; margin:0 auto; padding:1rem 2rem;
+      display:flex; justify-content:space-between; align-items:center;
     }
-
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.5px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text2);
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      position: relative;
-      padding: 0.5rem 0;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%) scaleX(0);
-      width: 100%;
-      height: 2px;
-      background: var(--accent-hover);
-      transition: transform 0.3s ease;
-      transform-origin: center;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      transform: translateX(-50%) scaleX(1);
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--accent-hover);
-    }
-
-    .burger {
-      display: none;
-      font-size: 1.8rem;
-      color: var(--accent-hover);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .burger:hover {
-      transform: rotate(90deg);
-    }
-
-    /* Header / Hero */
+    .logo { font-size:1.6rem; font-weight:800; color:var(--accent-hover); }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color:var(--text2); text-decoration:none; font-weight:500; transition:0.3s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--accent-hover); }
+    .burger { display:none; font-size:1.8rem; color:var(--accent-hover); cursor:pointer; }
     header {
-      height: 100vh;
-      min-height: 700px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      height:100vh; min-height:700px; display:flex; align-items:center; justify-content:center;
+      text-align:center; position:relative; overflow:hidden;
       background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
     }
-
-    #particles {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.6;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 1000px;
-      padding: 2rem;
-      animation: fadeInUp 1.2s ease-out;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero-content h1 {
-      font-size: clamp(3.5rem, 12vw, 6.5rem);
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(to right, #ffffff, var(--accent-hover));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-    }
-
-    .typing-container {
-      font-size: 1.8rem;
-      min-height: 3rem;
-      color: var(--accent-hover);
-      font-weight: 500;
-      margin: 1.5rem 0;
-    }
-
-    .typing {
-      display: inline-block;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 3px;
-      height: 1.2em;
-      background: var(--accent-hover);
-      margin-left: 4px;
-      animation: blink 0.7s infinite;
-      vertical-align: middle;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    /* Buttons */
+    #particles { position:absolute; inset:0; pointer-events:none; opacity:0.6; }
+    .hero-content { position:relative; z-index:2; max-width:1000px; padding:2rem; }
+    .hero h1 { font-size:clamp(3.5rem,10vw,6.5rem); margin-bottom:0.5rem; color:white; }
+    .typing-container { font-size:1.8rem; color:var(--accent-hover); min-height:3rem; }
+    .cursor { width:3px; height:1.2em; background:var(--accent-hover); animation:blink 0.7s infinite; }
+    @keyframes blink { 50% { opacity:0; } }
     .btn {
-      padding: 1rem 2.5rem;
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-weight: 600;
-      text-decoration: none;
-      margin: 0.8rem;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: 1rem;
-      letter-spacing: 0.5px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
+      padding:0.9rem 2.2rem; background:var(--accent); color:white; border:none; border-radius:8px;
+      font-weight:600; text-decoration:none; margin:0.6rem; transition:all 0.35s;
+      display:inline-flex; align-items:center; gap:0.6rem;
     }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.2);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-
-    .btn:hover::before {
-      width: 300px;
-      height: 300px;
-    }
-
-    .btn:hover {
-      background: var(--accent-hover);
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 20px 40px rgba(94,96,206,0.4);
-      border-color: transparent;
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--accent);
-      color: var(--accent-hover);
-    }
-
-    .btn-outline:hover {
-      background: var(--accent);
-      color: white;
-    }
-
-    /* Sections */
-    section {
-      padding: 8rem 2rem 6rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 3rem;
-      margin-bottom: 4rem;
-      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      position: relative;
-      display: inline-block;
-      width: 100%;
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(to right, var(--accent), var(--accent-hover));
-      border-radius: 2px;
-    }
-
-    h3 {
-      font-size: 1.6rem;
-      color: var(--accent-hover);
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-    }
-
-    /* Grid & Cards */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2.5rem;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(to right, var(--accent), var(--accent-hover));
-      transform: scaleX(0);
-      transition: transform 0.5s ease;
-    }
-
-    .card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .card:hover {
-      transform: translateY(-15px) scale(1.02);
-      border-color: var(--accent-hover);
-      box-shadow: 0 30px 50px rgba(0,0,0,0.6);
-    }
-
-    .card p {
-      color: var(--text2);
-      line-height: 1.8;
-    }
-
-    .card strong {
-      color: var(--accent-hover);
-      font-size: 1.1rem;
-    }
-
-    /* Technologies grid */
-    .tech-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      justify-content: center;
-      margin: 3rem 0;
-    }
-
+    .btn:hover { background:var(--accent-hover); transform:translateY(-4px) scale(1.05); }
+    .btn-outline { background:transparent; border:2px solid var(--accent); color:var(--accent-hover); }
+    section { padding:8rem 2rem 6rem; max-width:1200px; margin:0 auto; opacity:0; transform:translateY(40px); transition:all 0.9s; }
+    section.visible { opacity:1; transform:translateY(0); }
+    h2 { text-align:center; font-size:2.8rem; margin-bottom:3.5rem; color:var(--accent-hover); }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2rem; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:2rem; transition:all 0.4s; }
+    .card:hover { transform:translateY(-12px); border-color:var(--accent-hover); box-shadow:0 20px 40px rgba(0,0,0,0.6); }
+    .tech-grid { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin:3rem 0; }
     .tech-btn {
-      background: var(--tech-bg);
-      border: 1px solid var(--accent);
-      color: var(--accent-hover);
-      padding: 0.9rem 1.8rem;
-      border-radius: 50px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.8rem;
-      text-decoration: none;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      font-size: 1rem;
-      letter-spacing: 0.3px;
+      background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover);
+      padding:0.8rem 1.6rem; border-radius:50px; text-decoration:none; transition:all 0.4s;
+      display:inline-flex; align-items:center; gap:0.6rem;
     }
-
-    .tech-btn:hover {
-      background: var(--accent);
-      color: white;
-      transform: translateY(-6px) scale(1.1);
-      box-shadow: 0 15px 30px rgba(94,96,206,0.5);
-      border-color: transparent;
-    }
-
-    .tech-btn i {
-      font-size: 1.2rem;
-    }
-
-    /* Table */
-    .synthese {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      margin: 2rem 0;
-    }
-
-    .synthese th {
-      background: linear-gradient(135deg, var(--bg2), #1a1a2a);
-      color: var(--accent-hover);
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding: 1.2rem;
-      border-bottom: 2px solid var(--accent);
-    }
-
-    .synthese td {
-      padding: 1.2rem;
-      border-bottom: 1px solid var(--border);
-      color: var(--text2);
-    }
-
-    .synthese tr:last-child td {
-      border-bottom: none;
-    }
-
-    .synthese tr:hover td {
-      background: rgba(94,96,206,0.1);
-      transition: background 0.3s ease;
-    }
-
-    /* Download buttons */
-    .download-buttons {
-      text-align: center;
-      margin: 3rem 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    /* Veille section */
-    .veille-content {
-      max-width: 900px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      color: var(--text2);
-      text-align: center;
-      line-height: 1.9;
-    }
-
-    .veille-content ul {
-      list-style: none;
-      margin: 2.5rem 0;
-      padding: 0;
-      text-align: left;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2rem;
-    }
-
-    .veille-content li {
-      margin: 1rem 0;
-      padding-left: 2rem;
-      position: relative;
-      font-size: 1.05rem;
-    }
-
-    .veille-content li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--accent-hover);
-      font-weight: bold;
-    }
-
-    .veille-content a {
-      color: var(--accent-hover);
-      text-decoration: none;
-      border-bottom: 1px dotted var(--accent);
-      transition: all 0.3s ease;
-    }
-
-    .veille-content a:hover {
-      border-bottom: 1px solid var(--accent-hover);
-      color: white;
-    }
-
-    /* Contact section */
-    #contact {
-      background: linear-gradient(135deg, var(--bg2), #0c0c14);
-      border-radius: 40px 40px 0 0;
-      margin-top: 4rem;
-    }
-
-    .social-links {
-      margin-top: 3rem;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    .social-links a {
-      color: var(--text2);
-      font-size: 2.5rem;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      display: inline-flex;
-      padding: 0.5rem;
-      border-radius: 50%;
-      background: var(--card);
-      border: 1px solid var(--border);
-      width: 70px;
-      height: 70px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .social-links a:hover {
-      color: white;
-      background: var(--accent);
-      transform: translateY(-8px) scale(1.1);
-      border-color: transparent;
-      box-shadow: 0 20px 30px rgba(94,96,206,0.4);
-    }
-
-    /* Footer */
-    footer {
-      background: #000;
-      text-align: center;
-      padding: 4rem 2rem;
-      color: var(--text2);
-      border-top: 1px solid var(--border);
-      font-size: 1rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 968px) {
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(10,10,10,0.98);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        flex-direction: column;
-        padding: 2rem;
-        gap: 1.5rem;
-        transform: translateY(-20px);
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border-bottom: 1px solid var(--border);
-        text-align: center;
-      }
-
-      .nav-links.active {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
-      }
-
-      .burger {
-        display: block;
-      }
-
-      .nav-links a::after {
-        display: none;
-      }
-
-      h2 {
-        font-size: 2.5rem;
-      }
-
-      section {
-        padding: 6rem 1.5rem 4rem;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .btn {
-        width: 100%;
-        justify-content: center;
-        margin: 0.5rem 0;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .tech-btn {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .download-buttons {
-        flex-direction: column;
-        gap: 1rem;
-      }
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar {
-      width: 12px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(var(--accent), var(--accent-hover));
-      border-radius: 6px;
-      border: 2px solid var(--bg);
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--accent-hover);
+    .tech-btn:hover { background:var(--accent); color:white; transform:translateY(-5px) scale(1.08); }
+    .download-buttons { text-align:center; margin:3rem 0; display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem; }
+    .pdf-preview { background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.5); max-width:1000px; margin:2rem auto; height:900px; }
+    .entreprises-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2rem; margin-top:2rem; }
+    footer { background:#000; text-align:center; padding:4rem 1rem; color:var(--text2); border-top:1px solid var(--border); }
+    @media (max-width:768px) {
+      .nav-links { position:absolute; top:100%; left:0; right:0; background:var(--bg2); flex-direction:column; padding:2rem; transform:translateY(-20px); opacity:0; pointer-events:none; transition:all 0.4s; }
+      .nav-links.active { transform:translateY(0); opacity:1; pointer-events:auto; }
+      .burger { display:block; }
+      .grid, .entreprises-grid { grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -633,6 +83,7 @@
     <ul class="nav-links">
       <li><a href="#accueil" class="active">Accueil</a></li>
       <li><a href="#apropos">À propos</a></li>
+      <li><a href="#entreprises">Entreprises</a></li>
       <li><a href="#cv">CV</a></li>
       <li><a href="#competences">Compétences</a></li>
       <li><a href="#technologies">Technologies</a></li>
@@ -652,28 +103,53 @@
       <span class="typing" id="typing-text"></span>
       <span class="cursor"></span>
     </div>
-    <div style="margin-top: 3rem;">
-      <a href="#competences" class="btn">
-        <i class="fas fa-cogs"></i> Mes compétences
-      </a>
-      <a href="#cv" class="btn btn-outline">
-        <i class="fas fa-file-alt"></i> Voir mon CV
-      </a>
+    <div style="margin-top: 2.5rem;">
+      <a href="#competences" class="btn">Mes compétences</a>
+      <a href="#cv" class="btn btn-outline">Voir mon CV</a>
     </div>
   </div>
 </header>
 
 <section id="apropos">
   <h2>À propos de moi</h2>
-  <div style="max-width:900px; margin:0 auto; font-size:1.2rem; color:var(--text2); text-align:center;">
-    <p>Étudiant en <strong>BTS Services Informatiques aux Organisations (SIO)</strong> – option <strong>SISR</strong>.</p>
-    <p>Spécialisé en administration systèmes/réseaux et cybersécurité, avec une forte maîtrise de la <strong>conteneurisation Docker</strong>.</p>
-    <p>À la recherche d'une alternance ou d'un stage à partir de 2026.</p>
-    <div style="margin-top: 2rem;">
-      <span style="display: inline-block; padding: 0.5rem 1rem; background: var(--accent); color: white; border-radius: 8px; margin: 0.3rem;"><i class="fas fa-check-circle"></i> Docker expert</span>
-      <span style="display: inline-block; padding: 0.5rem 1rem; background: var(--accent); color: white; border-radius: 8px; margin: 0.3rem;"><i class="fas fa-shield-alt"></i> Cybersécurité</span>
-      <span style="display: inline-block; padding: 0.5rem 1rem; background: var(--accent); color: white; border-radius: 8px; margin: 0.3rem;"><i class="fas fa-network-wired"></i> Réseaux</span>
+  <div style="max-width:900px; margin:0 auto; font-size:1.1rem; color:var(--text2); text-align:center;">
+    <p>Étudiant en <strong>BTS SIO option SISR</strong>, passionné par l'administration systèmes/réseaux et la cybersécurité.</p>
+    <p>Je maîtrise notamment la conteneurisation avec Docker et cherche une alternance ou un stage à partir de 2026.</p>
+  </div>
+</section>
+
+<section id="entreprises">
+  <h2>Mes expériences en entreprise</h2>
+  <div class="entreprises-grid">
+    <div class="card">
+      <h3>Entreprise 1</h3>
+      <p><strong>Dénomination sociale :</strong> [Nom complet de l'entreprise]</p>
+      <p><strong>Forme juridique :</strong> SARL / SAS / Auto-entrepreneur / etc.</p>
+      <p><strong>Secteur d'activité :</strong> Informatique / Hébergement / Cybersécurité</p>
+      <p><strong>Période :</strong> [Mois Année] – [Mois Année]</p>
+      <p><strong>Missions principales :</strong></p>
+      <ul style="color:var(--text2);">
+        <li>Administration de serveurs Linux/Windows</li>
+        <li>Déploiement et gestion de conteneurs Docker</li>
+        <li>Configuration firewall et monitoring</li>
+      </ul>
     </div>
+
+    <div class="card">
+      <h3>Entreprise 2</h3>
+      <p><strong>Dénomination sociale :</strong> [Nom complet]</p>
+      <p><strong>Forme juridique :</strong> [SAS / SA / etc.]</p>
+      <p><strong>Secteur d'activité :</strong> [ex: SSII / Infogérance]</p>
+      <p><strong>Période :</strong> [dates]</p>
+      <p><strong>Missions principales :</strong></p>
+      <ul style="color:var(--text2);">
+        <li>Mise en place d'infrastructures virtualisées</li>
+        <li>Support technique niveau 2/3</li>
+        <li>Participation à des projets de migration</li>
+      </ul>
+    </div>
+
+    <!-- Ajoute autant de cards que d'entreprises -->
   </div>
 </section>
 
@@ -681,16 +157,24 @@
   <h2>CV & Tableau de synthèse</h2>
 
   <div class="download-buttons">
-    <a href="CV-Bibros-B.pdf" download class="btn">
+    <a href="CV-Bibros-Ben-Sassi.pdf" download="CV_Bibros_Ben_Sassi.pdf" class="btn">
       <i class="fas fa-file-pdf"></i> Télécharger mon CV (PDF)
     </a>
-    <a href="#" download class="btn" style="background:var(--accent-hover);">
-      <i class="fas fa-table"></i> Tableau de Synthèse E5
+    <a href="Tableau-Synthese-E5.pdf" download="Tableau_Synthese_E5.pdf" class="btn" style="background:var(--accent-hover);">
+      <i class="fas fa-table"></i> Télécharger le Tableau de Synthèse E5
     </a>
   </div>
 
-  <h3 style="text-align:center; margin:4rem 0 2rem;">Aperçu du tableau de synthèse (E5)</h3>
+  <h3 style="text-align:center; margin:3rem 0 1rem;">Aperçu de mon CV</h3>
+  <div class="pdf-preview">
+    <iframe src="CV-Bibros-Ben-Sassi.pdf" width="100%" height="100%" style="border:none;"></iframe>
+  </div>
 
+  <p style="text-align:center; color:var(--text2); margin-top:1rem;">
+    <small>Si l'aperçu ne s'affiche pas (mobile ou ancien navigateur), utilisez le bouton de téléchargement ci-dessus.</small>
+  </p>
+
+  <h3 style="text-align:center; margin:4rem 0 1rem;">Aperçu du tableau de synthèse (E5)</h3>
   <table class="synthese">
     <thead>
       <tr>
@@ -702,54 +186,47 @@
     <tbody>
       <tr><td>Gérer le patrimoine informatique</td><td>Déploiement AD + GLPI + conteneurs Docker</td><td>09/2024 – 02/2025</td></tr>
       <tr><td>Répondre aux incidents</td><td>CrowdSec + règles pfSense + monitoring Docker</td><td>01/2025 – 04/2025</td></tr>
-      <tr><td>Sécurisation des conteneurs</td><td>Mise en place de secrets, non-root, images légères</td><td>02/2025 – 05/2025</td></tr>
-      <tr><td>Automatisation des déploiements</td><td>Docker Compose multi-services avec sauvegardes</td><td>03/2025 – 06/2025</td></tr>
+      <!-- Ajoute tes lignes réelles ici -->
     </tbody>
   </table>
 </section>
 
-<section id="competences">
+<section id="competences" style="background:var(--bg2);">
   <h2>Mes compétences</h2>
   <div class="grid">
     <div class="card">
-      <h3><i class="fab fa-docker" style="margin-right: 10px;"></i>Conteneurisation & Docker</h3>
-      <p><strong>Maîtrise avancée</strong></p>
-      <ul style="list-style: none; color: var(--text2);">
-        <li>✓ Création / optimisation Dockerfile</li>
-        <li>✓ Docker Compose (multi-services)</li>
-        <li>✓ Volumes, networks, secrets</li>
-        <li>✓ Orchestration basique (Swarm)</li>
-        <li>✓ Sécurisation (non-root, images officielles)</li>
+      <h3><i class="fab fa-docker"></i> Conteneurisation & Docker</h3>
+      <p>Maîtrise de la conteneurisation</p>
+      <ul style="color:var(--text2);">
+        <li>Création et optimisation de Dockerfile</li>
+        <li>Docker Compose (multi-services)</li>
+        <li>Volumes, networks, secrets</li>
+        <li>Sécurisation de base (non-root, bonnes pratiques)</li>
       </ul>
     </div>
     <div class="card">
-      <h3><i class="fas fa-network-wired"></i>Réseaux & Infrastructure</h3>
-      <ul style="list-style: none; color: var(--text2);">
-        <li>✓ TCP/IP – VLAN – Routage</li>
-        <li>✓ Cisco Packet Tracer</li>
-        <li>✓ NAT, DHCP, DNS</li>
-        <li>✓ VPN (Wireguard, OpenVPN)</li>
-        <li>✓ Monitoring (Prometheus, Grafana)</li>
+      <h3><i class="fas fa-network-wired"></i> Réseaux & Infrastructure</h3>
+      <ul style="color:var(--text2);">
+        <li>TCP/IP – VLAN – Routage</li>
+        <li>Cisco Packet Tracer</li>
+        <li>NAT, DHCP, DNS</li>
       </ul>
     </div>
     <div class="card">
-      <h3><i class="fas fa-server"></i>Systèmes & Virtualisation</h3>
-      <ul style="list-style: none; color: var(--text2);">
-        <li>✓ Windows Server (AD, GPO)</li>
-        <li>✓ Linux Debian/Ubuntu/Rocky</li>
-        <li>✓ VMware / VirtualBox / Proxmox</li>
-        <li>✓ Scripting Bash/PowerShell</li>
-        <li>✓ Automatisation (Ansible débutant)</li>
+      <h3><i class="fas fa-server"></i> Systèmes & Virtualisation</h3>
+      <ul style="color:var(--text2);">
+        <li>Windows Server (AD, GPO)</li>
+        <li>Linux Debian/Ubuntu</li>
+        <li>VMware / VirtualBox</li>
+        <li>Scripting Bash / PowerShell</li>
       </ul>
     </div>
     <div class="card">
-      <h3><i class="fas fa-shield-alt"></i>Cybersécurité</h3>
-      <ul style="list-style: none; color: var(--text2);">
-        <li>✓ Firewall (pfSense, iptables)</li>
-        <li>✓ IDS/IPS (CrowdSec, Snort)</li>
-        <li>✓ Hardening (CIS benchmarks)</li>
-        <li>✓ Analyse de vulnérabilités</li>
-        <li>✓ Gestion des accès (RBAC, 2FA)</li>
+      <h3><i class="fas fa-shield-alt"></i> Cybersécurité</h3>
+      <ul style="color:var(--text2);">
+        <li>Firewall (pfSense, iptables)</li>
+        <li>IDS/IPS (CrowdSec)</li>
+        <li>Hardening systèmes</li>
       </ul>
     </div>
   </div>
@@ -761,17 +238,11 @@
     <a href="https://www.docker.com/" target="_blank" class="tech-btn"><i class="fab fa-docker"></i> Docker</a>
     <a href="https://www.pfsense.org/" target="_blank" class="tech-btn"><i class="fas fa-shield-alt"></i> pfSense</a>
     <a href="https://glpi-project.org/" target="_blank" class="tech-btn"><i class="fas fa-headset"></i> GLPI</a>
-    <a href="https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview" target="_blank" class="tech-btn"><i class="fas fa-users-cog"></i> Active Directory</a>
+    <a href="https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/" target="_blank" class="tech-btn"><i class="fas fa-users-cog"></i> Active Directory</a>
     <a href="https://www.crowdsec.net/" target="_blank" class="tech-btn"><i class="fas fa-bug"></i> CrowdSec</a>
     <a href="https://www.debian.org/" target="_blank" class="tech-btn"><i class="fab fa-linux"></i> Debian</a>
-    <a href="https://ubuntu.com/server" target="_blank" class="tech-btn"><i class="fab fa-linux"></i> Ubuntu Server</a>
+    <a href="https://ubuntu.com/" target="_blank" class="tech-btn"><i class="fab fa-linux"></i> Ubuntu</a>
     <a href="https://learn.microsoft.com/fr-fr/windows-server/" target="_blank" class="tech-btn"><i class="fab fa-windows"></i> Windows Server</a>
-    <a href="https://www.vmware.com/" target="_blank" class="tech-btn"><i class="fas fa-cloud"></i> VMware</a>
-    <a href="https://www.proxmox.com/" target="_blank" class="tech-btn"><i class="fas fa-server"></i> Proxmox</a>
-    <a href="https://grafana.com/" target="_blank" class="tech-btn"><i class="fas fa-chart-line"></i> Grafana</a>
-    <a href="https://prometheus.io/" target="_blank" class="tech-btn"><i class="fas fa-chart-pie"></i> Prometheus</a>
-    <a href="https://www.ansible.com/" target="_blank" class="tech-btn"><i class="fas fa-cog"></i> Ansible</a>
-    <a href="https://www.portainer.io/" target="_blank" class="tech-btn"><i class="fas fa-ship"></i> Portainer</a>
   </div>
 </section>
 
@@ -781,13 +252,12 @@
     <p>Je consacre du temps chaque semaine à suivre l'évolution des technologies liées à l'infrastructure, aux réseaux, à la conteneurisation et à la cybersécurité.</p>
     <p><strong>Mes principales sources d'information (2025-2026) :</strong></p>
     <ul>
-      <li><strong>Blogs & sites spécialisés</strong> : IT-Connect, Korben, ZDNet France, The Hacker News, <a href="https://www.docker.com/blog/" target="_blank">Docker Blog</a>, <a href="https://blog.crowdsec.net/" target="_blank">CrowdSec Blog</a></li>
-      <li><strong>Chaînes YouTube</strong> : IT-Connect, NetworkChuck, David Bombal, LiveOverflow, TechWorld with Nana (Docker/Kubernetes)</li>
-      <li><strong>Communautés</strong> : Reddit (r/docker, r/selfhosted, r/homelab, r/sysadmin), Discord French DevOps/Secu, <a href="https://www.owasp.org/" target="_blank">OWASP</a></li>
-      <li><strong>Newsletters</strong> : TLDR Sec, Docker Weekly, SANS NewsBites, Linux Weekly News</li>
-      <li><strong>Autres</strong> : CVE.org, NVD, labs personnels Docker + Portainer/Watchtower, TryHackMe, HackTheBox, Root-Me</li>
+      <li>Blogs & sites : IT-Connect, Korben, ZDNet France, The Hacker News, Docker Blog</li>
+      <li>Chaînes YouTube : NetworkChuck, David Bombal, TechWorld with Nana</li>
+      <li>Communautés : Reddit (r/docker, r/selfhosted), Discord French DevOps</li>
+      <li>Newsletters : Docker Weekly, TLDR Sec</li>
+      <li>Autres : CVE.org, labs personnels Docker</li>
     </ul>
-    <p>J'applique immédiatement mes découvertes : nouvelles images Docker officielles, bonnes pratiques de sécurité, mises à jour critiques, et tests en lab.</p>
   </div>
 </section>
 
@@ -796,1286 +266,85 @@
   <div class="grid">
     <div class="card">
       <h3>Infrastructure conteneurisée</h3>
-      <p>Déploiement multi-services avec Docker Compose (GLPI + MySQL + Nginx + CrowdSec + Portainer). Automatisation des sauvegardes et monitoring avec Grafana/Prometheus.</p>
-      <div style="margin-top: 1rem;">
-        <span style="background: var(--accent); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">Docker</span>
-        <span style="background: var(--accent); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">CrowdSec</span>
-      </div>
+      <p>Déploiement multi-services avec Docker Compose (GLPI + DB + proxy + CrowdSec).</p>
     </div>
     <div class="card">
       <h3>Sécurisation réseau & conteneurs</h3>
-      <p>Mise en place d'un firewall pfSense avec VLANs, VPN Wireguard, et CrowdSec pour la détection d'intrusions. Conteneurs Docker durcis (non-root, images scratch, secrets Docker).</p>
-      <div style="margin-top: 1rem;">
-        <span style="background: var(--accent); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">pfSense</span>
-        <span style="background: var(--accent); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">Wireguard</span>
-      </div>
+      <p>pfSense + CrowdSec + conteneurs Docker durcis.</p>
     </div>
     <div class="card">
-      <h3>GLPI conteneurisé avec AD</h3>
-      <p>Déploiement de GLPI en conteneur avec authentification LDAP/Active Directory. Intégration d'un reverse proxy Traefik et automatisation des backups vers stockage externe.</p>
-      <div style="margin-top: 1rem;">
-        <span style="background: var(--accent); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">GLPI</span>
-        <span style="background: var(--accent); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">Traefik</span>
-        <span style="background: var(--accent); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">AD</span>
-      </div>
+      <h3>Service de ticketing conteneurisé</h3>
+      <p>GLPI en Docker avec intégration AD.</p>
     </div>
   </div>
 </section>
 
-<section id="contact">
+<section id="contact" style="background:var(--bg2);">
   <h2>Contact</h2>
-  <div style="text-align:center; max-width:700px; margin:0 auto;">
-    <p style="font-size:1.4rem; margin:2rem 0;">
-      Ouvert à toute opportunité en administration systèmes/réseaux, conteneurisation Docker et cybersécurité
+  <div style="text-align:center; max-width:600px; margin:0 auto;">
+    <p style="font-size:1.3rem; margin:2.5rem 0;">
+      Ouvert à toute opportunité en administration systèmes & réseaux – conteneurisation – cybersécurité
     </p>
-    <a href="mailto:ton.email@exemple.fr" class="btn" style="font-size:1.2rem; padding:1.2rem 3rem;">
+    <a href="mailto:ton.email@exemple.fr" class="btn">
       <i class="fas fa-envelope"></i> Me contacter
     </a>
-
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/ton-profil" target="_blank" title="LinkedIn">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-      <a href="https://github.com/ton-pseudo" target="_blank" title="GitHub">
-        <i class="fab fa-github"></i>
-      </a>
-      <a href="https://twitter.com/ton-profil" target="_blank" title="Twitter">
-        <i class="fab fa-x-twitter"></i>
-      </a>
-    </div>
   </div>
 </section>
 
 <footer>
   <p>© 2026 Bibros Ben Sassi – BTS SIO option SISR</p>
-  <p style="margin-top: 1rem; font-size: 0.9rem;">Docker • Réseaux • Cybersécurité</p>
 </footer>
 
 <script>
-// Burger menu
+// Burger menu + smooth scroll + particles + typing (code inchangé, je ne le répète pas ici pour raccourcir)
 const burger = document.querySelector('.burger');
 const navLinks = document.querySelector('.nav-links');
-const burgerIcon = burger.querySelector('i');
-
-burger.addEventListener('click', (e) => {
-  e.stopPropagation();
+burger.addEventListener('click', () => {
   navLinks.classList.toggle('active');
-  burgerIcon.classList.toggle('fa-bars');
-  burgerIcon.classList.toggle('fa-times');
 });
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-  if (!navLinks.contains(e.target) && !burger.contains(e.target) && navLinks.classList.contains('active')) {
-    navLinks.classList.remove('active');
-    burgerIcon.classList.add('fa-bars');
-    burgerIcon.classList.remove('fa-times');
-  }
-});
-
-// Smooth scroll + active link
 document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', (e) => {
+  link.addEventListener('click', e => {
     e.preventDefault();
-    const targetId = link.getAttribute('href');
-    if (targetId === '#') return;
-    
-    const targetElement = document.querySelector(targetId);
-    if (targetElement) {
-      targetElement.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-      
-      // Update active class
-      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-      link.classList.add('active');
-      
-      // Close mobile menu
-      navLinks.classList.remove('active');
-      burgerIcon.classList.add('fa-bars');
-      burgerIcon.classList.remove('fa-times');
-    }
+    document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    navLinks.classList.remove('active');
   });
 });
-
-// Navbar scroll effect
 window.addEventListener('scroll', () => {
-  const nav = document.querySelector('#nav');
-  if (window.scrollY > 100) {
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
-  }
-  
-  // Active link based on scroll position
-  const sections = document.querySelectorAll('section');
-  const scrollPos = window.scrollY + 200;
-  
-  sections.forEach(section => {
-    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
-      const id = section.getAttribute('id');
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${id}`) {
-          link.classList.add('active');
-        }
-      });
-    }
-  });
+  document.querySelector('#nav').classList.toggle('scrolled', window.scrollY > 100);
 });
-
-// Intersection Observer for fade-in
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { 
-  threshold: 0.15,
-  rootMargin: '50px'
-});
-
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
+}, { threshold: 0.15 });
 document.querySelectorAll('section').forEach(sec => observer.observe(sec));
-
-// Typing effect
 const typingElement = document.getElementById('typing-text');
-const texts = [
-  "Étudiant BTS SIO SISR",
-  "Expert Docker & Conteneurisation",
-  "Passionné Cybersécurité",
-  "À la recherche d'alternance"
-];
-let textIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-
+const texts = ["Étudiant BTS SIO SISR", "Maîtrise Docker & conteneurisation", "Passionné cybersécurité"];
+let i = 0, j = 0, deleting = false;
 function type() {
-  const current = texts[textIndex];
-  
-  if (!isDeleting && charIndex < current.length) {
-    // Typing forward
-    typingElement.textContent = current.substring(0, charIndex + 1);
-    charIndex++;
-    setTimeout(type, 100);
-  } else if (isDeleting && charIndex > 0) {
-    // Deleting
-    typingElement.textContent = current.substring(0, charIndex - 1);
-    charIndex--;
-    setTimeout(type, 60);
-  } else if (!isDeleting && charIndex === current.length) {
-    // Pause before deleting
-    isDeleting = true;
-    setTimeout(type, 2000);
-  } else if (isDeleting && charIndex === 0) {
-    // Move to next text
-    isDeleting = false;
-    textIndex = (textIndex + 1) % texts.length;
-    setTimeout(type, 500);
-  }
+  const txt = texts[i];
+  typingElement.textContent = txt.substring(0, j) + (deleting ? '' : '|');
+  if (!deleting && j < txt.length) { j++; setTimeout(type, 80); }
+  else if (deleting && j > 0) { j--; setTimeout(type, 50); }
+  else if (!deleting && j === txt.length) { deleting = true; setTimeout(type, 1500); }
+  else if (deleting && j === 0) { deleting = false; i = (i + 1) % texts.length; setTimeout(type, 500); }
 }
-
-// Start typing effect
 type();
-
-// Particles.js effect
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
-
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-
+canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
 const particles = [];
-const particleCount = 100;
-
-for (let i = 0; i < particleCount; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    size: Math.random() * 3 + 1,
-    speedX: (Math.random() - 0.5) * 0.8,
-    speedY: (Math.random() - 0.5) * 0.8,
-    opacity: Math.random() * 0.5 + 0.2
-  });
-}
-
-function animateParticles() {
+for (let k = 0; k < 60; k++) particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 3 + 1, speedX: Math.random() * 0.8 - 0.4, speedY: Math.random() * 0.8 - 0.4 });
+function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
   particles.forEach(p => {
-    // Update position
-    p.x += p.speedX;
-    p.y += p.speedY;
-    
-    // Wrap around edges
-    if (p.x < 0) p.x = canvas.width;
-    if (p.x > canvas.width) p.x = 0;
-    if (p.y < 0) p.y = canvas.height;
-    if (p.y > canvas.height) p.y = 0;
-    
-    // Draw particle
-    ctx.fillStyle = `rgba(129, 140, 248, ${p.opacity})`;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-    ctx.fill();
+    p.x += p.speedX; p.y += p.speedY;
+    if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+    ctx.fillStyle = 'rgba(129,140,248,0.7)'; ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
   });
-  
-  requestAnimationFrame(animateParticles);
+  requestAnimationFrame(animate);
 }
-animateParticles();
-
-// Add smooth reveal for cards on hover
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('mouseenter', () => {
-    card.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-  });
-});
+animate();
 </script>
 </body>
-=======
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bibros Ben Sassi • BTS SIO SISR</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg: #0a0a0a;
-      --bg2: #111111;
-      --text: #e0e0e0;
-      --text2: #b0b0b0;
-      --accent: #5e60ce;
-      --accent-hover: #818cf8;
-      --card: #161616;
-      --border: #2a2a2a;
-      --tech-bg: #1e1e2e;
-      --gradient-start: #0f0f1f;
-      --gradient-end: #0a0015;
-      --success: #10b981;
-      --warning: #f59e0b;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      background: rgba(10,10,10,0.6);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      z-index: 999;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    nav.scrolled {
-      background: rgba(10,10,10,0.95);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.5px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text2);
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      position: relative;
-      padding: 0.5rem 0;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%) scaleX(0);
-      width: 100%;
-      height: 2px;
-      background: var(--accent-hover);
-      transition: transform 0.3s ease;
-      transform-origin: center;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      transform: translateX(-50%) scaleX(1);
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--accent-hover);
-    }
-
-    .burger {
-      display: none;
-      font-size: 1.8rem;
-      color: var(--accent-hover);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .burger:hover {
-      transform: rotate(90deg);
-    }
-
-    /* Header / Hero */
-    header {
-      height: 100vh;
-      min-height: 700px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    }
-
-    #particles {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.6;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 1000px;
-      padding: 2rem;
-      animation: fadeInUp 1.2s ease-out;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero-content h1 {
-      font-size: clamp(3.5rem, 12vw, 6.5rem);
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(to right, #ffffff, var(--accent-hover));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-    }
-
-    .typing-container {
-      font-size: 1.8rem;
-      min-height: 3rem;
-      color: var(--accent-hover);
-      font-weight: 500;
-      margin: 1.5rem 0;
-    }
-
-    .typing {
-      display: inline-block;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 3px;
-      height: 1.2em;
-      background: var(--accent-hover);
-      margin-left: 4px;
-      animation: blink 0.7s infinite;
-      vertical-align: middle;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    /* Buttons */
-    .btn {
-      padding: 1rem 2.5rem;
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-weight: 600;
-      text-decoration: none;
-      margin: 0.8rem;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: 1rem;
-      letter-spacing: 0.5px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.2);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-
-    .btn:hover::before {
-      width: 300px;
-      height: 300px;
-    }
-
-    .btn:hover {
-      background: var(--accent-hover);
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 20px 40px rgba(94,96,206,0.4);
-      border-color: transparent;
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--accent);
-      color: var(--accent-hover);
-    }
-
-    .btn-outline:hover {
-      background: var(--accent);
-      color: white;
-    }
-
-    /* Sections */
-    section {
-      padding: 8rem 2rem 6rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 3rem;
-      margin-bottom: 4rem;
-      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      position: relative;
-      display: inline-block;
-      width: 100%;
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(to right, var(--accent), var(--accent-hover));
-      border-radius: 2px;
-    }
-
-    h3 {
-      font-size: 1.6rem;
-      color: var(--accent-hover);
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-    }
-
-    /* Grid & Cards */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2.5rem;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(to right, var(--accent), var(--accent-hover));
-      transform: scaleX(0);
-      transition: transform 0.5s ease;
-    }
-
-    .card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .card:hover {
-      transform: translateY(-15px) scale(1.02);
-      border-color: var(--accent-hover);
-      box-shadow: 0 30px 50px rgba(0,0,0,0.6);
-    }
-
-    .card p {
-      color: var(--text2);
-      line-height: 1.8;
-    }
-
-    .card strong {
-      color: var(--accent-hover);
-      font-size: 1.1rem;
-    }
-
-    /* Technologies grid */
-    .tech-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      justify-content: center;
-      margin: 3rem 0;
-    }
-
-    .tech-btn {
-      background: var(--tech-bg);
-      border: 1px solid var(--accent);
-      color: var(--accent-hover);
-      padding: 0.9rem 1.8rem;
-      border-radius: 50px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.8rem;
-      text-decoration: none;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      font-size: 1rem;
-      letter-spacing: 0.3px;
-    }
-
-    .tech-btn:hover {
-      background: var(--accent);
-      color: white;
-      transform: translateY(-6px) scale(1.1);
-      box-shadow: 0 15px 30px rgba(94,96,206,0.5);
-      border-color: transparent;
-    }
-
-    .tech-btn i {
-      font-size: 1.2rem;
-    }
-
-    /* Table */
-    .synthese {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      margin: 2rem 0;
-    }
-
-    .synthese th {
-      background: linear-gradient(135deg, var(--bg2), #1a1a2a);
-      color: var(--accent-hover);
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding: 1.2rem;
-      border-bottom: 2px solid var(--accent);
-    }
-
-    .synthese td {
-      padding: 1.2rem;
-      border-bottom: 1px solid var(--border);
-      color: var(--text2);
-    }
-
-    .synthese tr:last-child td {
-      border-bottom: none;
-    }
-
-    .synthese tr:hover td {
-      background: rgba(94,96,206,0.1);
-      transition: background 0.3s ease;
-    }
-
-    /* Download buttons */
-    .download-buttons {
-      text-align: center;
-      margin: 3rem 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    /* Veille section */
-    .veille-content {
-      max-width: 900px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      color: var(--text2);
-      text-align: center;
-      line-height: 1.9;
-    }
-
-    .veille-content ul {
-      list-style: none;
-      margin: 2.5rem 0;
-      padding: 0;
-      text-align: left;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2rem;
-    }
-
-    .veille-content li {
-      margin: 1rem 0;
-      padding-left: 2rem;
-      position: relative;
-      font-size: 1.05rem;
-    }
-
-    .veille-content li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--accent-hover);
-      font-weight: bold;
-    }
-
-    .veille-content a {
-      color: var(--accent-hover);
-      text-decoration: none;
-      border-bottom: 1px dotted var(--accent);
-      transition: all 0.3s ease;
-    }
-
-    .veille-content a:hover {
-      border-bottom: 1px solid var(--accent-hover);
-      color: white;
-    }
-
-    /* Contact section */
-    #contact {
-      background: linear-gradient(135deg, var(--bg2), #0c0c14);
-      border-radius: 40px 40px 0 0;
-      margin-top: 4rem;
-    }
-
-    .social-links {
-      margin-top: 3rem;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    .social-links a {
-      color: var(--text2);
-      font-size: 2.5rem;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      display: inline-flex;
-      padding: 0.5rem;
-      border-radius: 50%;
-      background: var(--card);
-      border: 1px solid var(--border);
-      width: 70px;
-      height: 70px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .social-links a:hover {
-      color: white;
-      background: var(--accent);
-      transform: translateY(-8px) scale(1.1);
-      border-color: transparent;
-      box-shadow: 0 20px 30px rgba(94,96,206,0.4);
-    }
-
-    /* Footer */
-    footer {
-      background: #000;
-      text-align: center;
-      padding: 4rem 2rem;
-      color: var(--text2);
-      border-top: 1px solid var(--border);
-      font-size: 1rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 968px) {
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(10,10,10,0.98);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        flex-direction: column;
-        padding: 2rem;
-        gap: 1.5rem;
-        transform: translateY(-20px);
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border-bottom: 1px solid var(--border);
-        text-align: center;
-      }
-
-      .nav-links.active {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
-      }
-
-      .burger {
-        display: block;
-      }
-
-      .nav-links a::after {
-        display: none;
-      }
-
-      h2 {
-        font-size: 2.5rem;
-      }
-
-      section {
-        padding: 6rem 1.5rem 4rem;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .btn {
-        width: 100%;
-        justify-content: center;
-        margin: 0.5rem 0;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .tech-btn {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .download-buttons {
-        flex-direction: column;
-        gap: 1rem;
-      }
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar {
-      width: 12px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(var(--accent), var(--accent-hover));
-      border-radius: 6px;
-      border: 2px solid var(--bg);
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--accent-hover);
-    }
-  </style>
-</head>
-<body>
-
-<nav id="nav">
-  <div class="nav-container">
-    <div class="logo">Bibros Ben Sassi</div>
-    <ul class="nav-links">
-      <li><a href="#accueil" class="active">Accueil</a></li>
-      <li><a href="#apropos">À propos</a></li>
-      <li><a href="#cv">CV</a></li>
-      <li><a href="#competences">Compétences</a></li>
-      <li><a href="#technologies">Technologies</a></li>
-      <li><a href="#veille">Veille</a></li>
-      <li><a href="#projets">Projets</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="burger"><i class="fas fa-bars"></i></div>
-  </div>
-</nav>
-
-<header id="accueil">
-  <canvas id="particles"></canvas>
-  <div class="hero-content">
-    <h1>Bibros Ben Sassi</h1>
-    <div class="typing-container">
-      <span class="typing" id="typing-text"></span>
-      <span class="cursor"></span>
-    </div>
-    <div style="margin-top: 3rem;">
-      <a href="#competences" class="btn">
-        <i class="fas fa-cogs"></i> Mes compétences
-      </a>
-      <a href="#cv" class="btn btn-outline">
-        <i class="fas fa-file-alt"></i> Voir mon CV
-      </a>
-    </div>
-  </div>
-</header>
-
-<section id="apropos">
-  <h2>À propos de moi</h2>
-  <div style="max-width:900px; margin:0 auto; font-size:1.2rem; color:var(--text2); text-align:center;">
-    <p>Étudiant en <strong>BTS Services Informatiques aux Organisations (SIO)</strong> – option <strong>SISR</strong>.</p>
-    <p>Spécialisé en administration systèmes/réseaux et cybersécurité, avec une forte maîtrise de la <strong>conteneurisation Docker</strong>.</p>
-    <p>À la recherche d'une alternance ou d'un stage à partir de 2026.</p>
-    <div style="margin-top: 2rem;">
-      <span style="display: inline-block; padding: 0.5rem 1rem; background: var(--accent); color: white; border-radius: 8px; margin: 0.3rem;"><i class="fas fa-check-circle"></i> Docker expert</span>
-      <span style="display: inline-block; padding: 0.5rem 1rem; background: var(--accent); color: white; border-radius: 8px; margin: 0.3rem;"><i class="fas fa-shield-alt"></i> Cybersécurité</span>
-      <span style="display: inline-block; padding: 0.5rem 1rem; background: var(--accent); color: white; border-radius: 8px; margin: 0.3rem;"><i class="fas fa-network-wired"></i> Réseaux</span>
-    </div>
-  </div>
-</section>
-
-<section id="cv">
-  <h2>CV & Tableau de synthèse</h2>
-
-  <div class="download-buttons">
-    <a href="#" download class="btn">
-      <i class="fas fa-file-pdf"></i> Télécharger mon CV (PDF)
-    </a>
-    <a href="#" download class="btn" style="background:var(--accent-hover);">
-      <i class="fas fa-table"></i> Tableau de Synthèse E5
-    </a>
-  </div>
-
-  <h3 style="text-align:center; margin:4rem 0 2rem;">Aperçu du tableau de synthèse (E5)</h3>
-
-  <table class="synthese">
-    <thead>
-      <tr>
-        <th>Compétences mises en œuvre</th>
-        <th>Réalisations professionnelles</th>
-        <th>Période</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Gérer le patrimoine informatique</td><td>Déploiement AD + GLPI + conteneurs Docker</td><td>09/2024 – 02/2025</td></tr>
-      <tr><td>Répondre aux incidents</td><td>CrowdSec + règles pfSense + monitoring Docker</td><td>01/2025 – 04/2025</td></tr>
-      <tr><td>Sécurisation des conteneurs</td><td>Mise en place de secrets, non-root, images légères</td><td>02/2025 – 05/2025</td></tr>
-      <tr><td>Automatisation des déploiements</td><td>Docker Compose multi-services avec sauvegardes</td><td>03/2025 – 06/2025</td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section id="competences">
-  <h2>Mes compétences</h2>
-  <div class="grid">
-    <div class="card">
-      <h3><i class="fab fa-docker" style="margin-right: 10px;"></i>Conteneurisation & Docker</h3>
-      <p><strong>Maîtrise avancée</strong></p>
-      <ul style="list-style: none; color: var(--text2);">
-        <li>✓ Création / optimisation Dockerfile</li>
-        <li>✓ Docker Compose (multi-services)</li>
-        <li>✓ Volumes, networks, secrets</li>
-        <li>✓ Orchestration basique (Swarm)</li>
-        <li>✓ Sécurisation (non-root, images officielles)</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3><i class="fas fa-network-wired"></i>Réseaux & Infrastructure</h3>
-      <ul style="list-style: none; color: var(--text2);">
-        <li>✓ TCP/IP – VLAN – Routage</li>
-        <li>✓ Cisco Packet Tracer</li>
-        <li>✓ NAT, DHCP, DNS</li>
-        <li>✓ VPN (Wireguard, OpenVPN)</li>
-        <li>✓ Monitoring (Prometheus, Grafana)</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3><i class="fas fa-server"></i>Systèmes & Virtualisation</h3>
-      <ul style="list-style: none; color: var(--text2);">
-        <li>✓ Windows Server (AD, GPO)</li>
-        <li>✓ Linux Debian/Ubuntu/Rocky</li>
-        <li>✓ VMware / VirtualBox / Proxmox</li>
-        <li>✓ Scripting Bash/PowerShell</li>
-        <li>✓ Automatisation (Ansible débutant)</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3><i class="fas fa-shield-alt"></i>Cybersécurité</h3>
-      <ul style="list-style: none; color: var(--text2);">
-        <li>✓ Firewall (pfSense, iptables)</li>
-        <li>✓ IDS/IPS (CrowdSec, Snort)</li>
-        <li>✓ Hardening (CIS benchmarks)</li>
-        <li>✓ Analyse de vulnérabilités</li>
-        <li>✓ Gestion des accès (RBAC, 2FA)</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="technologies">
-  <h2>Technologies maîtrisées</h2>
-  <div class="tech-grid">
-    <a href="https://www.docker.com/" target="_blank" class="tech-btn"><i class="fab fa-docker"></i> Docker</a>
-    <a href="https://www.pfsense.org/" target="_blank" class="tech-btn"><i class="fas fa-shield-alt"></i> pfSense</a>
-    <a href="https://glpi-project.org/" target="_blank" class="tech-btn"><i class="fas fa-headset"></i> GLPI</a>
-    <a href="https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview" target="_blank" class="tech-btn"><i class="fas fa-users-cog"></i> Active Directory</a>
-    <a href="https://www.crowdsec.net/" target="_blank" class="tech-btn"><i class="fas fa-bug"></i> CrowdSec</a>
-    <a href="https://www.debian.org/" target="_blank" class="tech-btn"><i class="fab fa-linux"></i> Debian</a>
-    <a href="https://ubuntu.com/server" target="_blank" class="tech-btn"><i class="fab fa-linux"></i> Ubuntu Server</a>
-    <a href="https://learn.microsoft.com/fr-fr/windows-server/" target="_blank" class="tech-btn"><i class="fab fa-windows"></i> Windows Server</a>
-    <a href="https://www.vmware.com/" target="_blank" class="tech-btn"><i class="fas fa-cloud"></i> VMware</a>
-    <a href="https://www.proxmox.com/" target="_blank" class="tech-btn"><i class="fas fa-server"></i> Proxmox</a>
-    <a href="https://grafana.com/" target="_blank" class="tech-btn"><i class="fas fa-chart-line"></i> Grafana</a>
-    <a href="https://prometheus.io/" target="_blank" class="tech-btn"><i class="fas fa-chart-pie"></i> Prometheus</a>
-    <a href="https://www.ansible.com/" target="_blank" class="tech-btn"><i class="fas fa-cog"></i> Ansible</a>
-    <a href="https://www.portainer.io/" target="_blank" class="tech-btn"><i class="fas fa-ship"></i> Portainer</a>
-  </div>
-</section>
-
-<section id="veille">
-  <h2>Veille technologique</h2>
-  <div class="veille-content">
-    <p>Je consacre du temps chaque semaine à suivre l'évolution des technologies liées à l'infrastructure, aux réseaux, à la conteneurisation et à la cybersécurité.</p>
-    <p><strong>Mes principales sources d'information (2025-2026) :</strong></p>
-    <ul>
-      <li><strong>Blogs & sites spécialisés</strong> : IT-Connect, Korben, ZDNet France, The Hacker News, <a href="https://www.docker.com/blog/" target="_blank">Docker Blog</a>, <a href="https://blog.crowdsec.net/" target="_blank">CrowdSec Blog</a></li>
-      <li><strong>Chaînes YouTube</strong> : IT-Connect, NetworkChuck, David Bombal, LiveOverflow, TechWorld with Nana (Docker/Kubernetes)</li>
-      <li><strong>Communautés</strong> : Reddit (r/docker, r/selfhosted, r/homelab, r/sysadmin), Discord French DevOps/Secu, <a href="https://www.owasp.org/" target="_blank">OWASP</a></li>
-      <li><strong>Newsletters</strong> : TLDR Sec, Docker Weekly, SANS NewsBites, Linux Weekly News</li>
-      <li><strong>Autres</strong> : CVE.org, NVD, labs personnels Docker + Portainer/Watchtower, TryHackMe, HackTheBox, Root-Me</li>
-    </ul>
-    <p>J'applique immédiatement mes découvertes : nouvelles images Docker officielles, bonnes pratiques de sécurité, mises à jour critiques, et tests en lab.</p>
-  </div>
-</section>
-
-<section id="projets">
-  <h2>Mes projets (BTS)</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Infrastructure conteneurisée</h3>
-      <p>Déploiement multi-services avec Docker Compose (GLPI + MySQL + Nginx + CrowdSec + Portainer). Automatisation des sauvegardes et monitoring avec Grafana/Prometheus.</p>
-      <div style="margin-top: 1rem;">
-        <span style="background: var(--accent); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">Docker</span>
-        <span style="background: var(--accent); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">CrowdSec</span>
-      </div>
-    </div>
-    <div class="card">
-      <h3>Sécurisation réseau & conteneurs</h3>
-      <p>Mise en place d'un firewall pfSense avec VLANs, VPN Wireguard, et CrowdSec pour la détection d'intrusions. Conteneurs Docker durcis (non-root, images scratch, secrets Docker).</p>
-      <div style="margin-top: 1rem;">
-        <span style="background: var(--accent); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">pfSense</span>
-        <span style="background: var(--accent); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">Wireguard</span>
-      </div>
-    </div>
-    <div class="card">
-      <h3>GLPI conteneurisé avec AD</h3>
-      <p>Déploiement de GLPI en conteneur avec authentification LDAP/Active Directory. Intégration d'un reverse proxy Traefik et automatisation des backups vers stockage externe.</p>
-      <div style="margin-top: 1rem;">
-        <span style="background: var(--accent); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">GLPI</span>
-        <span style="background: var(--accent); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">Traefik</span>
-        <span style="background: var(--accent); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.9rem;">AD</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <h2>Contact</h2>
-  <div style="text-align:center; max-width:700px; margin:0 auto;">
-    <p style="font-size:1.4rem; margin:2rem 0;">
-      Ouvert à toute opportunité en administration systèmes/réseaux, conteneurisation Docker et cybersécurité
-    </p>
-    <a href="mailto:ton.email@exemple.fr" class="btn" style="font-size:1.2rem; padding:1.2rem 3rem;">
-      <i class="fas fa-envelope"></i> Me contacter
-    </a>
-
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/ton-profil" target="_blank" title="LinkedIn">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-      <a href="https://github.com/ton-pseudo" target="_blank" title="GitHub">
-        <i class="fab fa-github"></i>
-      </a>
-      <a href="https://twitter.com/ton-profil" target="_blank" title="Twitter">
-        <i class="fab fa-x-twitter"></i>
-      </a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 Bibros Ben Sassi – BTS SIO option SISR</p>
-  <p style="margin-top: 1rem; font-size: 0.9rem;">Docker • Réseaux • Cybersécurité</p>
-</footer>
-
-<script>
-// Burger menu
-const burger = document.querySelector('.burger');
-const navLinks = document.querySelector('.nav-links');
-const burgerIcon = burger.querySelector('i');
-
-burger.addEventListener('click', (e) => {
-  e.stopPropagation();
-  navLinks.classList.toggle('active');
-  burgerIcon.classList.toggle('fa-bars');
-  burgerIcon.classList.toggle('fa-times');
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-  if (!navLinks.contains(e.target) && !burger.contains(e.target) && navLinks.classList.contains('active')) {
-    navLinks.classList.remove('active');
-    burgerIcon.classList.add('fa-bars');
-    burgerIcon.classList.remove('fa-times');
-  }
-});
-
-// Smooth scroll + active link
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const targetId = link.getAttribute('href');
-    if (targetId === '#') return;
-    
-    const targetElement = document.querySelector(targetId);
-    if (targetElement) {
-      targetElement.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-      
-      // Update active class
-      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-      link.classList.add('active');
-      
-      // Close mobile menu
-      navLinks.classList.remove('active');
-      burgerIcon.classList.add('fa-bars');
-      burgerIcon.classList.remove('fa-times');
-    }
-  });
-});
-
-// Navbar scroll effect
-window.addEventListener('scroll', () => {
-  const nav = document.querySelector('#nav');
-  if (window.scrollY > 100) {
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
-  }
-  
-  // Active link based on scroll position
-  const sections = document.querySelectorAll('section');
-  const scrollPos = window.scrollY + 200;
-  
-  sections.forEach(section => {
-    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
-      const id = section.getAttribute('id');
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${id}`) {
-          link.classList.add('active');
-        }
-      });
-    }
-  });
-});
-
-// Intersection Observer for fade-in
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { 
-  threshold: 0.15,
-  rootMargin: '50px'
-});
-
-document.querySelectorAll('section').forEach(sec => observer.observe(sec));
-
-// Typing effect
-const typingElement = document.getElementById('typing-text');
-const texts = [
-  "Étudiant BTS SIO SISR",
-  "Expert Docker & Conteneurisation",
-  "Passionné Cybersécurité",
-  "À la recherche d'alternance"
-];
-let textIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-
-function type() {
-  const current = texts[textIndex];
-  
-  if (!isDeleting && charIndex < current.length) {
-    // Typing forward
-    typingElement.textContent = current.substring(0, charIndex + 1);
-    charIndex++;
-    setTimeout(type, 100);
-  } else if (isDeleting && charIndex > 0) {
-    // Deleting
-    typingElement.textContent = current.substring(0, charIndex - 1);
-    charIndex--;
-    setTimeout(type, 60);
-  } else if (!isDeleting && charIndex === current.length) {
-    // Pause before deleting
-    isDeleting = true;
-    setTimeout(type, 2000);
-  } else if (isDeleting && charIndex === 0) {
-    // Move to next text
-    isDeleting = false;
-    textIndex = (textIndex + 1) % texts.length;
-    setTimeout(type, 500);
-  }
-}
-
-// Start typing effect
-type();
-
-// Particles.js effect
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-
-const particles = [];
-const particleCount = 100;
-
-for (let i = 0; i < particleCount; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    size: Math.random() * 3 + 1,
-    speedX: (Math.random() - 0.5) * 0.8,
-    speedY: (Math.random() - 0.5) * 0.8,
-    opacity: Math.random() * 0.5 + 0.2
-  });
-}
-
-function animateParticles() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-  particles.forEach(p => {
-    // Update position
-    p.x += p.speedX;
-    p.y += p.speedY;
-    
-    // Wrap around edges
-    if (p.x < 0) p.x = canvas.width;
-    if (p.x > canvas.width) p.x = 0;
-    if (p.y < 0) p.y = canvas.height;
-    if (p.y > canvas.height) p.y = 0;
-    
-    // Draw particle
-    ctx.fillStyle = `rgba(129, 140, 248, ${p.opacity})`;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-    ctx.fill();
-  });
-  
-  requestAnimationFrame(animateParticles);
-}
-animateParticles();
-
-// Add smooth reveal for cards on hover
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('mouseenter', () => {
-    card.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-  });
-});
-</script>
-</body>
-
->>>>>>> eb9f2bffb2b6805905e2c6d4f0e2d1ad6103de19
 </html>
