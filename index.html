@@ -27,6 +27,7 @@
       --card: #ffffff;
       --border: #dee2e6;
       --tech-bg: #f1f3f5;
+      --gradient: linear-gradient(135deg, #4e54c8, #8f94fb);
     }
 
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -386,6 +387,7 @@
       width: 90%;
       box-shadow: 0 20px 60px rgba(0,0,0,0.6);
       animation: fadeIn 0.4s ease;
+      position: relative;
     }
 
     [data-theme="light"] .modal-content {
@@ -397,9 +399,14 @@
       position: absolute;
       top: 1rem;
       right: 1.5rem;
-      font-size: 2rem;
+      font-size: 2.5rem;
       cursor: pointer;
       color: var(--text2);
+      transition: color 0.3s;
+    }
+
+    .close-modal:hover {
+      color: var(--accent-hover);
     }
 
     @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
@@ -509,19 +516,261 @@
   </div>
 </section>
 
-<!-- Le reste du code (entreprises, cv, competences, technologies, veille, projets, contact, footer, script) reste identique à la version précédente ultra-travaillée que je t’ai donnée -->
+<section id="entreprises">
+  <h2>Mes expériences en entreprise</h2>
+  <div class="entreprises-grid">
+    <div class="card">
+      <h3>OXYLEASE</h3>
+      <p><strong>Forme juridique :</strong> SAS</p>
+      <p><strong>SIREN :</strong> 914 886 361</p>
+      <p><strong>Siège social :</strong> 99 Avenue Achille Peretti, 92200 Neuilly-sur-Seine</p>
+      <p><strong>Activité principale :</strong> Transports de voyageurs par taxis (NAF 49.32Z / 49.33G)</p>
+      <p><strong>Date de création :</strong> 10/06/2022</p>
+      <p><strong>Catégorie :</strong> PME (2023)</p>
+      <p><strong>Mes missions principales :</strong></p>
+      <ul style="color:var(--text2); margin-top:1rem;">
+        <li>Support N1/N2 aux conducteurs (diagnostics matériel embarqué, applications mobiles de géolocalisation)</li>
+        <li>Gestion et résolution d’incidents sur les systèmes de ticketing et tracking en temps réel</li>
+        <li>Maintenance du parc informatique (mises à jour Windows, dépannage postes et périphériques)</li>
+        <li>Participation à la sécurisation des connexions mobiles et des données de localisation</li>
+        <li>Documentation des procédures techniques et formation utilisateurs</li>
+      </ul>
+    </div>
 
-<!-- FORMULAIRE MODAL CONTACT -->
+    <div class="card">
+      <h3>CONNECT AGENCY</h3>
+      <p><strong>Forme juridique :</strong> SAS</p>
+      <p><strong>SIREN :</strong> 913 017 091</p>
+      <p><strong>Siège social :</strong> 15 Boulevard Péreire, 75017 Paris</p>
+      <p><strong>Activité principale :</strong> Commerce de détail d’ordinateurs, périphériques et logiciels (NAF 47.41Z / 47.40Y)</p>
+      <p><strong>Date de création :</strong> 07/04/2022</p>
+      <p><strong>Catégorie :</strong> PME (2023)</p>
+      <p><strong>Mes missions principales :</strong></p>
+      <ul style="color:var(--text2); margin-top:1rem;">
+        <li>Configuration et déploiement de postes clients (Windows 10/11, distributions Linux)</li>
+        <li>Installation et personnalisation de logiciels métiers (bureautique, CAO, comptabilité)</li>
+        <li>Dépannage hardware (diagnostics RAM, disque, carte mère) et software niveau 1/2</li>
+        <li>Conseil et vente de solutions de sécurité (antivirus, sauvegarde cloud, firewall)</li>
+        <li>Gestion du stock et préparation des commandes clients</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="cv">
+  <h2>CV & Tableau de synthèse</h2>
+
+  <div class="download-buttons" style="display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; margin:3rem 0;">
+    <a href="CV-Bibros-B.pdf"
+       download="CV_Bibros_Ben_Sassi.pdf"
+       class="btn">
+      <i class="fas fa-file-pdf"></i> Télécharger mon CV (PDF)
+    </a>
+    <a href="tableau.xlsx"
+       download="Tableau_Synthese_E5_Bibros_Ben_Sassi.xlsx"
+       class="btn"
+       style="background:var(--gradient);">
+      <i class="fas fa-table"></i> Télécharger le Tableau de Synthèse E5
+    </a>
+  </div>
+
+  <h3 style="text-align:center; margin:4rem 0 1.5rem;">Aperçu de mon CV</h3>
+  <div class="pdf-preview">
+    <iframe 
+      src="CV-Bibros-B.pdf"
+      width="100%" 
+      height="100%" 
+      style="border:none;"
+      title="CV Bibros Ben Sassi">
+    </iframe>
+  </div>
+
+  <p style="text-align:center; color:var(--text2); margin:2rem 0; font-size:1rem;">
+    CV mis à jour mars 2026 – 2 pages – Disponible en téléchargement ci-dessus
+  </p>
+</section>
+
+<section id="competences" style="background:var(--bg2);">
+  <h2>Mes compétences</h2>
+  <div class="grid">
+    <div class="card">
+      <h3><i class="fab fa-docker"></i> Conteneurisation & Docker</h3>
+      <p><strong>Niveau :</strong> Avancé</p>
+      <div class="level-bar"><div class="level-bar-fill" style="width:90%"></div></div>
+      <ul>
+        <li>Création et optimisation Dockerfile</li>
+        <li>Docker Compose multi-services</li>
+        <li>Volumes persistants, networks, secrets</li>
+        <li>Sécurisation (non-root, multi-stage builds, images officielles)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><i class="fas fa-network-wired"></i> Réseaux & Infrastructure</h3>
+      <p><strong>Niveau :</strong> Intermédiaire</p>
+      <div class="level-bar"><div class="level-bar-fill" style="width:75%"></div></div>
+      <ul>
+        <li>TCP/IP, VLAN, routage statique/dynamique</li>
+        <li>Configuration Cisco (Packet Tracer + réel)</li>
+        <li>NAT, DHCP, DNS, VPN (WireGuard)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><i class="fas fa-server"></i> Systèmes & Virtualisation</h3>
+      <p><strong>Niveau :</strong> Intermédiaire</p>
+      <div class="level-bar"><div class="level-bar-fill" style="width:80%"></div></div>
+      <ul>
+        <li>Windows Server (AD, GPO, DNS)</li>
+        <li>Linux Debian/Ubuntu (administration avancée)</li>
+        <li>VMware Workstation / VirtualBox</li>
+        <li>Serveur mail (Postfix + Dovecot)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><i class="fas fa-shield-alt"></i> Cybersécurité</h3>
+      <p><strong>Niveau :</strong> Intermédiaire</p>
+      <div class="level-bar"><div class="level-bar-fill" style="width:70%"></div></div>
+      <ul>
+        <li>Firewall pfSense (règles avancées, NAT, VPN)</li>
+        <li>IDS/IPS CrowdSec (bouncers, collections)</li>
+        <li>Hardening systèmes (CIS benchmarks)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><i class="fas fa-eye"></i> Supervision & Monitoring</h3>
+      <p><strong>Niveau :</strong> Intermédiaire</p>
+      <div class="level-bar"><div class="level-bar-fill" style="width:75%"></div></div>
+      <ul>
+        <li>Zabbix (installation, agents, triggers, dashboards)</li>
+        <li>Monitoring Docker, services et conteneurs</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><i class="fas fa-tools"></i> Outils transversaux</h3>
+      <p><strong>Niveau :</strong> Avancé</p>
+      <div class="level-bar"><div class="level-bar-fill" style="width:85%"></div></div>
+      <ul>
+        <li>Git & GitHub (versioning, branches)</li>
+        <li>Scripting Bash / PowerShell</li>
+        <li>GLPI (gestion incidents, parc, base de connaissances)</li>
+        <li>ITIL fondements & Agile</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="technologies">
+  <h2>Technologies maîtrisées</h2>
+  <div class="tech-grid">
+    <div style="width:100%; text-align:center; margin:1rem 0 0.5rem; color:var(--text2); font-weight:600;">Conteneurisation</div>
+    <a href="https://www.docker.com/" target="_blank" class="tech-btn"><i class="fab fa-docker"></i> Docker</a>
+
+    <div style="width:100%; text-align:center; margin:2.5rem 0 0.5rem; color:var(--text2); font-weight:600;">Systèmes & Serveurs</div>
+    <a href="https://learn.microsoft.com/fr-fr/windows-server/" target="_blank" class="tech-btn"><i class="fab fa-windows"></i> Windows Server</a>
+    <a href="https://www.debian.org/" target="_blank" class="tech-btn"><i class="fab fa-linux"></i> Debian</a>
+    <a href="https://ubuntu.com/" target="_blank" class="tech-btn"><i class="fab fa-linux"></i> Ubuntu Server</a>
+    <a href="https://www.postfix.org/" target="_blank" class="tech-btn"><i class="fas fa-envelope"></i> Postfix</a>
+
+    <div style="width:100%; text-align:center; margin:2.5rem 0 0.5rem; color:var(--text2); font-weight:600;">Réseaux & Sécurité</div>
+    <a href="https://www.pfsense.org/" target="_blank" class="tech-btn"><i class="fas fa-shield-alt"></i> pfSense</a>
+    <a href="https://www.crowdsec.net/" target="_blank" class="tech-btn"><i class="fas fa-bug"></i> CrowdSec</a>
+    <a href="https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/" target="_blank" class="tech-btn"><i class="fas fa-users-cog"></i> Active Directory</a>
+
+    <div style="width:100%; text-align:center; margin:2.5rem 0 0.5rem; color:var(--text2); font-weight:600;">Supervision</div>
+    <a href="https://www.zabbix.com/" target="_blank" class="tech-btn"><i class="fas fa-eye"></i> Zabbix</a>
+
+    <div style="width:100%; text-align:center; margin:2.5rem 0 0.5rem; color:var(--text2); font-weight:600;">Gestion & Ticketing</div>
+    <a href="glpi.pdf" target="_blank" class="tech-btn"><i class="fas fa-headset"></i> GLPI</a>
+  </div>
+</section>
+
+<section id="veille">
+  <h2>Veille technologique</h2>
+  <div style="max-width:1000px; margin:0 auto; font-size:1.1rem; color:var(--text2); text-align:center;">
+    <p>Je consacre 5 à 7 heures par semaine à la veille pour rester à la pointe des évolutions infrastructure, conteneurisation et cybersécurité.</p>
+    <p><strong>Sources principales utilisées en 2025-2026 :</strong></p>
+    <ul style="text-align:left; max-width:800px; margin:2rem auto; list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem;">
+      <li>Blogs & sites : IT-Connect, Korben, ZDNet France, The Hacker News, Docker Blog, CrowdSec Blog</li>
+      <li>Chaînes YouTube : NetworkChuck, David Bombal, TechWorld with Nana, LiveOverflow, John Hammond</li>
+      <li>Communautés : Reddit (r/homelab, r/selfhosted, r/docker, r/netsec), Discord French DevOps / Secu</li>
+      <li>Newsletters : Docker Weekly, TLDR Sec, SANS NewsBites, Linux Weekly News</li>
+      <li>Pratique & Labs : labs perso Docker + Zabbix + pfSense, TryHackMe, HackTheBox, Root-Me</li>
+    </ul>
+    <p><strong>Thèmes récents suivis :</strong> Docker 26.x hardening, Zabbix 7.2 nouvelles fonctionnalités, CrowdSec 1.6+ bouncers, pfSense 2.8.x, WireGuard vs IPsec, Postfix anti-spam 2026.</p>
+  </div>
+</section>
+
+<section id="projets">
+  <h2>Mes projets (BTS)</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Infrastructure conteneurisée sécurisée</h3>
+      <p>Déploiement d’une infrastructure complète en Docker Compose : GLPI + MariaDB + Nginx reverse proxy + CrowdSec + Zabbix agent + backups automatisés.</p>
+      <p><strong>Stack technique :</strong> Docker, Docker Compose, Nginx, CrowdSec, Zabbix, MariaDB, Watchtower</p>
+      <p><strong>Résultats obtenus :</strong> Environnement isolé, haute disponibilité, supervision temps réel, détection intrusions active, sauvegardes chiffrées quotidiennes</p>
+      <p><strong>Défis relevés :</strong> Gestion des secrets Docker, réseaux internes, hardening images, alertes Zabbix sur conteneurs</p>
+    </div>
+
+    <div class="card">
+      <h3>Sécurisation réseau & supervision</h3>
+      <p>Configuration pfSense avec VLANs, règles firewall avancées, VPN WireGuard, intégration CrowdSec et Zabbix pour monitoring global.</p>
+      <p><strong>Stack technique :</strong> pfSense, WireGuard, CrowdSec, Zabbix, VLAN, iptables</p>
+      <p><strong>Résultats obtenus :</strong> Réseau segmenté, blocage attaques courantes (brute force, scans), alertes mail/SMS, dashboards personnalisés</p>
+      <p><strong>Défis relevés :</strong> Routage inter-VLAN sécurisé, tuning Zabbix pour faible charge, intégration bouncers CrowdSec</p>
+    </div>
+
+    <div class="card">
+      <h3>Service de ticketing & messagerie d’entreprise</h3>
+      <p>Déploiement GLPI conteneurisé avec authentification AD, serveur mail Postfix/Dovecot et monitoring Zabbix complet.</p>
+      <p><strong>Stack technique :</strong> GLPI, Docker, Active Directory, Postfix, Dovecot, Zabbix</p>
+      <p><strong>Résultats obtenus :</strong> Gestion centralisée incidents/parc, authentification SSO, alertes mail automatiques, reporting avancé</p>
+      <p><strong>Défis relevés :</strong> Intégration LDAP/AD dans GLPI, configuration anti-spam Postfix, seuils Zabbix sur services mail</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:var(--bg2); padding-bottom:9rem;">
+  <h2>Contact</h2>
+  <div style="text-align:center; max-width:700px; margin:0 auto;">
+    <p style="font-size:1.4rem; margin:3rem 0 2rem;">
+      Ouvert à toute opportunité en administration systèmes & réseaux, conteneurisation Docker, supervision et cybersécurité
+    </p>
+
+    <a href="#" id="openContactModal" class="btn" style="font-size:1.3rem; padding:1.4rem 4rem; margin:1.5rem;">
+      <i class="fas fa-envelope"></i> Me contacter par email
+    </a>
+
+    <div style="display:flex; justify-content:center; gap:4rem; margin:3rem 0; font-size:3.2rem;">
+      <a href="https://www.linkedin.com/in/bibros-ben-sassi-02ba12355" target="_blank" style="color:var(--accent-hover); transition:0.3s;">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://github.com/bibros7" target="_blank" style="color:var(--accent-hover); transition:0.3s;">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Bibros Ben Sassi – BTS SIO option SISR</p>
+  <p style="margin-top:1rem; font-size:1rem;">Mis à jour le 9 mars 2026</p>
+</footer>
+
+<!-- MODAL CONTACT -->
 <div id="contactModal" class="modal">
   <div class="modal-content">
     <span class="close-modal" id="closeModal">&times;</span>
     <h2>Envoyer un message</h2>
-    <form id="contactForm" style="display:flex; flex-direction:column; gap:1.2rem; margin-top:1.5rem;">
-      <input type="text" placeholder="Votre nom" required style="padding:1rem; border-radius:8px; border:1px solid var(--border); background:var(--bg2); color:var(--text);">
-      <input type="email" placeholder="Votre email" required style="padding:1rem; border-radius:8px; border:1px solid var(--border); background:var(--bg2); color:var(--text);">
-      <textarea placeholder="Votre message..." rows="5" required style="padding:1rem; border-radius:8px; border:1px solid var(--border); background:var(--bg2); color:var(--text); resize:vertical;"></textarea>
-      <button type="submit" class="btn" style="align-self:center;">
-        <i class="fas fa-paper-plane"></i> Envoyer
+    <form id="contactForm" style="display:flex; flex-direction:column; gap:1.4rem; margin-top:2rem;">
+      <input type="text" id="name" placeholder="Votre nom" required style="padding:1.1rem; border-radius:10px; border:1px solid var(--border); background:var(--bg2); color:var(--text); font-size:1.1rem;">
+      <input type="email" id="email" placeholder="Votre email" required style="padding:1.1rem; border-radius:10px; border:1px solid var(--border); background:var(--bg2); color:var(--text); font-size:1.1rem;">
+      <textarea id="message" placeholder="Votre message..." rows="6" required style="padding:1.1rem; border-radius:10px; border:1px solid var(--border); background:var(--bg2); color:var(--text); font-size:1.1rem; resize:vertical;"></textarea>
+      <button type="submit" class="btn" style="align-self:center; padding:1.2rem 3.5rem;">
+        <i class="fas fa-paper-plane"></i> Envoyer le message
       </button>
     </form>
   </div>
@@ -547,7 +796,7 @@ window.addEventListener('scroll', () => {
   document.querySelector('#nav').classList.toggle('scrolled', window.scrollY > 100);
 });
 
-// Fade-in sections
+// Fade-in
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -632,11 +881,11 @@ themeToggle.addEventListener('click', () => {
 });
 
 // Modal contact
-const contactBtn = document.querySelector('a[href^="mailto:"]');
+const openModalBtn = document.getElementById('openContactModal');
 const modal = document.getElementById('contactModal');
 const closeModal = document.getElementById('closeModal');
 
-contactBtn.addEventListener('click', e => {
+openModalBtn.addEventListener('click', e => {
   e.preventDefault();
   modal.style.display = 'flex';
 });
@@ -649,14 +898,14 @@ window.addEventListener('click', e => {
   if (e.target === modal) modal.style.display = 'none';
 });
 
-// Formulaire (juste visuel + mailto)
+// Formulaire mailto
 document.getElementById('contactForm').addEventListener('submit', e => {
   e.preventDefault();
-  const name = e.target[0].value;
-  const email = e.target[1].value;
-  const message = e.target[2].value;
-  const subject = `Message de ${name} depuis portfolio`;
-  const body = `Nom: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+  const subject = encodeURIComponent(`Message de ${name} depuis portfolio`);
+  const body = encodeURIComponent(`Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
   window.location.href = `mailto:bensassibibros@gmail.com?subject=${subject}&body=${body}`;
   modal.style.display = 'none';
 });
