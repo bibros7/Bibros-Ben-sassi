@@ -179,6 +179,12 @@
       color: var(--accent-hover);
     }
 
+    h3 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
     .grid, .entreprises-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -234,6 +240,20 @@
       max-width: 1000px;
       margin: 2.5rem auto;
       height: 1100px;
+    }
+
+    .level-bar {
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      margin: 0.6rem 0 1.2rem;
+      overflow: hidden;
+    }
+
+    .level-bar-fill {
+      height: 100%;
+      background: linear-gradient(to right, var(--accent), var(--accent-hover));
+      transition: width 1.2s ease;
     }
 
     footer {
@@ -300,9 +320,15 @@
 <section id="apropos">
   <h2>À propos de moi</h2>
   <div style="max-width:900px; margin:0 auto; font-size:1.1rem; color:var(--text2); text-align:center;">
-    <p>Étudiant en <strong>BTS Services Informatiques aux Organisations (SIO)</strong> – option <strong>SISR</strong>.</p>
-    <p>Spécialisé en administration systèmes/réseaux et cybersécurité, avec une bonne maîtrise de la conteneurisation Docker.</p>
-    <p>À la recherche d’une alternance ou d’un stage à partir de 2026.</p>
+    <p>Étudiant en <strong>BTS Services Informatiques aux Organisations (SIO)</strong> – option <strong>SISR</strong> (promotion 2024-2026).</p>
+    <p>Passionné par l’administration systèmes et réseaux, la cybersécurité et la conteneurisation, je suis actuellement à la recherche d’une alternance ou d’un stage long à partir de septembre 2026.</p>
+    <p><strong>Qualités principales :</strong></p>
+    <ul style="list-style:none; display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin:1.5rem 0;">
+      <li style="background:var(--card); padding:0.6rem 1.2rem; border-radius:30px; border:1px solid var(--border);">Rigoureux & méthodique</li>
+      <li style="background:var(--card); padding:0.6rem 1.2rem; border-radius:30px; border:1px solid var(--border);">Autonome & force de proposition</li>
+      <li style="background:var(--card); padding:0.6rem 1.2rem; border-radius:30px; border:1px solid var(--border);">Esprit d’équipe & bonne communication</li>
+      <li style="background:var(--card); padding:0.6rem 1.2rem; border-radius:30px; border:1px solid var(--border);">Curieux & en veille permanente</li>
+    </ul>
   </div>
 </section>
 
@@ -313,22 +339,32 @@
       <h3>OXYLEASE</h3>
       <p><strong>Forme juridique :</strong> SAS</p>
       <p><strong>SIREN :</strong> 914 886 361</p>
-      <p><strong>Siège social :</strong> 99 Avenue Achille Peretti, 92200 Neuilly-sur-Seine</p>
-      <p><strong>Activité principale :</strong> Transports de voyageurs par taxis (NAF 49.32Z / 49.33G)</p>
-      <p><strong>Date de création :</strong> 10/06/2022</p>
-      <p><strong>Catégorie :</strong> PME (2023)</p>
-      <p><strong>Effectif salarié :</strong> Unité non employeuse</p>
+      <p><strong>Siège :</strong> 99 Av. Achille Peretti, 92200 Neuilly-sur-Seine</p>
+      <p><strong>Activité :</strong> Transports de voyageurs par taxis (NAF 49.32Z)</p>
+      <p><strong>Période :</strong> [insère tes dates]</p>
+      <p><strong>Missions réalisées :</strong></p>
+      <ul style="color:var(--text2); margin-top:0.8rem;">
+        <li>Support technique aux conducteurs (matériel embarqué, applications)</li>
+        <li>Gestion des incidents liés aux systèmes de géolocalisation</li>
+        <li>Petites interventions sur le parc informatique (mises à jour, dépannage)</li>
+        <li>Participation à la sécurisation des connexions mobiles</li>
+      </ul>
     </div>
 
     <div class="card">
       <h3>CONNECT AGENCY</h3>
       <p><strong>Forme juridique :</strong> SAS</p>
       <p><strong>SIREN :</strong> 913 017 091</p>
-      <p><strong>Siège social :</strong> 15 Boulevard Péreire, 75017 Paris</p>
-      <p><strong>Activité principale :</strong> Commerce de détail d'ordinateurs et logiciels (NAF 47.41Z / 47.40Y)</p>
-      <p><strong>Date de création :</strong> 07/04/2022</p>
-      <p><strong>Catégorie :</strong> PME (2023)</p>
-      <p><strong>Effectif salarié :</strong> Unité non employeuse</p>
+      <p><strong>Siège :</strong> 15 Bd Péreire, 75017 Paris</p>
+      <p><strong>Activité :</strong> Commerce de détail informatique & logiciels (NAF 47.41Z)</p>
+      <p><strong>Période :</strong> [insère tes dates]</p>
+      <p><strong>Missions réalisées :</strong></p>
+      <ul style="color:var(--text2); margin-top:0.8rem;">
+        <li>Configuration et maintenance de postes clients (Windows / Linux)</li>
+        <li>Installation et paramétrage de logiciels professionnels</li>
+        <li>Dépannage hardware & software niveau 1/2</li>
+        <li>Conseil client sur les solutions de sécurité et sauvegarde</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -343,7 +379,7 @@
       <i class="fas fa-file-pdf"></i> Télécharger mon CV (PDF)
     </a>
     <a href="#" download class="btn" style="background:var(--accent-hover);">
-      <i class="fas fa-table"></i> Tableau de Synthèse E5
+      <i class="fas fa-table"></i> Télécharger le Tableau de Synthèse E5
     </a>
   </div>
 
@@ -358,8 +394,8 @@
     </iframe>
   </div>
 
-  <p style="text-align:center; color:var(--text2); margin-top:1.5rem;">
-    <small>Si l'aperçu ne s'affiche pas (mobile ou ancien navigateur), utilisez le bouton de téléchargement ci-dessus.</small>
+  <p style="text-align:center; color:var(--text2); margin:1.5rem 0;">
+    <small>Document mis à jour en mars 2026 – 2 pages – Disponible également en téléchargement ci-dessus</small>
   </p>
 </section>
 
@@ -368,37 +404,58 @@
   <div class="grid">
     <div class="card">
       <h3><i class="fab fa-docker"></i> Conteneurisation & Docker</h3>
-      <p>Maîtrise de la conteneurisation</p>
+      <p><strong>Niveau :</strong> Avancé</p>
+      <div class="level-bar"><div class="level-bar-fill" style="width:90%"></div></div>
       <ul style="color:var(--text2);">
         <li>Création et optimisation de Dockerfile</li>
-        <li>Docker Compose (multi-services)</li>
-        <li>Volumes, networks, secrets</li>
-        <li>Sécurisation de base (non-root, bonnes pratiques)</li>
+        <li>Docker Compose multi-services</li>
+        <li>Gestion volumes, networks, secrets</li>
+        <li>Sécurisation de base (non-root, images officielles)</li>
       </ul>
     </div>
+
     <div class="card">
       <h3><i class="fas fa-network-wired"></i> Réseaux & Infrastructure</h3>
+      <p><strong>Niveau :</strong> Intermédiaire</p>
+      <div class="level-bar"><div class="level-bar-fill" style="width:70%"></div></div>
       <ul style="color:var(--text2);">
-        <li>TCP/IP – VLAN – Routage</li>
-        <li>Cisco Packet Tracer</li>
+        <li>TCP/IP, VLAN, Routage statique</li>
+        <li>Cisco Packet Tracer & configuration réelle</li>
         <li>NAT, DHCP, DNS</li>
       </ul>
     </div>
+
     <div class="card">
       <h3><i class="fas fa-server"></i> Systèmes & Virtualisation</h3>
+      <p><strong>Niveau :</strong> Intermédiaire</p>
+      <div class="level-bar"><div class="level-bar-fill" style="width:75%"></div></div>
       <ul style="color:var(--text2);">
         <li>Windows Server (AD, GPO)</li>
-        <li>Linux Debian/Ubuntu</li>
-        <li>VMware / VirtualBox</li>
-        <li>Scripting Bash / PowerShell</li>
+        <li>Linux Debian / Ubuntu (administration quotidienne)</li>
+        <li>VMware Workstation / VirtualBox</li>
       </ul>
     </div>
+
     <div class="card">
       <h3><i class="fas fa-shield-alt"></i> Cybersécurité</h3>
+      <p><strong>Niveau :</strong> Intermédiaire</p>
+      <div class="level-bar"><div class="level-bar-fill" style="width:65%"></div></div>
       <ul style="color:var(--text2);">
-        <li>Firewall (pfSense, iptables)</li>
-        <li>IDS/IPS (CrowdSec)</li>
-        <li>Hardening systèmes</li>
+        <li>Firewall pfSense & règles avancées</li>
+        <li>IDS/IPS avec CrowdSec</li>
+        <li>Hardening de base (CIS benchmarks)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><i class="fas fa-tools"></i> Méthodologie & Outils transversaux</h3>
+      <p><strong>Niveau :</strong> Intermédiaire</p>
+      <div class="level-bar"><div class="level-bar-fill" style="width:70%"></div></div>
+      <ul style="color:var(--text2);">
+        <li>Git & GitHub (versioning)</li>
+        <li>Scripting Bash & PowerShell</li>
+        <li>GLPI (gestion parc & ticketing)</li>
+        <li>Méthodologie ITIL & Agile (bases)</li>
       </ul>
     </div>
   </div>
@@ -407,29 +464,37 @@
 <section id="technologies">
   <h2>Technologies maîtrisées</h2>
   <div class="tech-grid">
+    <div style="text-align:center; width:100%; margin-bottom:1rem; color:var(--text2);">Conteneurisation</div>
     <a href="https://www.docker.com/" target="_blank" class="tech-btn"><i class="fab fa-docker"></i> Docker</a>
-    <a href="https://www.pfsense.org/" target="_blank" class="tech-btn"><i class="fas fa-shield-alt"></i> pfSense</a>
-    <a href="https://glpi-project.org/" target="_blank" class="tech-btn"><i class="fas fa-headset"></i> GLPI</a>
-    <a href="https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/" target="_blank" class="tech-btn"><i class="fas fa-users-cog"></i> Active Directory</a>
-    <a href="https://www.crowdsec.net/" target="_blank" class="tech-btn"><i class="fas fa-bug"></i> CrowdSec</a>
-    <a href="https://www.debian.org/" target="_blank" class="tech-btn"><i class="fab fa-linux"></i> Debian</a>
-    <a href="https://ubuntu.com/" target="_blank" class="tech-btn"><i class="fab fa-linux"></i> Ubuntu</a>
+
+    <div style="text-align:center; width:100%; margin:2rem 0 1rem; color:var(--text2);">Systèmes & Serveurs</div>
     <a href="https://learn.microsoft.com/fr-fr/windows-server/" target="_blank" class="tech-btn"><i class="fab fa-windows"></i> Windows Server</a>
+    <a href="https://www.debian.org/" target="_blank" class="tech-btn"><i class="fab fa-linux"></i> Debian</a>
+    <a href="https://ubuntu.com/" target="_blank" class="tech-btn"><i class="fab fa-linux"></i> Ubuntu Server</a>
+
+    <div style="text-align:center; width:100%; margin:2rem 0 1rem; color:var(--text2);">Réseaux & Sécurité</div>
+    <a href="https://www.pfsense.org/" target="_blank" class="tech-btn"><i class="fas fa-shield-alt"></i> pfSense</a>
+    <a href="https://www.crowdsec.net/" target="_blank" class="tech-btn"><i class="fas fa-bug"></i> CrowdSec</a>
+    <a href="https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/" target="_blank" class="tech-btn"><i class="fas fa-users-cog"></i> Active Directory</a>
+
+    <div style="text-align:center; width:100%; margin:2rem 0 1rem; color:var(--text2);">Gestion & Ticketing</div>
+    <a href="https://glpi-project.org/" target="_blank" class="tech-btn"><i class="fas fa-headset"></i> GLPI</a>
   </div>
 </section>
 
 <section id="veille">
   <h2>Veille technologique</h2>
-  <div class="veille-content">
-    <p>Je consacre du temps chaque semaine à suivre l'évolution des technologies liées à l'infrastructure, aux réseaux, à la conteneurisation et à la cybersécurité.</p>
-    <p><strong>Mes principales sources d'information (2025-2026) :</strong></p>
-    <ul>
-      <li>Blogs & sites : IT-Connect, Korben, ZDNet France, The Hacker News, Docker Blog</li>
-      <li>Chaînes YouTube : NetworkChuck, David Bombal, TechWorld with Nana</li>
-      <li>Communautés : Reddit (r/docker, r/selfhosted), Discord French DevOps</li>
-      <li>Newsletters : Docker Weekly, TLDR Sec</li>
-      <li>Autres : CVE.org, labs personnels Docker</li>
+  <div class="veille-content" style="max-width:900px; margin:0 auto; text-align:center;">
+    <p>Je consacre 4 à 6 heures par semaine à la veille technologique pour rester à jour sur les bonnes pratiques en infrastructure, conteneurisation et cybersécurité.</p>
+    <p><strong>Sources principales (2025-2026) :</strong></p>
+    <ul style="text-align:left; max-width:700px; margin:1.5rem auto; list-style:none;">
+      <li>→ Blogs : IT-Connect, Korben, ZDNet France, The Hacker News, Docker Blog</li>
+      <li>→ YouTube : NetworkChuck, David Bombal, TechWorld with Nana, LiveOverflow</li>
+      <li>→ Communautés : Reddit (r/homelab, r/selfhosted, r/docker, r/netsec), Discord French DevOps</li>
+      <li>→ Newsletters : Docker Weekly, TLDR Sec, SANS NewsBites</li>
+      <li>→ Pratique : labs personnels Docker + pfSense, TryHackMe, HackTheBox</li>
     </ul>
+    <p><strong>Exemples récents :</strong> hardening Docker 2026, CrowdSec bouncers avancés, WireGuard vs OpenVPN, pfSense 2.8.x.</p>
   </div>
 </section>
 
@@ -437,16 +502,27 @@
   <h2>Mes projets (BTS)</h2>
   <div class="grid">
     <div class="card">
-      <h3>Infrastructure conteneurisée</h3>
-      <p>Déploiement multi-services avec Docker Compose (GLPI + DB + proxy + CrowdSec).</p>
+      <h3>Infrastructure conteneurisée sécurisée</h3>
+      <p>Déploiement d’une stack complète avec Docker Compose : GLPI + MariaDB + Nginx reverse proxy + CrowdSec.</p>
+      <p><strong>Technologies :</strong> Docker, Docker Compose, Nginx, CrowdSec, Portainer</p>
+      <p><strong>Résultats :</strong> Environnement isolé, sauvegardes automatisées, détection d’intrusions active</p>
+      <p><strong>Apprentissage :</strong> gestion des secrets, réseaux Docker, bonnes pratiques de sécurité conteneurs</p>
     </div>
+
     <div class="card">
-      <h3>Sécurisation réseau & conteneurs</h3>
-      <p>pfSense + CrowdSec + conteneurs Docker durcis.</p>
+      <h3>Sécurisation d’un réseau d’entreprise</h3>
+      <p>Configuration pfSense avec VLANs, règles firewall avancées, VPN WireGuard, intégration CrowdSec.</p>
+      <p><strong>Technologies :</strong> pfSense, WireGuard, CrowdSec, VLAN</p>
+      <p><strong>Résultats :</strong> Réseau segmenté, blocage d’attaques courantes (brute force, scans)</p>
+      <p><strong>Apprentissage :</strong> Routage inter-VLAN, règles stateful, gestion des bouncers CrowdSec</p>
     </div>
+
     <div class="card">
-      <h3>Service de ticketing conteneurisé</h3>
-      <p>GLPI en Docker avec intégration AD.</p>
+      <h3>Service de ticketing & gestion de parc</h3>
+      <p>Déploiement GLPI conteneurisé avec intégration Active Directory et base de connaissances.</p>
+      <p><strong>Technologies :</strong> GLPI, Docker, Active Directory, MariaDB</p>
+      <p><strong>Résultats :</strong> Gestion centralisée des incidents et du parc matériel/logiciel</p>
+      <p><strong>Apprentissage :</strong> LDAP/AD dans GLPI, personnalisation des formulaires, reporting</p>
     </div>
   </div>
 </section>
@@ -455,16 +531,29 @@
   <h2>Contact</h2>
   <div style="text-align:center; max-width:600px; margin:0 auto;">
     <p style="font-size:1.3rem; margin:2.5rem 0;">
-      Ouvert à toute opportunité en administration systèmes & réseaux – conteneurisation – cybersécurité
+      Ouvert à toute opportunité en administration systèmes & réseaux, conteneurisation Docker et cybersécurité
     </p>
-    <a href="mailto:ton.email@exemple.fr" class="btn">
-      <i class="fas fa-envelope"></i> Me contacter
-    </a>
+
+    <div style="margin:2rem 0;">
+      <a href="mailto:bibros.bensassi@example.com" class="btn" style="font-size:1.2rem; padding:1.2rem 3rem;">
+        <i class="fas fa-envelope"></i> Me contacter par email
+      </a>
+    </div>
+
+    <div style="display:flex; justify-content:center; gap:2.5rem; margin-top:2rem;">
+      <a href="https://linkedin.com/in/bibros-ben-sassi" target="_blank" style="color:var(--accent-hover); font-size:2.5rem;">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://github.com/bibros7" target="_blank" style="color:var(--accent-hover); font-size:2.5rem;">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
   </div>
 </section>
 
 <footer>
   <p>© 2026 Bibros Ben Sassi – BTS SIO option SISR</p>
+  <p style="margin-top:0.8rem; font-size:0.95rem;">Mis à jour le 9 mars 2026</p>
 </footer>
 
 <script>
@@ -475,7 +564,7 @@ burger.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// Smooth scroll + active link
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
@@ -489,7 +578,7 @@ window.addEventListener('scroll', () => {
   document.querySelector('#nav').classList.toggle('scrolled', window.scrollY > 100);
 });
 
-// Fade-in sections
+// Fade-in
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -497,10 +586,16 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.15 });
 document.querySelectorAll('section').forEach(sec => observer.observe(sec));
 
-// Typing effect
+// Typing
 const typingElement = document.getElementById('typing-text');
-const texts = ["Étudiant BTS SIO SISR", "Maîtrise Docker & conteneurisation", "Passionné cybersécurité"];
+const texts = [
+  "Étudiant BTS SIO SISR",
+  "Maîtrise Docker & conteneurisation",
+  "Passionné cybersécurité & réseaux",
+  "À la recherche d'alternance 2026"
+];
 let textIndex = 0, charIndex = 0, isDeleting = false;
+
 function type() {
   const current = texts[textIndex];
   typingElement.textContent = current.substring(0, charIndex) + (isDeleting ? '' : '|');
@@ -512,11 +607,11 @@ function type() {
     setTimeout(type, 50);
   } else if (!isDeleting && charIndex === current.length) {
     isDeleting = true;
-    setTimeout(type, 1500);
+    setTimeout(type, 1800);
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false;
     textIndex = (textIndex + 1) % texts.length;
-    setTimeout(type, 500);
+    setTimeout(type, 600);
   }
 }
 type();
