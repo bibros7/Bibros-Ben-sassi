@@ -6,72 +6,259 @@
   <title>Bibros Ben Sassi • BTS SIO SISR</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
     :root {
-      --bg: #0a0a0a; --bg2: #111111; --text: #e0e0e0; --text2: #b0b0b0;
-      --accent: #5e60ce; --accent-hover: #818cf8; --card: #161616; --border: #2a2a2a;
-      --tech-bg: #1e1e2e; --gradient-start: #0f0f1f; --gradient-end: #0a0015;
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --text: #e0e0e0;
+      --text2: #b0b0b0;
+      --accent: #5e60ce;
+      --accent-hover: #818cf8;
+      --card: #161616;
+      --border: #2a2a2a;
+      --tech-bg: #1e1e2e;
     }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: system-ui, sans-serif; background: var(--bg); color: var(--text);
-      line-height: 1.6; overflow-x: hidden;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-    html { scroll-behavior: smooth; }
+
     nav {
-      position: fixed; top:0; left:0; right:0; background: rgba(10,10,10,0.9);
-      backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index:999;
-      transition: all 0.4s;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 999;
+      transition: all 0.4s ease;
     }
-    nav.scrolled { background: rgba(10,10,10,0.98); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+
+    nav.scrolled { background: rgba(10,10,10,0.98); box-shadow: 0 6px 25px rgba(0,0,0,0.5); }
+
     .nav-container {
-      max-width: 1200px; margin:0 auto; padding:1rem 2rem;
-      display:flex; justify-content:space-between; align-items:center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .logo { font-size:1.6rem; font-weight:800; color:var(--accent-hover); }
-    .nav-links { display:flex; gap:2rem; list-style:none; }
-    .nav-links a { color:var(--text2); text-decoration:none; font-weight:500; transition:0.3s; }
-    .nav-links a:hover, .nav-links a.active { color:var(--accent-hover); }
-    .burger { display:none; font-size:1.8rem; color:var(--accent-hover); cursor:pointer; }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent-hover);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text2);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .burger { display: none; font-size: 1.8rem; color: var(--accent-hover); cursor: pointer; }
+
     header {
-      height:100vh; min-height:700px; display:flex; align-items:center; justify-content:center;
-      text-align:center; position:relative; overflow:hidden;
-      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0f0f1f, #0a0015);
     }
-    #particles { position:absolute; inset:0; pointer-events:none; opacity:0.6; }
-    .hero-content { position:relative; z-index:2; max-width:1000px; padding:2rem; }
-    .hero h1 { font-size:clamp(3.5rem,10vw,6.5rem); margin-bottom:0.5rem; color:white; }
-    .typing-container { font-size:1.8rem; color:var(--accent-hover); min-height:3rem; }
-    .cursor { width:3px; height:1.2em; background:var(--accent-hover); animation:blink 0.7s infinite; }
-    @keyframes blink { 50% { opacity:0; } }
+
+    #particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.75;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+      padding: 2rem;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero h1 {
+      font-size: clamp(4rem, 12vw, 7rem);
+      margin-bottom: 0.6rem;
+      color: white;
+    }
+
+    .typing-container {
+      font-size: 2rem;
+      color: var(--accent-hover);
+      min-height: 3rem;
+      font-weight: 500;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 4px;
+      height: 1.3em;
+      background: var(--accent-hover);
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
     .btn {
-      padding:0.9rem 2.2rem; background:var(--accent); color:white; border:none; border-radius:8px;
-      font-weight:600; text-decoration:none; margin:0.6rem; transition:all 0.35s;
-      display:inline-flex; align-items:center; gap:0.6rem;
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      margin: 0.8rem;
+      transition: all 0.4s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
     }
-    .btn:hover { background:var(--accent-hover); transform:translateY(-4px) scale(1.05); }
-    .btn-outline { background:transparent; border:2px solid var(--accent); color:var(--accent-hover); }
-    section { padding:8rem 2rem 6rem; max-width:1200px; margin:0 auto; opacity:0; transform:translateY(40px); transition:all 0.9s; }
-    section.visible { opacity:1; transform:translateY(0); }
-    h2 { text-align:center; font-size:2.8rem; margin-bottom:3.5rem; color:var(--accent-hover); }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2rem; }
-    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:2rem; transition:all 0.4s; }
-    .card:hover { transform:translateY(-12px); border-color:var(--accent-hover); box-shadow:0 20px 40px rgba(0,0,0,0.6); }
-    .tech-grid { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin:3rem 0; }
+
+    .btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-8px) scale(1.07);
+      box-shadow: 0 20px 40px rgba(94,96,206,0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent-hover);
+    }
+
+    section {
+      padding: 9rem 2rem 7rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 3.2rem;
+      margin-bottom: 4rem;
+      color: var(--accent-hover);
+    }
+
+    .grid, .entreprises-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.2rem;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .card:hover {
+      transform: translateY(-16px) scale(1.04);
+      border-color: var(--accent-hover);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+    }
+
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+      margin: 3.5rem 0;
+    }
+
     .tech-btn {
-      background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover);
-      padding:0.8rem 1.6rem; border-radius:50px; text-decoration:none; transition:all 0.4s;
-      display:inline-flex; align-items:center; gap:0.6rem;
+      background: var(--tech-bg);
+      border: 1px solid var(--accent);
+      color: var(--accent-hover);
+      padding: 0.9rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.4s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
     }
-    .tech-btn:hover { background:var(--accent); color:white; transform:translateY(-5px) scale(1.08); }
-    .download-buttons { text-align:center; margin:3rem 0; display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem; }
-    .pdf-preview { background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.5); max-width:1000px; margin:2rem auto; height:900px; }
-    .entreprises-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2rem; margin-top:2rem; }
-    footer { background:#000; text-align:center; padding:4rem 1rem; color:var(--text2); border-top:1px solid var(--border); }
-    @media (max-width:768px) {
-      .nav-links { position:absolute; top:100%; left:0; right:0; background:var(--bg2); flex-direction:column; padding:2rem; transform:translateY(-20px); opacity:0; pointer-events:none; transition:all 0.4s; }
-      .nav-links.active { transform:translateY(0); opacity:1; pointer-events:auto; }
-      .burger { display:block; }
-      .grid, .entreprises-grid { grid-template-columns:1fr; }
+
+    .tech-btn:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-6px) scale(1.1);
+    }
+
+    .pdf-preview {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+      max-width: 1000px;
+      margin: 2.5rem auto;
+      height: 1100px;
+    }
+
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 5rem 2rem;
+      color: var(--text2);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: var(--bg2);
+        flex-direction: column;
+        padding: 2rem;
+        transform: translateY(-20px);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.4s;
+      }
+      .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
+      .burger { display: block; }
+      .grid, .entreprises-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -103,7 +290,7 @@
       <span class="typing" id="typing-text"></span>
       <span class="cursor"></span>
     </div>
-    <div style="margin-top: 2.5rem;">
+    <div style="margin-top: 3rem;">
       <a href="#competences" class="btn">Mes compétences</a>
       <a href="#cv" class="btn btn-outline">Voir mon CV</a>
     </div>
@@ -113,8 +300,9 @@
 <section id="apropos">
   <h2>À propos de moi</h2>
   <div style="max-width:900px; margin:0 auto; font-size:1.1rem; color:var(--text2); text-align:center;">
-    <p>Étudiant en <strong>BTS SIO option SISR</strong>, passionné par l'administration systèmes/réseaux et la cybersécurité.</p>
-    <p>Je maîtrise notamment la conteneurisation avec Docker et cherche une alternance ou un stage à partir de 2026.</p>
+    <p>Étudiant en <strong>BTS Services Informatiques aux Organisations (SIO)</strong> – option <strong>SISR</strong>.</p>
+    <p>Spécialisé en administration systèmes/réseaux et cybersécurité, avec une bonne maîtrise de la conteneurisation Docker.</p>
+    <p>À la recherche d’une alternance ou d’un stage à partir de 2026.</p>
   </div>
 </section>
 
@@ -122,34 +310,26 @@
   <h2>Mes expériences en entreprise</h2>
   <div class="entreprises-grid">
     <div class="card">
-      <h3>Entreprise 1</h3>
-      <p><strong>Dénomination sociale :</strong> [Nom complet de l'entreprise]</p>
-      <p><strong>Forme juridique :</strong> SARL / SAS / Auto-entrepreneur / etc.</p>
-      <p><strong>Secteur d'activité :</strong> Informatique / Hébergement / Cybersécurité</p>
-      <p><strong>Période :</strong> [Mois Année] – [Mois Année]</p>
-      <p><strong>Missions principales :</strong></p>
-      <ul style="color:var(--text2);">
-        <li>Administration de serveurs Linux/Windows</li>
-        <li>Déploiement et gestion de conteneurs Docker</li>
-        <li>Configuration firewall et monitoring</li>
-      </ul>
+      <h3>OXYLEASE</h3>
+      <p><strong>Forme juridique :</strong> SAS</p>
+      <p><strong>SIREN :</strong> 914 886 361</p>
+      <p><strong>Siège social :</strong> 99 Avenue Achille Peretti, 92200 Neuilly-sur-Seine</p>
+      <p><strong>Activité principale :</strong> Transports de voyageurs par taxis (NAF 49.32Z / 49.33G)</p>
+      <p><strong>Date de création :</strong> 10/06/2022</p>
+      <p><strong>Catégorie :</strong> PME (2023)</p>
+      <p><strong>Effectif salarié :</strong> Unité non employeuse</p>
     </div>
 
     <div class="card">
-      <h3>Entreprise 2</h3>
-      <p><strong>Dénomination sociale :</strong> [Nom complet]</p>
-      <p><strong>Forme juridique :</strong> [SAS / SA / etc.]</p>
-      <p><strong>Secteur d'activité :</strong> [ex: SSII / Infogérance]</p>
-      <p><strong>Période :</strong> [dates]</p>
-      <p><strong>Missions principales :</strong></p>
-      <ul style="color:var(--text2);">
-        <li>Mise en place d'infrastructures virtualisées</li>
-        <li>Support technique niveau 2/3</li>
-        <li>Participation à des projets de migration</li>
-      </ul>
+      <h3>CONNECT AGENCY</h3>
+      <p><strong>Forme juridique :</strong> SAS</p>
+      <p><strong>SIREN :</strong> 913 017 091</p>
+      <p><strong>Siège social :</strong> 15 Boulevard Péreire, 75017 Paris</p>
+      <p><strong>Activité principale :</strong> Commerce de détail d'ordinateurs et logiciels (NAF 47.41Z / 47.40Y)</p>
+      <p><strong>Date de création :</strong> 07/04/2022</p>
+      <p><strong>Catégorie :</strong> PME (2023)</p>
+      <p><strong>Effectif salarié :</strong> Unité non employeuse</p>
     </div>
-
-    <!-- Ajoute autant de cards que d'entreprises -->
   </div>
 </section>
 
@@ -157,38 +337,30 @@
   <h2>CV & Tableau de synthèse</h2>
 
   <div class="download-buttons">
-    <a href="CV-Bibros-Ben-Sassi.pdf" download="CV_Bibros_Ben_Sassi.pdf" class="btn">
+    <a href="CV-Bibros-B.pdf"
+       download="CV_Bibros_Ben_Sassi.pdf"
+       class="btn">
       <i class="fas fa-file-pdf"></i> Télécharger mon CV (PDF)
     </a>
-    <a href="Tableau-Synthese-E5.pdf" download="Tableau_Synthese_E5.pdf" class="btn" style="background:var(--accent-hover);">
-      <i class="fas fa-table"></i> Télécharger le Tableau de Synthèse E5
+    <a href="#" download class="btn" style="background:var(--accent-hover);">
+      <i class="fas fa-table"></i> Tableau de Synthèse E5
     </a>
   </div>
 
   <h3 style="text-align:center; margin:3rem 0 1rem;">Aperçu de mon CV</h3>
   <div class="pdf-preview">
-    <iframe src="CV-Bibros-Ben-Sassi.pdf" width="100%" height="100%" style="border:none;"></iframe>
+    <iframe 
+      src="CV-Bibros-B.pdf"
+      width="100%" 
+      height="100%" 
+      style="border:none;"
+      title="CV Bibros Ben Sassi">
+    </iframe>
   </div>
 
-  <p style="text-align:center; color:var(--text2); margin-top:1rem;">
+  <p style="text-align:center; color:var(--text2); margin-top:1.5rem;">
     <small>Si l'aperçu ne s'affiche pas (mobile ou ancien navigateur), utilisez le bouton de téléchargement ci-dessus.</small>
   </p>
-
-  <h3 style="text-align:center; margin:4rem 0 1rem;">Aperçu du tableau de synthèse (E5)</h3>
-  <table class="synthese">
-    <thead>
-      <tr>
-        <th>Compétences mises en œuvre</th>
-        <th>Réalisations professionnelles</th>
-        <th>Période</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Gérer le patrimoine informatique</td><td>Déploiement AD + GLPI + conteneurs Docker</td><td>09/2024 – 02/2025</td></tr>
-      <tr><td>Répondre aux incidents</td><td>CrowdSec + règles pfSense + monitoring Docker</td><td>01/2025 – 04/2025</td></tr>
-      <!-- Ajoute tes lignes réelles ici -->
-    </tbody>
-  </table>
 </section>
 
 <section id="competences" style="background:var(--bg2);">
@@ -296,12 +468,14 @@
 </footer>
 
 <script>
-// Burger menu + smooth scroll + particles + typing (code inchangé, je ne le répète pas ici pour raccourcir)
+// Burger menu
 const burger = document.querySelector('.burger');
 const navLinks = document.querySelector('.nav-links');
 burger.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
+
+// Smooth scroll + active link
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
@@ -309,42 +483,78 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     navLinks.classList.remove('active');
   });
 });
+
+// Nav scrolled
 window.addEventListener('scroll', () => {
   document.querySelector('#nav').classList.toggle('scrolled', window.scrollY > 100);
 });
+
+// Fade-in sections
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
 }, { threshold: 0.15 });
 document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+
+// Typing effect
 const typingElement = document.getElementById('typing-text');
 const texts = ["Étudiant BTS SIO SISR", "Maîtrise Docker & conteneurisation", "Passionné cybersécurité"];
-let i = 0, j = 0, deleting = false;
+let textIndex = 0, charIndex = 0, isDeleting = false;
 function type() {
-  const txt = texts[i];
-  typingElement.textContent = txt.substring(0, j) + (deleting ? '' : '|');
-  if (!deleting && j < txt.length) { j++; setTimeout(type, 80); }
-  else if (deleting && j > 0) { j--; setTimeout(type, 50); }
-  else if (!deleting && j === txt.length) { deleting = true; setTimeout(type, 1500); }
-  else if (deleting && j === 0) { deleting = false; i = (i + 1) % texts.length; setTimeout(type, 500); }
+  const current = texts[textIndex];
+  typingElement.textContent = current.substring(0, charIndex) + (isDeleting ? '' : '|');
+  if (!isDeleting && charIndex < current.length) {
+    charIndex++;
+    setTimeout(type, 80);
+  } else if (isDeleting && charIndex > 0) {
+    charIndex--;
+    setTimeout(type, 50);
+  } else if (!isDeleting && charIndex === current.length) {
+    isDeleting = true;
+    setTimeout(type, 1500);
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    textIndex = (textIndex + 1) % texts.length;
+    setTimeout(type, 500);
+  }
 }
 type();
+
+// Particles
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
 const particles = [];
-for (let k = 0; k < 60; k++) particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 3 + 1, speedX: Math.random() * 0.8 - 0.4, speedY: Math.random() * 0.8 - 0.4 });
-function animate() {
+for (let i = 0; i < 80; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 3 + 1,
+    speedX: Math.random() * 1.2 - 0.6,
+    speedY: Math.random() * 1.2 - 0.6
+  });
+}
+function animateParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   particles.forEach(p => {
-    p.x += p.speedX; p.y += p.speedY;
+    p.x += p.speedX;
+    p.y += p.speedY;
     if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
     if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
-    ctx.fillStyle = 'rgba(129,140,248,0.7)'; ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(129,140,248,0.75)';
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fill();
   });
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateParticles);
 }
-animate();
+animateParticles();
 </script>
 </body>
 </html>
