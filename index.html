@@ -23,6 +23,7 @@
       --swot-faiblesse: #b71c1c;
       --swot-opportunite: #0d47a1;
       --swot-menace: #bf360c;
+      --protocole-bg: #1e2a3a;
     }
 
     [data-theme="light"] {
@@ -41,6 +42,7 @@
       --swot-faiblesse: #b71c1c;
       --swot-opportunite: #0d47a1;
       --swot-menace: #bf360c;
+      --protocole-bg: #e3f2fd;
     }
 
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -597,6 +599,60 @@
 
     [data-theme="light"] .tech-link {
       color: var(--accent);
+    }
+
+    /* Protocoles réseau */
+    .protocoles-container {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: var(--protocole-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .protocoles-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent-hover);
+      font-weight: 600;
+    }
+
+    .protocoles-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .protocole-item {
+      background: var(--card);
+      border: 1px solid var(--accent);
+      color: var(--text);
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.3s;
+    }
+
+    .protocole-item:hover {
+      background: var(--gradient);
+      color: white;
+      transform: scale(1.05);
+      border-color: transparent;
+    }
+
+    .protocole-item i {
+      color: var(--accent-hover);
+      font-size: 0.9rem;
+    }
+
+    .protocole-item:hover i {
+      color: white;
     }
 
     .org-chart {
@@ -1791,7 +1847,7 @@ const techList = [
   { icon: 'fas fa-network-wired', name: 'Cisco', category: 'Réseaux', url: 'https://www.cisco.com/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' }
 ];
 
-// Projets avec images EN GRAND et LIENS vers des tutoriels
+// Projets avec images EN GRAND, LIENS vers des tutoriels et PROTOCOLES RÉSEAU
 const projetsData = [
   { 
     icon: 'fas fa-server', 
@@ -1806,7 +1862,8 @@ const projetsData = [
     links: [
       { name: 'Installer GLPI (tuto complet)', url: 'https://github.com/ClarkMaltempi/GLPI', icon: 'fas fa-book-open' },
       { name: 'Documentation OCS Inventory', url: 'https://wiki.ocsinventory-ng.org/', icon: 'fas fa-file-alt' }
-    ]
+    ],
+    protocoles: ['TCP/IP', 'HTTP', 'HTTPS', 'LDAP', 'MySQL']
   },
   { 
     icon: 'fas fa-network-wired', 
@@ -1820,7 +1877,8 @@ const projetsData = [
     links: [
       { name: 'Configurer DHCP sur Debian', url: 'https://wiki.debian.org/DHCP_Server', icon: 'fas fa-network-wired' },
       { name: 'Configurer DNS avec Bind9', url: 'https://wiki.debian.org/Bind9', icon: 'fas fa-globe' }
-    ]
+    ],
+    protocoles: ['DHCP', 'DNS', 'TCP/IP', 'UDP']
   },
   { 
     icon: 'fas fa-lock', 
@@ -1835,7 +1893,8 @@ const projetsData = [
     links: [
       { name: 'Sécuriser Apache avec SSL', url: 'https://httpd.apache.org/docs/2.4/ssl/', icon: 'fas fa-lock' },
       { name: 'Sécuriser Nginx avec SSL', url: 'https://nginx.org/en/docs/http/configuring_https_servers.html', icon: 'fas fa-shield-alt' }
-    ]
+    ],
+    protocoles: ['HTTP', 'HTTPS', 'SSL/TLS', 'TCP/IP']
   },
   { 
     icon: 'fas fa-users-cog', 
@@ -1848,7 +1907,8 @@ const projetsData = [
     ],
     links: [
       { name: 'Installer AD DS sur Windows Server', url: 'https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/deploy/install-active-directory-domain-services', icon: 'fab fa-microsoft' }
-    ]
+    ],
+    protocoles: ['LDAP', 'Kerberos', 'DNS', 'SMB', 'NTP']
   },
   { 
     icon: 'fas fa-shield-alt', 
@@ -1861,7 +1921,8 @@ const projetsData = [
     ],
     links: [
       { name: 'Documentation pfSense', url: 'https://docs.netgate.com/pfsense/en/latest/', icon: 'fas fa-fire' }
-    ]
+    ],
+    protocoles: ['IPsec', 'OpenVPN', 'L2TP', 'PPTP', 'NAT', 'SPI']
   },
   { 
     icon: 'fas fa-envelope', 
@@ -1875,7 +1936,8 @@ const projetsData = [
     links: [
       { name: 'Configurer Postfix sur Debian', url: 'https://wiki.debian.org/Postfix', icon: 'fas fa-envelope' },
       { name: 'Configurer Dovecot', url: 'https://wiki.debian.org/Dovecot', icon: 'fas fa-inbox' }
-    ]
+    ],
+    protocoles: ['SMTP', 'POP3', 'IMAP', 'TLS', 'DKIM', 'SPF']
   },
   { 
     icon: 'fas fa-eye', 
@@ -1888,7 +1950,8 @@ const projetsData = [
     ],
     links: [
       { name: 'Documentation Zabbix', url: 'https://www.zabbix.com/documentation/current/fr/manual', icon: 'fas fa-chart-line' }
-    ]
+    ],
+    protocoles: ['SNMP', 'ICMP', 'SSH', 'Telnet', 'IPMI', 'JMX']
   },
   { 
     icon: 'fab fa-docker', 
@@ -1904,7 +1967,78 @@ const projetsData = [
       { name: 'Documentation Docker', url: 'https://docs.docker.com/', icon: 'fab fa-docker' },
       { name: 'Documentation Caddy', url: 'https://caddyserver.com/docs/', icon: 'fas fa-reverse' },
       { name: 'Tutoriel Docker Compose', url: 'https://docs.docker.com/compose/gettingstarted/', icon: 'fas fa-layer-group' }
-    ]
+    ],
+    protocoles: ['TCP/IP', 'HTTP/2', 'TLS', 'gRPC', 'Container networking', 'Overlay']
+  },
+  { 
+    icon: 'fas fa-route', 
+    title: 'Routage Dynamique OSPF', 
+    badge: '🔄 PROTOCOLE DE ROUTAGE', 
+    desc: 'Mise en place d\'un routage dynamique OSPF sur routeurs Cisco. Réalisation: Configuration d\'OSPF dans une topologie multi-zones, optimisation des métriques, et redondance des liens.',
+    images: [
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg',
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg'
+    ],
+    links: [
+      { name: 'Documentation OSPF Cisco', url: 'https://www.cisco.com/c/en/us/support/docs/ip/open-shortest-path-first-ospf/7039-1.html', icon: 'fas fa-network-wired' }
+    ],
+    protocoles: ['OSPF', 'IP', 'ICMP', 'Hello protocol', 'LSA', 'SPF']
+  },
+  { 
+    icon: 'fas fa-random', 
+    title: 'Routage RIP', 
+    badge: '🔄 PROTOCOLE DE ROUTAGE', 
+    desc: 'Configuration du protocole de routage RIP (Routing Information Protocol) sur routeurs Cisco. Réalisation: Mise en place de RIP v2 avec authentification, redistribution de routes.',
+    images: [
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg',
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg'
+    ],
+    links: [
+      { name: 'Documentation RIP Cisco', url: 'https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13734-5.html', icon: 'fas fa-random' }
+    ],
+    protocoles: ['RIP', 'RIPv2', 'UDP', 'IP', 'Triggered updates']
+  },
+  { 
+    icon: 'fas fa-sync-alt', 
+    title: 'HSRP - Redondance de passerelle', 
+    badge: '🔄 HAUTE DISPONIBILITÉ', 
+    desc: 'Mise en place du protocole HSRP (Hot Standby Router Protocol) pour assurer la redondance de la passerelle par défaut. Réalisation: Configuration de plusieurs routeurs en cluster de basculement.',
+    images: [
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg',
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg'
+    ],
+    links: [
+      { name: 'Documentation HSRP Cisco', url: 'https://www.cisco.com/c/en/us/support/docs/ip/hot-standby-router-protocol-hsrp/9234-hsrpguide.html', icon: 'fas fa-sync-alt' }
+    ],
+    protocoles: ['HSRP', 'VRRP', 'GLBP', 'ICMP', 'ARP', 'UDP']
+  },
+  { 
+    icon: 'fas fa-project-diagram', 
+    title: 'STP - Spanning Tree Protocol', 
+    badge: '🌳 PRÉVENTION DES BOUCLES', 
+    desc: 'Configuration du Spanning Tree Protocol pour éviter les boucles réseau dans une architecture commutée. Réalisation: Mise en place de PVST+, Rapid PVST, optimisation des root bridges.',
+    images: [
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg',
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg'
+    ],
+    links: [
+      { name: 'Documentation STP Cisco', url: 'https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5.html', icon: 'fas fa-project-diagram' }
+    ],
+    protocoles: ['STP', 'RSTP', 'MSTP', 'PVST+', 'BPDU', 'Bridge ID']
+  },
+  { 
+    icon: 'fas fa-code-branch', 
+    title: 'VLAN & Trunking', 
+    badge: '🔀 SEGMENTATION RÉSEAU', 
+    desc: 'Configuration de VLANs et de trunks 802.1Q pour segmenter le réseau. Réalisation: Création de VLANs, configuration des ports en mode access/trunk, routage inter-VLAN.',
+    images: [
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg',
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg'
+    ],
+    links: [
+      { name: 'Documentation VLAN Cisco', url: 'https://www.cisco.com/c/en/us/tech/lan-switching/vlan-trunking/index.html', icon: 'fas fa-code-branch' }
+    ],
+    protocoles: ['802.1Q', 'ISL', 'VTP', 'DTP', 'CDP', 'LLDP']
   }
 ];
 
@@ -1946,6 +2080,11 @@ if (projetsGrid) {
       </a>`
     ).join('');
     
+    // Générer les protocoles
+    const protocolesHtml = projet.protocoles.map(proto => 
+      `<span class="protocole-item"><i class="fas fa-exchange-alt"></i> ${proto}</span>`
+    ).join('');
+    
     return `
       <div class="card">
         <h3><i class="${projet.icon}"></i> ${projet.title}</h3>
@@ -1954,6 +2093,18 @@ if (projetsGrid) {
           ${imagesHtml}
         </div>
         <p>${projet.desc}</p>
+        
+        <!-- Protocoles réseau utilisés -->
+        <div class="protocoles-container">
+          <div class="protocoles-title">
+            <i class="fas fa-network-wired"></i>
+            <span>Protocoles réseau implémentés</span>
+          </div>
+          <div class="protocoles-grid">
+            ${protocolesHtml}
+          </div>
+        </div>
+        
         <div class="tech-links">
           ${linksHtml}
         </div>
@@ -2247,7 +2398,7 @@ window.addEventListener('scroll', () => {
   });
 });
 
-console.log('✅ Portfolio chargé - Version avec SWOT dans les entreprises');
+console.log('✅ Portfolio chargé - Version avec tous les protocoles réseau (OSPF, RIP, HSRP, STP, VLAN, etc.)');
 </script>
 </body>
 </html>
