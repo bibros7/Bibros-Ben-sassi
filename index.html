@@ -535,7 +535,7 @@
       gap: 1.5rem;
       flex-wrap: wrap;
       margin: 1.5rem 0;
-      padding: 1rem;
+      padding: 1.5rem;
       background: var(--tech-bg);
       border-radius: 16px;
       border: 1px solid var(--border);
@@ -544,10 +544,51 @@
     .project-images .project-img {
       width: 100px;
       height: 100px;
+      transition: all 0.4s;
     }
 
     .project-images:hover .project-img {
       animation: pulse 2s infinite;
+    }
+
+    /* Liens dans les projets */
+    .tech-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1rem 0;
+      justify-content: center;
+    }
+
+    .tech-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--tech-bg);
+      border: 1px solid var(--accent);
+      color: var(--accent-hover);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.4s ease;
+    }
+
+    .tech-link:hover {
+      background: var(--gradient);
+      color: white;
+      transform: translateY(-3px) scale(1.05);
+      border-color: transparent;
+      box-shadow: 0 5px 15px rgba(94,96,206,0.3);
+    }
+
+    .tech-link i {
+      font-size: 1.1rem;
+    }
+
+    [data-theme="light"] .tech-link {
+      color: var(--accent);
     }
 
     .org-chart {
@@ -1564,7 +1605,7 @@ const techList = [
   { icon: 'fas fa-network-wired', name: 'Cisco', category: 'Réseaux', url: 'https://www.cisco.com/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' }
 ];
 
-// Projets avec images EN GRAND
+// Projets avec images EN GRAND et LIENS vers des tutoriels
 const projetsData = [
   { 
     icon: 'fas fa-server', 
@@ -1575,6 +1616,10 @@ const projetsData = [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg',
       'https://glpi-project.org/favicon.ico',
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg'
+    ],
+    links: [
+      { name: 'Installer GLPI (tuto complet)', url: 'https://github.com/ClarkMaltempi/GLPI', icon: 'fas fa-book-open' },
+      { name: 'Documentation OCS Inventory', url: 'https://wiki.ocsinventory-ng.org/', icon: 'fas fa-file-alt' }
     ]
   },
   { 
@@ -1585,6 +1630,10 @@ const projetsData = [
     images: [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg',
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg'
+    ],
+    links: [
+      { name: 'Configurer DHCP sur Debian', url: 'https://wiki.debian.org/DHCP_Server', icon: 'fas fa-network-wired' },
+      { name: 'Configurer DNS avec Bind9', url: 'https://wiki.debian.org/Bind9', icon: 'fas fa-globe' }
     ]
   },
   { 
@@ -1596,6 +1645,10 @@ const projetsData = [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg',
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg',
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg'
+    ],
+    links: [
+      { name: 'Sécuriser Apache avec SSL', url: 'https://httpd.apache.org/docs/2.4/ssl/', icon: 'fas fa-lock' },
+      { name: 'Sécuriser Nginx avec SSL', url: 'https://nginx.org/en/docs/http/configuring_https_servers.html', icon: 'fas fa-shield-alt' }
     ]
   },
   { 
@@ -1606,6 +1659,9 @@ const projetsData = [
     images: [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg',
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg'
+    ],
+    links: [
+      { name: 'Installer AD DS sur Windows Server', url: 'https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/deploy/install-active-directory-domain-services', icon: 'fab fa-microsoft' }
     ]
   },
   { 
@@ -1616,6 +1672,9 @@ const projetsData = [
     images: [
       'https://www.pfsense.org/favicon.ico',
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg'
+    ],
+    links: [
+      { name: 'Documentation pfSense', url: 'https://docs.netgate.com/pfsense/en/latest/', icon: 'fas fa-fire' }
     ]
   },
   { 
@@ -1626,6 +1685,10 @@ const projetsData = [
     images: [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg',
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg'
+    ],
+    links: [
+      { name: 'Configurer Postfix sur Debian', url: 'https://wiki.debian.org/Postfix', icon: 'fas fa-envelope' },
+      { name: 'Configurer Dovecot', url: 'https://wiki.debian.org/Dovecot', icon: 'fas fa-inbox' }
     ]
   },
   { 
@@ -1636,6 +1699,9 @@ const projetsData = [
     images: [
       'https://www.zabbix.com/favicon.ico',
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg'
+    ],
+    links: [
+      { name: 'Documentation Zabbix', url: 'https://www.zabbix.com/documentation/current/fr/manual', icon: 'fas fa-chart-line' }
     ]
   },
   { 
@@ -1647,6 +1713,11 @@ const projetsData = [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/alpine/alpine-original.svg',
       'https://caddyserver.com/favicon.ico'
+    ],
+    links: [
+      { name: 'Documentation Docker', url: 'https://docs.docker.com/', icon: 'fab fa-docker' },
+      { name: 'Documentation Caddy', url: 'https://caddyserver.com/docs/', icon: 'fas fa-reverse' },
+      { name: 'Tutoriel Docker Compose', url: 'https://docs.docker.com/compose/gettingstarted/', icon: 'fas fa-layer-group' }
     ]
   }
 ];
@@ -1682,6 +1753,13 @@ if (projetsGrid) {
       `<img src="${img}" class="project-img" alt="Logo" onerror="this.src='https://via.placeholder.com/100/333/aaa?text=Logo'">`
     ).join('');
     
+    // Générer les liens vers les tutoriels
+    const linksHtml = projet.links.map(link => 
+      `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="tech-link">
+        <i class="${link.icon}"></i> ${link.name}
+      </a>`
+    ).join('');
+    
     return `
       <div class="card">
         <h3><i class="${projet.icon}"></i> ${projet.title}</h3>
@@ -1690,6 +1768,9 @@ if (projetsGrid) {
           ${imagesHtml}
         </div>
         <p>${projet.desc}</p>
+        <div class="tech-links">
+          ${linksHtml}
+        </div>
       </div>
     `;
   }).join('');
@@ -1980,7 +2061,7 @@ window.addEventListener('scroll', () => {
   });
 });
 
-console.log('✅ Portfolio chargé - Version avec grandes images dans les projets');
+console.log('✅ Portfolio chargé - Version avec grandes images et liens vers tutoriels');
 </script>
 </body>
 </html>
