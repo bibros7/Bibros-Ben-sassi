@@ -1076,6 +1076,43 @@
         gap: 1rem;
       }
     }
+
+    /* Style pour les détails (accordéon) */
+    details {
+      margin: 1rem 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    summary {
+      font-weight: 600;
+      color: var(--accent-hover);
+      cursor: pointer;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      list-style: none;
+    }
+    
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    
+    summary i {
+      transition: transform 0.3s ease;
+    }
+    
+    details[open] summary i {
+      transform: rotate(180deg);
+    }
+    
+    .details-content {
+      padding: 1rem 1.5rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
   </style>
 </head>
 <body>
@@ -1190,59 +1227,68 @@
         </div>
       </div>
       
+      <!-- RÉSUMÉ DU PROJET (visible) -->
       <div style="margin:1.5rem 0; padding:1rem; background:var(--tech-bg); border-radius:12px; border-left:4px solid var(--accent);">
-        <p style="font-weight:600; margin-bottom:0.8rem;">📌 Projet principal :</p>
-        <p style="font-size:1.1rem;"><strong>Création et sécurisation d'une infrastructure réseau interne pour l'association 100 R.I.B.A.</strong></p>
+        <p style="font-weight:600; margin-bottom:0.5rem;">📌 Projet principal :</p>
+        <p style="font-size:1rem;"><strong>Infrastructure réseau pour association 100 R.I.B.A.</strong> - Nextcloud, pfSense, VLAN</p>
       </div>
       
-      <h4 style="margin:1.2rem 0 0.5rem; color:var(--accent-hover);">🎯 Objectifs du projet :</h4>
-      <ul style="color:var(--text2); font-size:0.95rem; margin-bottom:1.2rem;">
-        <li>Conception d'une architecture réseau complète pour l'association</li>
-        <li>Mise en place d'un espace collaboratif sécurisé (cloud interne)</li>
-        <li>Déploiement de services centralisés et collaboratifs</li>
-      </ul>
-      
-      <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🛠️ Mes missions principales :</h4>
-      <ul style="color:var(--text2); font-size:0.95rem;">
-        <li><strong>Gestion et résolution d'incidents</strong> sur les systèmes de ticketing et tracking en temps réel</li>
-        <li><strong>Maintenance du parc informatique</strong> (mises à jour Windows)</li>
-        <li><strong>Participation à la sécurisation</strong> des connexions mobiles et des données de localisation</li>
-        <li><strong>Documentation des procédures techniques</strong> et formation utilisateurs</li>
-        <li><strong>Architecture réseau</strong> : Conception et déploiement d'une infrastructure réseau interne avec VLANs et segmentation</li>
-        <li><strong>Cloud collaboratif</strong> : Installation et configuration de Nextcloud pour le partage de fichiers sécurisé</li>
-        <li><strong>Sécurisation</strong> : Mise en place de règles firewall (pfSense), durcissement des accès et chiffrement</li>
-        <li><strong>Services centralisés</strong> : Déploiement de services collaboratifs (agenda partagé, gestion de documents)</li>
-        <li><strong>Base de données</strong> : Configuration MariaDB pour Nextcloud avec sauvegardes automatisées</li>
-        <li><strong>Serveur web</strong> : Configuration Apache/Nginx pour l'hébergement de Nextcloud</li>
-      </ul>
-      
-      <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🔧 Stack technique détaillée :</h4>
-      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin:1rem 0;">
-        <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">pfSense</span>
-        <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Nextcloud</span>
-        <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">VLAN</span>
-        <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Firewall</span>
-        <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Linux</span>
-        <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Apache</span>
-        <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Nginx</span>
-        <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">MariaDB</span>
-        <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">PHP</span>
-        <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">SSL/TLS</span>
-        <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Windows</span>
-        <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Ticketing</span>
-        <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Tracking</span>
-      </div>
-      
-      <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">📊 Résultats obtenus :</h4>
-      <ul style="color:var(--text2); font-size:0.95rem;">
-        <li>Infrastructure sécurisée et segmentée (VLANs)</li>
-        <li>Cloud Nextcloud accessible en interne avec authentification</li>
-        <li>Sauvegardes automatiques chiffrées</li>
-        <li>Documentation technique et guides utilisateurs</li>
-        <li>Formation des membres de l'association</li>
-        <li>Résolution efficace des incidents sur les systèmes de ticketing</li>
-        <li>Sécurisation renforcée des connexions mobiles</li>
-      </ul>
+      <!-- SECTION DÉROULANTE "VOIR PLUS" -->
+      <details>
+        <summary>
+          <i class="fas fa-chevron-down"></i> Voir plus de détails
+        </summary>
+        <div class="details-content">
+          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🎯 Objectifs du projet :</h4>
+          <ul style="color:var(--text2); font-size:0.95rem; margin-bottom:1.2rem;">
+            <li>Conception d'une architecture réseau complète pour l'association</li>
+            <li>Mise en place d'un espace collaboratif sécurisé (cloud interne)</li>
+            <li>Déploiement de services centralisés et collaboratifs</li>
+          </ul>
+          
+          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🛠️ Mes missions principales :</h4>
+          <ul style="color:var(--text2); font-size:0.95rem;">
+            <li><strong>Gestion et résolution d'incidents</strong> sur les systèmes de ticketing et tracking en temps réel</li>
+            <li><strong>Maintenance du parc informatique</strong> (mises à jour Windows)</li>
+            <li><strong>Participation à la sécurisation</strong> des connexions mobiles et des données de localisation</li>
+            <li><strong>Documentation des procédures techniques</strong> et formation utilisateurs</li>
+            <li><strong>Architecture réseau</strong> : Conception et déploiement d'une infrastructure réseau interne avec VLANs et segmentation</li>
+            <li><strong>Cloud collaboratif</strong> : Installation et configuration de Nextcloud pour le partage de fichiers sécurisé</li>
+            <li><strong>Sécurisation</strong> : Mise en place de règles firewall (pfSense), durcissement des accès et chiffrement</li>
+            <li><strong>Services centralisés</strong> : Déploiement de services collaboratifs (agenda partagé, gestion de documents)</li>
+            <li><strong>Base de données</strong> : Configuration MariaDB pour Nextcloud avec sauvegardes automatisées</li>
+            <li><strong>Serveur web</strong> : Configuration Apache/Nginx pour l'hébergement de Nextcloud</li>
+          </ul>
+          
+          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🔧 Stack technique détaillée :</h4>
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin:1rem 0;">
+            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">pfSense</span>
+            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Nextcloud</span>
+            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">VLAN</span>
+            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Firewall</span>
+            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Linux</span>
+            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Apache</span>
+            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Nginx</span>
+            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">MariaDB</span>
+            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">PHP</span>
+            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">SSL/TLS</span>
+            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Windows</span>
+            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Ticketing</span>
+            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Tracking</span>
+          </div>
+          
+          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">📊 Résultats obtenus :</h4>
+          <ul style="color:var(--text2); font-size:0.95rem;">
+            <li>Infrastructure sécurisée et segmentée (VLANs)</li>
+            <li>Cloud Nextcloud accessible en interne avec authentification</li>
+            <li>Sauvegardes automatiques chiffrées</li>
+            <li>Documentation technique et guides utilisateurs</li>
+            <li>Formation des membres de l'association</li>
+            <li>Résolution efficace des incidents sur les systèmes de ticketing</li>
+            <li>Sécurisation renforcée des connexions mobiles</li>
+          </ul>
+        </div>
+      </details>
       
       <p style="margin-top:1.5rem; color:var(--text2); font-style:italic; border-top:1px solid var(--border); padding-top:1rem;">
         <i class="fas fa-quote-left"></i> Création et sécurisation d'une infrastructure réseau interne avec espace collaboratif (Nextcloud) pour l'association 100 R.I.B.A.
@@ -1282,63 +1328,69 @@
         </div>
       </div>
       
+      <!-- RÉSUMÉ DU PROJET (visible) -->
       <div style="margin:1.5rem 0; padding:1rem; background:var(--tech-bg); border-radius:12px; border-left:4px solid var(--accent);">
         <span class="project-badge"><i class="fab fa-docker"></i> PROJET PRINCIPAL</span>
         <p style="font-weight:600; margin:0.5rem 0;">📌 Infrastructure Docker avec reverse proxy Caddy</p>
-        <p style="font-size:1rem;"><strong>Conception et déploiement de sites web isolés avec Docker, Alpine Linux et Caddy</strong></p>
+        <p style="font-size:0.95rem;"><strong>3 sites web isolés avec Alpine Linux et HTTPS automatique</strong></p>
       </div>
       
-      <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🎯 Objectifs :</h4>
-      <ul style="color:var(--text2); font-size:0.95rem;">
-        <li>Créer une infrastructure modulaire pour héberger plusieurs sites web</li>
-        <li>Isoler chaque site dans son propre conteneur Docker</li>
-        <li>Mettre en place un reverse proxy Caddy pour gérer le HTTPS automatiquement</li>
-        <li>Optimiser les images avec Alpine Linux (ultra-légères ~5-15MB)</li>
-      </ul>
-      
-      <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🏗️ Architecture mise en place :</h4>
-      <div style="display:flex; flex-direction:column; gap:0.5rem; background:var(--card); padding:1rem; border-radius:12px; margin:1rem 0;">
-        <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-          <span style="background:var(--accent); color:white; padding:0.2rem 0.8rem; border-radius:20px;">Site 1</span>
-          <i class="fas fa-arrow-right"></i>
-          <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Alpine + PHP</span>
-          <i class="fas fa-arrow-right"></i>
-          <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Caddy</span>
-        </div>
-        <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-          <span style="background:var(--accent); color:white; padding:0.2rem 0.8rem; border-radius:20px;">Site 2</span>
-          <i class="fas fa-arrow-right"></i>
-          <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Alpine + PHP</span>
-          <i class="fas fa-arrow-right"></i>
-          <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Caddy</span>
-        </div>
-        <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-          <span style="background:var(--accent); color:white; padding:0.2rem 0.8rem; border-radius:20px;">Site 3</span>
-          <i class="fas fa-arrow-right"></i>
-          <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Alpine + PHP</span>
-          <i class="fas fa-arrow-right"></i>
-          <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Caddy</span>
-        </div>
-      </div>
-      
-      <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🛠️ Réalisations techniques :</h4>
-      <ul style="color:var(--text2); font-size:0.95rem;">
-        <li><strong>Création de 3 sites web</strong> : Site vitrine (HTML/CSS/JS), Blog (PHP/MySQL), Portfolio (HTML/CSS/JS)</li>
-        <li><strong>Dockerfile Alpine</strong> : Optimisation multi-stage pour des images ~15MB</li>
-        <li><strong>Configuration Caddy</strong> : Reverse proxy avec HTTPS automatique (Let's Encrypt)</li>
-        <li><strong>docker-compose.yml</strong> : Orchestration des 3 conteneurs + Caddy</li>
-        <li><strong>Sécurisation</strong> : Utilisateur non-root, réseaux internes, volumes isolés</li>
-        <li><strong>Déploiement</strong> : Mise en production sur serveur dédié</li>
-      </ul>
-      
-      <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">📄 Exemple de configuration :</h4>
-
-      <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; margin: 1rem 0; overflow: hidden;">
-        <div style="background: var(--tech-bg); padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fab fa-docker" style="color: var(--accent-hover);"></i>
-          <span style="font-weight: 600; color: var(--text);">docker-compose.yml</span>
-        </div>
-        <pre style="margin: 0; padding: 1.2rem; background: var(--bg); color: var(--text); font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.5; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code style="color: var(--text);">services:
+      <!-- SECTION DÉROULANTE "VOIR PLUS" -->
+      <details>
+        <summary>
+          <i class="fas fa-chevron-down"></i> Voir plus de détails
+        </summary>
+        <div class="details-content">
+          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🎯 Objectifs :</h4>
+          <ul style="color:var(--text2); font-size:0.95rem;">
+            <li>Créer une infrastructure modulaire pour héberger plusieurs sites web</li>
+            <li>Isoler chaque site dans son propre conteneur Docker</li>
+            <li>Mettre en place un reverse proxy Caddy pour gérer le HTTPS automatiquement</li>
+            <li>Optimiser les images avec Alpine Linux (ultra-légères ~5-15MB)</li>
+          </ul>
+          
+          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🏗️ Architecture mise en place :</h4>
+          <div style="display:flex; flex-direction:column; gap:0.5rem; background:var(--card); padding:1rem; border-radius:12px; margin:1rem 0;">
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+              <span style="background:var(--accent); color:white; padding:0.2rem 0.8rem; border-radius:20px;">Site 1</span>
+              <i class="fas fa-arrow-right"></i>
+              <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Alpine + PHP</span>
+              <i class="fas fa-arrow-right"></i>
+              <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Caddy</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+              <span style="background:var(--accent); color:white; padding:0.2rem 0.8rem; border-radius:20px;">Site 2</span>
+              <i class="fas fa-arrow-right"></i>
+              <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Alpine + PHP</span>
+              <i class="fas fa-arrow-right"></i>
+              <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Caddy</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+              <span style="background:var(--accent); color:white; padding:0.2rem 0.8rem; border-radius:20px;">Site 3</span>
+              <i class="fas fa-arrow-right"></i>
+              <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Alpine + PHP</span>
+              <i class="fas fa-arrow-right"></i>
+              <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Caddy</span>
+            </div>
+          </div>
+          
+          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🛠️ Réalisations techniques :</h4>
+          <ul style="color:var(--text2); font-size:0.95rem;">
+            <li><strong>Création de 3 sites web</strong> : Site vitrine (HTML/CSS/JS), Blog (PHP/MySQL), Portfolio (HTML/CSS/JS)</li>
+            <li><strong>Dockerfile Alpine</strong> : Optimisation multi-stage pour des images ~15MB</li>
+            <li><strong>Configuration Caddy</strong> : Reverse proxy avec HTTPS automatique (Let's Encrypt)</li>
+            <li><strong>docker-compose.yml</strong> : Orchestration des 3 conteneurs + Caddy</li>
+            <li><strong>Sécurisation</strong> : Utilisateur non-root, réseaux internes, volumes isolés</li>
+            <li><strong>Déploiement</strong> : Mise en production sur serveur dédié</li>
+          </ul>
+          
+          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">📄 Exemple de configuration :</h4>
+          <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; margin: 1rem 0; overflow: hidden;">
+            <div style="background: var(--tech-bg); padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fab fa-docker" style="color: var(--accent-hover);"></i>
+              <span style="font-weight: 600; color: var(--text);">docker-compose.yml</span>
+            </div>
+            <pre style="margin: 0; padding: 1.2rem; background: var(--bg); color: var(--text); font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.5; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code style="color: var(--text);">services:
   site1:
     build: ./site1
     networks: [webnet]
@@ -1349,54 +1401,46 @@
     image: caddy:alpine
     ports: [80:80, 443:443]
     volumes: [./Caddyfile:/etc/caddy/Caddyfile]</code></pre>
-      </div>
-
-      <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; margin: 1rem 0; overflow: hidden;">
-        <div style="background: var(--tech-bg); padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fas fa-file-alt" style="color: var(--accent-hover);"></i>
-          <span style="font-weight: 600; color: var(--text);">Caddyfile</span>
+          </div>
+          
+          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🔧 Technologies utilisées :</h4>
+          <div style="display:flex; flex-wrap:wrap; gap:0.8rem; margin:1rem 0;">
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fab fa-docker"></i> Docker
+            </span>
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fab fa-alpine"></i> Alpine
+            </span>
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fas fa-reverse"></i> Caddy
+            </span>
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fab fa-php"></i> PHP
+            </span>
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fab fa-html5"></i> HTML5
+            </span>
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fab fa-css3-alt"></i> CSS3
+            </span>
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fab fa-js"></i> JavaScript
+            </span>
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fas fa-database"></i> MySQL
+            </span>
+          </div>
+          
+          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">📊 Résultats obtenus :</h4>
+          <ul style="color:var(--text2); font-size:0.95rem;">
+            <li>3 sites web déployés et accessibles en HTTPS</li>
+            <li>Images Docker optimisées (15MB au lieu de 100MB+)</li>
+            <li>Infrastructure reproductible avec docker-compose</li>
+            <li>Isolation totale entre les sites (sécurité renforcée)</li>
+            <li>HTTPS automatique géré par Caddy</li>
+          </ul>
         </div>
-        <pre style="margin: 0; padding: 1.2rem; background: var(--bg); color: var(--text); font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.5; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code style="color: var(--text);">site1.bibros.local { reverse_proxy site1:9000 }
-site2.bibros.local { reverse_proxy site2:9000 }
-site3.bibros.local { reverse_proxy site3:9000 }</code></pre>
-      </div>
-      
-      <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🔧 Technologies utilisées :</h4>
-      <div style="display:flex; flex-wrap:wrap; gap:0.8rem; margin:1rem 0;">
-        <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-          <i class="fab fa-docker"></i> Docker
-        </span>
-        <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-          <i class="fab fa-alpine"></i> Alpine
-        </span>
-        <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-          <i class="fas fa-reverse"></i> Caddy
-        </span>
-        <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-          <i class="fab fa-php"></i> PHP
-        </span>
-        <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-          <i class="fab fa-html5"></i> HTML5
-        </span>
-        <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-          <i class="fab fa-css3-alt"></i> CSS3
-        </span>
-        <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-          <i class="fab fa-js"></i> JavaScript
-        </span>
-        <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-          <i class="fas fa-database"></i> MySQL
-        </span>
-      </div>
-      
-      <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">📊 Résultats obtenus :</h4>
-      <ul style="color:var(--text2); font-size:0.95rem;">
-        <li>3 sites web déployés et accessibles en HTTPS</li>
-        <li>Images Docker optimisées (15MB au lieu de 100MB+)</li>
-        <li>Infrastructure reproductible avec docker-compose</li>
-        <li>Isolation totale entre les sites (sécurité renforcée)</li>
-        <li>HTTPS automatique géré par Caddy</li>
-      </ul>
+      </details>
       
       <p style="margin-top:1.5rem; color:var(--text2); font-style:italic; border-top:1px solid var(--border); padding-top:1rem;">
         <i class="fas fa-quote-left"></i> Conception et déploiement d'une infrastructure Docker avec Alpine et Caddy en reverse proxy pour héberger plusieurs sites web
@@ -2061,7 +2105,7 @@ window.addEventListener('scroll', () => {
   });
 });
 
-console.log('✅ Portfolio chargé - Version avec grandes images et liens vers tutoriels');
+console.log('✅ Portfolio chargé - Version avec accordéon dans les entreprises');
 </script>
 </body>
 </html>
