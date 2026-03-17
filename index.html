@@ -19,6 +19,10 @@
       --gradient: linear-gradient(135deg, #6a6a6a, #8a8a8a);
       --glow: 0 0 20px rgba(160,160,160,0.3);
       --rss-color: #ff8c42;
+      --swot-force: #2e7d32;
+      --swot-faiblesse: #b71c1c;
+      --swot-opportunite: #0d47a1;
+      --swot-menace: #bf360c;
     }
 
     [data-theme="light"] {
@@ -33,6 +37,10 @@
       --accent-hover: #4a4a4a;
       --gradient: linear-gradient(135deg, #7a7a7a, #9a9a9a);
       --glow: 0 0 20px rgba(100,100,100,0.2);
+      --swot-force: #2e7d32;
+      --swot-faiblesse: #b71c1c;
+      --swot-opportunite: #0d47a1;
+      --swot-menace: #bf360c;
     }
 
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -1113,6 +1121,58 @@
       padding: 1rem 1.5rem 1.5rem;
       border-top: 1px solid var(--border);
     }
+
+    /* Style pour la matrice SWOT */
+    .swot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    
+    .swot-item {
+      padding: 1.2rem;
+      border-radius: 12px;
+      background: var(--bg2);
+      border-left: 4px solid;
+    }
+    
+    .swot-item h5 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+    }
+    
+    .swot-item ul {
+      margin-left: 1.2rem;
+      color: var(--text2);
+    }
+    
+    .swot-item li {
+      margin: 0.5rem 0;
+    }
+    
+    .swot-force {
+      border-left-color: var(--swot-force);
+    }
+    .swot-force h5 { color: var(--swot-force); }
+    
+    .swot-faiblesse {
+      border-left-color: var(--swot-faiblesse);
+    }
+    .swot-faiblesse h5 { color: var(--swot-faiblesse); }
+    
+    .swot-opportunite {
+      border-left-color: var(--swot-opportunite);
+    }
+    .swot-opportunite h5 { color: var(--swot-opportunite); }
+    
+    .swot-menace {
+      border-left-color: var(--swot-menace);
+    }
+    .swot-menace h5 { color: var(--swot-menace); }
   </style>
 </head>
 <body>
@@ -1276,6 +1336,47 @@
             <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Ticketing</span>
             <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Tracking</span>
           </div>
+
+          <!-- SWOT Analysis -->
+          <h4 style="margin:1.5rem 0 1rem; color:var(--accent-hover);">📊 Analyse SWOT de l'entreprise</h4>
+          <div class="swot-grid">
+            <div class="swot-item swot-force">
+              <h5><i class="fas fa-plus-circle"></i> Forces</h5>
+              <ul>
+                <li>Jeune entreprise dynamique (créée en 2022)</li>
+                <li>Spécialisation dans un secteur de niche (transports taxis)</li>
+                <li>Structure PME agile, décisions rapides</li>
+                <li>Équipe DSI motivée et accessible</li>
+              </ul>
+            </div>
+            <div class="swot-item swot-faiblesse">
+              <h5><i class="fas fa-minus-circle"></i> Faiblesses</h5>
+              <ul>
+                <li>Taille réduite de l'équipe IT (moins de 5 personnes)</li>
+                <li>Processus de sécurité encore en développement</li>
+                <li>Documentation technique partielle</li>
+                <li>Budget limité pour les équipements</li>
+              </ul>
+            </div>
+            <div class="swot-item swot-opportunite">
+              <h5><i class="fas fa-arrow-up"></i> Opportunités</h5>
+              <ul>
+                <li>Croissance du secteur des VTC et taxis</li>
+                <li>Digitalisation croissante des transports</li>
+                <li>Développement de solutions de mobilité connectée</li>
+                <li>Partenariats avec des startups technologiques</li>
+              </ul>
+            </div>
+            <div class="swot-item swot-menace">
+              <h5><i class="fas fa-exclamation-triangle"></i> Menaces</h5>
+              <ul>
+                <li>Concurrence intense dans le secteur des transports</li>
+                <li>Évolution rapide des réglementations</li>
+                <li>Risques de cybersécurité accrus</li>
+                <li>Dépendance vis-à-vis des applications mobiles</li>
+              </ul>
+            </div>
+          </div>
           
           <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">📊 Résultats obtenus :</h4>
           <ul style="color:var(--text2); font-size:0.95rem;">
@@ -1401,6 +1502,47 @@
     image: caddy:alpine
     ports: [80:80, 443:443]
     volumes: [./Caddyfile:/etc/caddy/Caddyfile]</code></pre>
+          </div>
+
+          <!-- SWOT Analysis -->
+          <h4 style="margin:1.5rem 0 1rem; color:var(--accent-hover);">📊 Analyse SWOT de l'entreprise</h4>
+          <div class="swot-grid">
+            <div class="swot-item swot-force">
+              <h5><i class="fas fa-plus-circle"></i> Forces</h5>
+              <ul>
+                <li>Expertise technique pointue (DevOps, Docker, Caddy)</li>
+                <li>Équipe jeune et innovante</li>
+                <li>Bonne connaissance des technologies web</li>
+                <li>Infrastructure moderne et conteneurisée</li>
+              </ul>
+            </div>
+            <div class="swot-item swot-faiblesse">
+              <h5><i class="fas fa-minus-circle"></i> Faiblesses</h5>
+              <ul>
+                <li>Taille réduite de l'équipe</li>
+                <li>Processus de déploiement encore manuels</li>
+                <li>Documentation technique à renforcer</li>
+                <li>Peu de certifications formelles</li>
+              </ul>
+            </div>
+            <div class="swot-item swot-opportunite">
+              <h5><i class="fas fa-arrow-up"></i> Opportunités</h5>
+              <ul>
+                <li>Demande croissante pour les infrastructures Docker</li>
+                <li>Adoption massive de Kubernetes</li>
+                <li>Développement du marché DevOps</li>
+                <li>Partenariats avec des éditeurs de logiciels</li>
+              </ul>
+            </div>
+            <div class="swot-item swot-menace">
+              <h5><i class="fas fa-exclamation-triangle"></i> Menaces</h5>
+              <ul>
+                <li>Concurrence sur les prix dans le commerce de détail</li>
+                <li>Évolution rapide des technologies</li>
+                <li>Pénurie de talents DevOps</li>
+                <li>Dépendance vis-à-vis des fournisseurs cloud</li>
+              </ul>
+            </div>
           </div>
           
           <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🔧 Technologies utilisées :</h4>
@@ -2105,7 +2247,7 @@ window.addEventListener('scroll', () => {
   });
 });
 
-console.log('✅ Portfolio chargé - Version avec accordéon dans les entreprises');
+console.log('✅ Portfolio chargé - Version avec SWOT dans les entreprises');
 </script>
 </body>
 </html>
