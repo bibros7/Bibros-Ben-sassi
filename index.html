@@ -381,13 +381,7 @@
       padding: 9rem 3rem 7rem;
       max-width: 1600px;
       margin: 0 auto;
-      opacity: 0;
-      transform: translateY(60px);
-      transition: all 1s ease-out;
-    }
-
-    section.visible {
-      opacity: 1;
+      opacity: 1; /* désactivé les animations d'apparition */
       transform: translateY(0);
     }
 
@@ -524,6 +518,12 @@
 
     [data-theme="light"] .project-img {
       filter: brightness(0.8) drop-shadow(0 0 5px rgba(0,0,0,0.1));
+    }
+
+    .project-images .project-img {
+      width: 100px;
+      height: 100px;
+      transition: all 0.4s;
     }
 
     .project-images:hover .project-img {
@@ -1161,6 +1161,10 @@
         width: 60px;
         height: 60px;
       }
+      .project-images .project-img {
+        width: 80px;
+        height: 80px;
+      }
     }
 
     @media (max-width: 600px) {
@@ -1176,8 +1180,12 @@
         height: 50px;
       }
       .project-images {
-        gap: 0.8rem;
+        gap: 1rem;
         padding: 1rem;
+      }
+      .project-images .project-img {
+        width: 60px;
+        height: 60px;
       }
       .cv-preview, .tableau-preview {
         height: 500px;
@@ -1647,6 +1655,34 @@ site3.bibros.local { reverse_proxy site3:9000 }</code></pre>
             </div>
           </div>
           
+          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🔧 Technologies utilisées :</h4>
+          <div style="display:flex; flex-wrap:wrap; gap:0.8rem; margin:1rem 0;">
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fab fa-docker"></i> Docker
+            </span>
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fab fa-alpine"></i> Alpine
+            </span>
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fas fa-reverse"></i> Caddy
+            </span>
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fab fa-php"></i> PHP
+            </span>
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fab fa-html5"></i> HTML5
+            </span>
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fab fa-css3-alt"></i> CSS3
+            </span>
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fab fa-js"></i> JavaScript
+            </span>
+            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <i class="fas fa-database"></i> MySQL
+            </span>
+          </div>
+          
           <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">📊 Résultats obtenus :</h4>
           <ul style="color:var(--text2); font-size:0.95rem;">
             <li>3 sites web déployés et accessibles en HTTPS</li>
@@ -1687,6 +1723,7 @@ site3.bibros.local { reverse_proxy site3:9000 }</code></pre>
   <h3 style="text-align:center; margin:2rem 0;">Aperçu des documents</h3>
   
   <div class="cv-tableau-container">
+    <!-- CV - prévisualisation possible car PDF -->
     <div>
       <div class="cv-preview">
         <iframe 
@@ -1699,6 +1736,7 @@ site3.bibros.local { reverse_proxy site3:9000 }</code></pre>
       </div>
     </div>
     
+    <!-- Tableau Excel - pas de prévisualisation possible, on affiche une icône -->
     <div>
       <div class="tableau-preview">
         <div class="tableau-header">
@@ -1728,84 +1766,7 @@ site3.bibros.local { reverse_proxy site3:9000 }</code></pre>
 
 <section id="competences" style="background:var(--bg2);">
   <h2>Mes compétences</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="competence-img" alt="Docker">
-        Docker & Alpine
-      </h3>
-      <div class="level-bar"><div class="level-bar-fill" style="width:90%"></div></div>
-      <ul>
-        <li>Dockerfile, Compose, Alpine</li>
-        <li>Volumes, networks, secrets</li>
-        <li>Multi-stage builds</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" class="competence-img" alt="Reverse Proxy">
-        Reverse Proxy
-      </h3>
-      <div class="level-bar"><div class="level-bar-fill" style="width:85%"></div></div>
-      <ul>
-        <li>Caddy (HTTPS auto)</li>
-        <li>Nginx, Apache</li>
-        <li>Let's Encrypt</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="competence-img" alt="HTML5">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="competence-img" alt="CSS3">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="competence-img" alt="JavaScript">
-        Développement Web
-      </h3>
-      <div class="level-bar"><div class="level-bar-fill" style="width:80%"></div></div>
-      <ul>
-        <li>HTML5, CSS3, JS</li>
-        <li>PHP, MySQL</li>
-        <li>Sites responsives</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="competence-img" alt="Linux">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg" class="competence-img" alt="Ubuntu">
-        Sécurité & Réseaux
-      </h3>
-      <div class="level-bar"><div class="level-bar-fill" style="width:75%"></div></div>
-      <ul>
-        <li>pfSense, VLAN, firewall</li>
-        <li>CrowdSec, hardening</li>
-        <li>ANSSI (en cours)</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextcloud/nextcloud-original.svg" class="competence-img" alt="Nextcloud">
-        Cloud & Services
-      </h3>
-      <div class="level-bar"><div class="level-bar-fill" style="width:80%"></div></div>
-      <ul>
-        <li>Nextcloud (install/config)</li>
-        <li>Services collaboratifs</li>
-        <li>MariaDB, sauvegardes</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="competence-img" alt="Git">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="competence-img" alt="GitHub">
-        Outils & Certifs
-      </h3>
-      <div class="level-bar"><div class="level-bar-fill" style="width:85%"></div></div>
-      <ul>
-        <li>Git, GitHub, Bash</li>
-        <li>GLPI, ITIL</li>
-        <li>PIX, Cisco (en cours)</li>
-      </ul>
-    </div>
-  </div>
+  <div class="grid" id="competencesGrid"></div>
 </section>
 
 <section id="technologies">
@@ -1867,37 +1828,46 @@ site3.bibros.local { reverse_proxy site3:9000 }</code></pre>
 </div>
 
 <script>
-// Liste des technologies avec images
+// ===== DONNÉES COMPLÈTES =====
+const competencesData = [
+  { icon: 'fab fa-docker', title: 'Docker & Alpine', level: 90, items: ['Dockerfile, Compose, Alpine', 'Volumes, networks, secrets', 'Multi-stage builds'] },
+  { icon: 'fas fa-reverse', title: 'Reverse Proxy', level: 85, items: ['Caddy (HTTPS auto)', 'Nginx, Apache', 'Let\'s Encrypt'] },
+  { icon: 'fab fa-html5', title: 'Développement Web', level: 80, items: ['HTML5, CSS3, JS', 'PHP, MySQL', 'Sites responsives'] },
+  { icon: 'fas fa-shield-alt', title: 'Sécurité & Réseaux', level: 75, items: ['pfSense, VLAN, firewall', 'CrowdSec, hardening', 'ANSSI (en cours)'] },
+  { icon: 'fas fa-cloud', title: 'Cloud & Services', level: 80, items: ['Nextcloud (install/config)', 'Services collaboratifs', 'MariaDB, sauvegardes'] },
+  { icon: 'fab fa-git-alt', title: 'Outils & Certifs', level: 85, items: ['Git, GitHub, Bash', 'GLPI, ITIL', 'PIX, Cisco (en cours)'] }
+];
+
 const techList = [
-  { name: 'Docker', category: 'Conteneurisation', url: 'https://www.docker.com/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
-  { name: 'Alpine', category: 'Linux', url: 'https://www.alpinelinux.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/alpine/alpine-original.svg' },
-  { name: 'Caddy', category: 'Reverse Proxy', url: 'https://caddyserver.com/', img: 'https://caddyserver.com/favicon.ico' },
-  { name: 'Nginx', category: 'Web Server', url: 'https://nginx.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg' },
-  { name: 'Apache', category: 'Web Server', url: 'https://httpd.apache.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg' },
-  { name: 'PHP', category: 'Backend', url: 'https://www.php.net/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg' },
-  { name: 'HTML5', category: 'Frontend', url: 'https://developer.mozilla.org/fr/docs/Web/HTML', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
-  { name: 'CSS3', category: 'Frontend', url: 'https://developer.mozilla.org/fr/docs/Web/CSS', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
-  { name: 'JavaScript', category: 'Frontend', url: 'https://developer.mozilla.org/fr/docs/Web/JavaScript', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
-  { name: 'Nextcloud', category: 'Cloud', url: 'https://nextcloud.com/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextcloud/nextcloud-original.svg' },
-  { name: 'MariaDB', category: 'Base de données', url: 'https://mariadb.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg' },
-  { name: 'Windows Server', category: 'OS', url: 'https://www.microsoft.com/fr-fr/windows-server', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg' },
-  { name: 'Linux', category: 'OS', url: 'https://www.linux.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
-  { name: 'pfSense', category: 'Firewall', url: 'https://www.pfsense.org/', img: 'https://www.pfsense.org/favicon.ico' },
-  { name: 'CrowdSec', category: 'Sécurité', url: 'https://www.crowdsec.net/', img: 'https://www.crowdsec.net/favicon.ico' },
-  { name: 'Active Directory', category: 'Annuaire', url: 'https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg' },
-  { name: 'Zabbix', category: 'Supervision', url: 'https://www.zabbix.com/', img: 'https://www.zabbix.com/favicon.ico' },
-  { name: 'GLPI', category: 'ITSM', url: 'https://glpi-project.org/', img: 'https://glpi-project.org/favicon.ico' },
-  { name: 'PIX', category: 'Certification', url: 'https://pix.fr/', img: 'https://pix.fr/favicon.ico' },
-  { name: 'ANSSI', category: 'Certification', url: 'https://www.ssi.gouv.fr/', img: 'https://www.ssi.gouv.fr/favicon.ico' },
-  { name: 'Cisco', category: 'Réseaux', url: 'https://www.cisco.com/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
-  { name: 'OSPF', category: 'Protocole routage', url: 'https://www.cisco.com/c/en/us/support/docs/ip/open-shortest-path-first-ospf/7039-1.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
-  { name: 'RIP', category: 'Protocole routage', url: 'https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13734-5.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
-  { name: 'HSRP', category: 'Haute dispo', url: 'https://www.cisco.com/c/en/us/support/docs/ip/hot-standby-router-protocol-hsrp/9234-hsrpguide.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
-  { name: 'STP', category: 'Spanning Tree', url: 'https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
-  { name: 'VLAN', category: 'Segmentation', url: 'https://www.cisco.com/c/en/us/tech/lan-switching/vlan-trunking/index.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
-  { name: 'VRRP', category: 'Redondance', url: 'https://datatracker.ietf.org/doc/html/rfc5798', img: 'https://www.rfc-editor.org/favicon.ico' },
-  { name: 'NAT', category: 'Traduction', url: 'https://www.cisco.com/c/en/us/support/docs/ip/network-address-translation-nat/26704-nat-faq-00.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
-  { name: 'IPsec', category: 'VPN', url: 'https://www.cisco.com/c/en/us/support/docs/security-vpn/ipsec-negotiation-ike-protocols/216285-understanding-ipsec-protocols.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' }
+  { name: 'Docker', cat: 'Conteneurisation', url: 'https://docker.com/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+  { name: 'Alpine', cat: 'Linux', url: 'https://alpinelinux.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/alpine/alpine-original.svg' },
+  { name: 'Caddy', cat: 'Reverse Proxy', url: 'https://caddyserver.com/', img: 'https://caddyserver.com/favicon.ico' },
+  { name: 'Nginx', cat: 'Web Server', url: 'https://nginx.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg' },
+  { name: 'Apache', cat: 'Web Server', url: 'https://httpd.apache.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg' },
+  { name: 'PHP', cat: 'Backend', url: 'https://php.net/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg' },
+  { name: 'HTML5', cat: 'Frontend', url: 'https://developer.mozilla.org/fr/docs/Web/HTML', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+  { name: 'CSS3', cat: 'Frontend', url: 'https://developer.mozilla.org/fr/docs/Web/CSS', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
+  { name: 'JavaScript', cat: 'Frontend', url: 'https://developer.mozilla.org/fr/docs/Web/JavaScript', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+  { name: 'Nextcloud', cat: 'Cloud', url: 'https://nextcloud.com/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextcloud/nextcloud-original.svg' },
+  { name: 'MariaDB', cat: 'Base de données', url: 'https://mariadb.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg' },
+  { name: 'Windows Server', cat: 'OS', url: 'https://www.microsoft.com/fr-fr/windows-server', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg' },
+  { name: 'Linux', cat: 'OS', url: 'https://linux.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
+  { name: 'pfSense', cat: 'Firewall', url: 'https://pfsense.org/', img: 'https://www.pfsense.org/favicon.ico' },
+  { name: 'CrowdSec', cat: 'Sécurité', url: 'https://crowdsec.net/', img: 'https://www.crowdsec.net/favicon.ico' },
+  { name: 'Active Directory', cat: 'Annuaire', url: 'https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg' },
+  { name: 'Zabbix', cat: 'Supervision', url: 'https://zabbix.com/', img: 'https://www.zabbix.com/favicon.ico' },
+  { name: 'GLPI', cat: 'ITSM', url: 'https://glpi-project.org/', img: 'https://glpi-project.org/favicon.ico' },
+  { name: 'PIX', cat: 'Certification', url: 'https://pix.fr/', img: 'https://pix.fr/favicon.ico' },
+  { name: 'ANSSI', cat: 'Certification', url: 'https://www.ssi.gouv.fr/', img: 'https://www.ssi.gouv.fr/favicon.ico' },
+  { name: 'Cisco', cat: 'Réseaux', url: 'https://cisco.com/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
+  { name: 'OSPF', cat: 'Protocole routage', url: 'https://www.cisco.com/c/en/us/support/docs/ip/open-shortest-path-first-ospf/7039-1.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
+  { name: 'RIP', cat: 'Protocole routage', url: 'https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13734-5.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
+  { name: 'HSRP', cat: 'Haute dispo', url: 'https://www.cisco.com/c/en/us/support/docs/ip/hot-standby-router-protocol-hsrp/9234-hsrpguide.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
+  { name: 'STP', cat: 'Spanning Tree', url: 'https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
+  { name: 'VLAN', cat: 'Segmentation', url: 'https://www.cisco.com/c/en/us/tech/lan-switching/vlan-trunking/index.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
+  { name: 'VRRP', cat: 'Redondance', url: 'https://datatracker.ietf.org/doc/html/rfc5798', img: 'https://www.rfc-editor.org/favicon.ico' },
+  { name: 'NAT', cat: 'Traduction', url: 'https://www.cisco.com/c/en/us/support/docs/ip/network-address-translation-nat/26704-nat-faq-00.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
+  { name: 'IPsec', cat: 'VPN', url: 'https://www.cisco.com/c/en/us/support/docs/security-vpn/ipsec-negotiation-ike-protocols/216285-understanding-ipsec-protocols.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' }
 ];
 
 const projetsData = [
@@ -1905,88 +1875,92 @@ const projetsData = [
     icon: 'fas fa-server', 
     title: 'GLPI & OCS Inventory', 
     badge: '📋 INVENTAIRE AUTOMATISÉ', 
-    desc: 'Mettre en place un inventaire automatisé. Technos: Debian, GLPI, OCS Inventory, clients Windows.',
+    desc: 'Mettre en place un inventaire automatisé. Technos: Debian, GLPI, OCS Inventory, clients Windows. Résultat: Remontée automatique des configurations + export de rapports.',
     images: [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg',
       'https://glpi-project.org/favicon.ico',
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg'
     ],
     links: [
-      { name: 'Installer GLPI', url: 'https://github.com/ClarkMaltempi/GLPI', icon: 'fas fa-book-open' }
+      { name: 'Installer GLPI', url: 'https://github.com/ClarkMaltempi/GLPI', icon: 'fas fa-book-open' },
+      { name: 'Doc OCS Inventory', url: 'https://wiki.ocsinventory-ng.org/', icon: 'fas fa-file-alt' }
     ],
-    protocoles: ['TCP/IP', 'HTTP', 'HTTPS', 'LDAP']
+    protocoles: ['TCP/IP', 'HTTP', 'HTTPS', 'LDAP', 'MySQL']
   },
   { 
     icon: 'fas fa-network-wired', 
     title: 'DHCP & DNS', 
     badge: '🌐 SERVEUR RÉSEAU', 
-    desc: 'Serveur DHCP et DNS sur Debian 12.',
+    desc: 'Mettre en place sur Debian 12 un serveur DHCP et DNS interne. Réalisation: Distribution automatique d\'adresses IP + résolution des noms locaux.',
     images: [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg'
     ],
     links: [
-      { name: 'Configurer DHCP', url: 'https://wiki.debian.org/DHCP_Server', icon: 'fas fa-network-wired' }
+      { name: 'Configurer DHCP', url: 'https://wiki.debian.org/DHCP_Server', icon: 'fas fa-network-wired' },
+      { name: 'Configurer DNS', url: 'https://wiki.debian.org/Bind9', icon: 'fas fa-globe' }
     ],
-    protocoles: ['DHCP', 'DNS', 'UDP']
+    protocoles: ['DHCP', 'DNS', 'TCP/IP', 'UDP']
   },
   { 
     icon: 'fas fa-lock', 
-    title: 'Site Web sécurisé', 
-    badge: '🔐 HTTPS', 
-    desc: 'Site web avec HTTPS sur Debian.',
+    title: 'Site Web sécurisé (HTTPS)', 
+    badge: '🔐 INTRANET SÉCURISÉ', 
+    desc: 'Service web interne sécurisé sur Debian 12. Réalisation: Installation serveur web (Apache/Nginx), déploiement page intranet, configuration HTTPS.',
     images: [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg',
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg'
     ],
     links: [
-      { name: 'Sécuriser Apache', url: 'https://httpd.apache.org/docs/2.4/ssl/', icon: 'fas fa-lock' }
+      { name: 'Sécuriser Apache', url: 'https://httpd.apache.org/docs/2.4/ssl/', icon: 'fas fa-lock' },
+      { name: 'Sécuriser Nginx', url: 'https://nginx.org/en/docs/http/configuring_https_servers.html', icon: 'fas fa-shield-alt' }
     ],
-    protocoles: ['HTTP', 'HTTPS', 'TLS']
+    protocoles: ['HTTP', 'HTTPS', 'SSL/TLS', 'TCP/IP']
   },
   { 
     icon: 'fas fa-users-cog', 
     title: 'Active Directory', 
-    badge: '👥 AD', 
-    desc: 'Domaine Windows Server avec AD DS.',
+    badge: '👥 GESTION UTILISATEURS', 
+    desc: 'Déploiement d\'un domaine d\'entreprise. Réalisation: Installation et configuration d\'Active Directory Domain Services (AD DS) sur Windows Server.',
     images: [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg'
     ],
     links: [
       { name: 'Installer AD DS', url: 'https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/deploy/install-active-directory-domain-services', icon: 'fab fa-microsoft' }
     ],
-    protocoles: ['LDAP', 'Kerberos', 'DNS']
+    protocoles: ['LDAP', 'Kerberos', 'DNS', 'SMB', 'NTP']
   },
   { 
     icon: 'fas fa-shield-alt', 
-    title: 'pfSense', 
-    badge: '🔥 FIREWALL', 
-    desc: 'Pare-feu pfSense sur VMware.',
+    title: 'Sécurité et Pare-feu', 
+    badge: '🔥 pfSense', 
+    desc: 'Mettre en place un pare-feu pfSense sur VMware. Réalisation: Sécurisation et gestion du trafic réseau.',
     images: [
       'https://www.pfsense.org/favicon.ico'
     ],
     links: [
       { name: 'Doc pfSense', url: 'https://docs.netgate.com/pfsense/en/latest/', icon: 'fas fa-fire' }
     ],
-    protocoles: ['IPsec', 'NAT', 'SPI']
+    protocoles: ['IPsec', 'OpenVPN', 'L2TP', 'PPTP', 'NAT', 'SPI']
   },
   { 
     icon: 'fas fa-envelope', 
     title: 'Serveur Mail', 
-    badge: '📧 MAIL', 
-    desc: 'Serveur mail complet sous Debian.',
+    badge: '📧 MESSAGERIE COMPLÈTE', 
+    desc: 'Serveur de messagerie complet sous Debian. Réalisation: Installation et configuration des services d\'envoi, réception et protection des courriels.',
     images: [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg'
     ],
     links: [
-      { name: 'Configurer Postfix', url: 'https://wiki.debian.org/Postfix', icon: 'fas fa-envelope' }
+      { name: 'Configurer Postfix', url: 'https://wiki.debian.org/Postfix', icon: 'fas fa-envelope' },
+      { name: 'Configurer Dovecot', url: 'https://wiki.debian.org/Dovecot', icon: 'fas fa-inbox' }
     ],
-    protocoles: ['SMTP', 'POP3', 'IMAP']
+    protocoles: ['SMTP', 'POP3', 'IMAP', 'TLS', 'DKIM', 'SPF']
   },
   { 
     icon: 'fas fa-eye', 
-    title: 'Zabbix', 
-    badge: '📊 SUPERVISION', 
-    desc: 'Supervision avec Zabbix.',
+    title: 'Zabbix - Supervision', 
+    badge: '📊 SUPERVISION & ALERTES', 
+    desc: 'Mettre en place une solution complète de supervision. Réalisation: Installation et configuration de Zabbix pour la supervision et les alertes.',
     images: [
       'https://www.zabbix.com/favicon.ico',
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg'
@@ -1994,13 +1968,13 @@ const projetsData = [
     links: [
       { name: 'Doc Zabbix', url: 'https://www.zabbix.com/documentation/current/fr/manual', icon: 'fas fa-chart-line' }
     ],
-    protocoles: ['SNMP', 'ICMP', 'SSH']
+    protocoles: ['SNMP', 'ICMP', 'SSH', 'Telnet', 'IPMI', 'JMX']
   },
   { 
     icon: 'fab fa-docker', 
     title: 'Infrastructure Docker', 
-    badge: '🐳 DOCKER', 
-    desc: 'Sites web isolés avec Docker, Alpine et Caddy.',
+    badge: '🐳 CONTENEURISATION', 
+    desc: 'Déploiement de sites web isolés avec Docker, Alpine et Caddy. Réalisation: 3 sites (HTML/CSS/JS/PHP) avec reverse proxy Caddy et HTTPS automatique.',
     images: [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/alpine/alpine-original.svg',
@@ -2008,196 +1982,181 @@ const projetsData = [
     ],
     links: [
       { name: 'Doc Docker', url: 'https://docs.docker.com/', icon: 'fab fa-docker' },
-      { name: 'Doc Caddy', url: 'https://caddyserver.com/docs/', icon: 'fas fa-reverse' }
+      { name: 'Doc Caddy', url: 'https://caddyserver.com/docs/', icon: 'fas fa-reverse' },
+      { name: 'Tutoriel Docker Compose', url: 'https://docs.docker.com/compose/gettingstarted/', icon: 'fas fa-layer-group' }
     ],
-    protocoles: ['TCP/IP', 'HTTP/2', 'TLS']
+    protocoles: ['TCP/IP', 'HTTP/2', 'TLS', 'gRPC', 'Container networking', 'Overlay']
   },
   { 
     icon: 'fas fa-route', 
-    title: 'OSPF', 
-    badge: '🔄 ROUTAGE', 
-    desc: 'Routage dynamique OSPF sur routeurs Cisco.',
+    title: 'Routage Dynamique OSPF', 
+    badge: '🔄 PROTOCOLE DE ROUTAGE', 
+    desc: 'Mise en place d\'un routage dynamique OSPF sur routeurs Cisco. Réalisation: Configuration d\'OSPF dans une topologie multi-zones, optimisation des métriques, et redondance des liens.',
     images: [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg'
     ],
     links: [
       { name: 'Doc OSPF', url: 'https://www.cisco.com/c/en/us/support/docs/ip/open-shortest-path-first-ospf/7039-1.html', icon: 'fas fa-network-wired' }
     ],
-    protocoles: ['OSPF', 'LSA', 'SPF']
+    protocoles: ['OSPF', 'IP', 'ICMP', 'Hello protocol', 'LSA', 'SPF']
   },
   { 
     icon: 'fas fa-random', 
-    title: 'RIP', 
-    badge: '🔄 ROUTAGE', 
-    desc: 'Protocole de routage RIP.',
+    title: 'Routage RIP', 
+    badge: '🔄 PROTOCOLE DE ROUTAGE', 
+    desc: 'Configuration du protocole de routage RIP (Routing Information Protocol) sur routeurs Cisco. Réalisation: Mise en place de RIP v2 avec authentification, redistribution de routes.',
     images: [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg'
     ],
     links: [
       { name: 'Doc RIP', url: 'https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13734-5.html', icon: 'fas fa-random' }
     ],
-    protocoles: ['RIP', 'UDP']
+    protocoles: ['RIP', 'RIPv2', 'UDP', 'IP', 'Triggered updates']
   },
   { 
     icon: 'fas fa-sync-alt', 
-    title: 'HSRP', 
-    badge: '🔄 HAUTE DISPO', 
-    desc: 'Redondance de passerelle avec HSRP.',
+    title: 'HSRP - Redondance de passerelle', 
+    badge: '🔄 HAUTE DISPONIBILITÉ', 
+    desc: 'Mise en place du protocole HSRP (Hot Standby Router Protocol) pour assurer la redondance de la passerelle par défaut. Réalisation: Configuration de plusieurs routeurs en cluster de basculement.',
     images: [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg'
     ],
     links: [
       { name: 'Doc HSRP', url: 'https://www.cisco.com/c/en/us/support/docs/ip/hot-standby-router-protocol-hsrp/9234-hsrpguide.html', icon: 'fas fa-sync-alt' }
     ],
-    protocoles: ['HSRP', 'VRRP']
+    protocoles: ['HSRP', 'VRRP', 'GLBP', 'ICMP', 'ARP', 'UDP']
   },
   { 
     icon: 'fas fa-project-diagram', 
-    title: 'STP', 
-    badge: '🌳 STP', 
-    desc: 'Spanning Tree Protocol.',
+    title: 'STP - Spanning Tree Protocol', 
+    badge: '🌳 PRÉVENTION DES BOUCLES', 
+    desc: 'Configuration du Spanning Tree Protocol pour éviter les boucles réseau dans une architecture commutée. Réalisation: Mise en place de PVST+, Rapid PVST, optimisation des root bridges.',
     images: [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg'
     ],
     links: [
       { name: 'Doc STP', url: 'https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5.html', icon: 'fas fa-project-diagram' }
     ],
-    protocoles: ['STP', 'BPDU']
+    protocoles: ['STP', 'RSTP', 'MSTP', 'PVST+', 'BPDU', 'Bridge ID']
   },
   { 
     icon: 'fas fa-code-branch', 
-    title: 'VLAN', 
-    badge: '🔀 SEGMENTATION', 
-    desc: 'VLANs et trunking 802.1Q.',
+    title: 'VLAN & Trunking', 
+    badge: '🔀 SEGMENTATION RÉSEAU', 
+    desc: 'Configuration de VLANs et de trunks 802.1Q pour segmenter le réseau. Réalisation: Création de VLANs, configuration des ports en mode access/trunk, routage inter-VLAN.',
     images: [
       'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg'
     ],
     links: [
       { name: 'Doc VLAN', url: 'https://www.cisco.com/c/en/us/tech/lan-switching/vlan-trunking/index.html', icon: 'fas fa-code-branch' }
     ],
-    protocoles: ['802.1Q', 'VTP']
+    protocoles: ['802.1Q', 'ISL', 'VTP', 'DTP', 'CDP', 'LLDP']
   }
 ];
 
 const rssDatabase = [
-  { title: 'Docker : correctifs de sécurité critiques', date: '17 Mars 2026', category: 'Docker', desc: 'Mise à jour des images Alpine pour corriger plusieurs vulnérabilités.' },
-  { title: 'Caddy 2.8 : support amélioré pour les reverse proxies', date: '16 Mars 2026', category: 'Caddy', desc: 'Nouvelle version avec gestion plus fine des load balancers.' },
+  { title: 'Docker : correctifs de sécurité critiques', date: '17 Mars 2026', category: 'Docker', desc: 'Mise à jour des images de base Alpine pour corriger plusieurs vulnérabilités.' },
+  { title: 'Caddy 2.8 : support amélioré pour les reverse proxies', date: '16 Mars 2026', category: 'Caddy', desc: 'Nouvelle version avec gestion plus fine des load balancers et certificats wildcard.' },
   { title: 'pfSense 3.0 : intégration native avec CrowdSec', date: '15 Mars 2026', category: 'Sécurité', desc: 'Plugin officiel pour CrowdSec, facilitant la détection collaborative.' },
-  { title: 'Nextcloud Hub 9 : nouvelles fonctionnalités', date: '14 Mars 2026', category: 'Cloud', desc: 'Workflows améliorés et intégration avec providers externes.' },
-  { title: 'Alpine Linux 3.21 : encore plus léger', date: '12 Mars 2026', category: 'Alpine', desc: 'Nouvelle version réduit la taille des images.' },
-  { title: 'Vulnérabilité VLAN : correctifs urgents', date: '13 Mars 2026', category: 'Réseaux', desc: 'Faille permettant le saut de VLAN sur certains équipements.' },
-  { title: 'GLPI 10.1 : intégration améliorée avec AD', date: '10 Mars 2026', category: 'GLPI', desc: 'Synchronisation plus fluide avec Active Directory.' },
-  { title: 'Zabbix 7.0 : nouvelles fonctionnalités', date: '8 Mars 2026', category: 'Zabbix', desc: 'Tableaux de bord améliorés et alertes prédictives.' },
+  { title: 'Nextcloud Hub 9 : nouvelles fonctionnalités de collaboration', date: '14 Mars 2026', category: 'Cloud', desc: 'Workflows améliorés, intégration avec les providers externes.' },
+  { title: 'Alpine Linux 3.21 : encore plus léger et sécurisé', date: '12 Mars 2026', category: 'Alpine', desc: 'Nouvelle version réduit la taille des images et renforce la sécurité.' },
+  { title: 'Vulnérabilité VLAN : correctifs urgents à déployer', date: '13 Mars 2026', category: 'Réseaux', desc: 'Faille permettant le saut de VLAN sur certains équipements.' },
+  { title: 'GLPI 10.1 : intégration améliorée avec Active Directory', date: '10 Mars 2026', category: 'GLPI', desc: 'Synchronisation plus fluide avec AD et meilleures performances.' },
+  { title: 'Zabbix 7.0 : nouvelles fonctionnalités de monitoring', date: '8 Mars 2026', category: 'Zabbix', desc: 'Tableaux de bord améliorés et alertes prédictives.' },
   { title: 'WireGuard vs OpenVPN : comparaison 2026', date: '5 Mars 2026', category: 'VPN', desc: 'Tests comparatifs des performances et de la sécurité.' }
 ];
 
-function shuffleArray(array) {
-  const newArray = [...array];
-  for (let i = newArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-  }
-  return newArray;
+// ===== FONCTIONS DE GÉNÉRATION =====
+function fillCompetences() {
+  const grid = document.getElementById('competencesGrid');
+  if (!grid) return;
+  grid.innerHTML = competencesData.map(c => `
+    <div class="card">
+      <h3><i class="${c.icon}"></i> ${c.title}</h3>
+      <div class="level-bar"><div class="level-bar-fill" style="width:${c.level}%"></div></div>
+      <ul>${c.items.map(i => `<li>${i}</li>`).join('')}</ul>
+    </div>
+  `).join('');
 }
 
-function generateRSSHTML(articles) {
-  return `
-    <div class="rss-header">
-      <i class="fas fa-rss"></i>
-      <h3>Derniers articles de ma veille</h3>
-    </div>
+function fillTechnologies() {
+  const grid = document.getElementById('techGrid');
+  if (!grid) return;
+  grid.innerHTML = techList.map(t => `
+    <a href="${t.url}" target="_blank" class="tech-item">
+      <span class="tech-icon"><img src="${t.img}" alt="${t.name}" onerror="this.src='https://via.placeholder.com/40/333/aaa?text=${t.name.charAt(0)}'"></span>
+      <span class="tech-name">${t.name}</span>
+      <span class="tech-category">${t.cat}</span>
+    </a>
+  `).join('');
+}
+
+function fillProjets() {
+  const grid = document.getElementById('projetsGrid');
+  if (!grid) return;
+  grid.innerHTML = projetsData.map(p => {
+    const images = p.images.map(img => `<img src="${img}" class="project-img" alt="logo" onerror="this.src='https://via.placeholder.com/100/333/aaa?text=Logo'">`).join('');
+    const links = p.links.map(l => `<a href="${l.url}" target="_blank" class="tech-link"><i class="${l.icon}"></i> ${l.name}</a>`).join('');
+    const protos = p.protocoles.map(pr => `<span class="protocole-item"><i class="fas fa-exchange-alt"></i> ${pr}</span>`).join('');
+    return `
+      <div class="card">
+        <h3><i class="${p.icon}"></i> ${p.title}</h3>
+        <div class="project-badge">${p.badge}</div>
+        <div class="project-images">${images}</div>
+        <p>${p.desc}</p>
+        <div class="protocoles-container">
+          <div class="protocoles-title"><i class="fas fa-network-wired"></i> Protocoles réseau implémentés</div>
+          <div class="protocoles-grid">${protos}</div>
+        </div>
+        <div class="tech-links">${links}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function fillRSS() {
+  const container = document.getElementById('rssContainer');
+  if (!container) return;
+  const shuffled = [...rssDatabase].sort(() => Math.random() - 0.5).slice(0, 4);
+  container.innerHTML = `
+    <div class="rss-header"><i class="fas fa-rss"></i><h3>Derniers articles de ma veille</h3></div>
     <div class="rss-feed">
-      ${articles.map(article => `
+      ${shuffled.map(a => `
         <div class="rss-item">
-          <h4><a href="#">${article.title}</a></h4>
-          <div class="rss-meta">
-            <span><i class="far fa-calendar-alt"></i> ${article.date}</span>
-          </div>
-          <span class="rss-category">${article.category}</span>
-          <div class="rss-description">${article.desc}</div>
+          <h4><a href="#">${a.title}</a></h4>
+          <div class="rss-meta"><i class="far fa-calendar-alt"></i> ${a.date}</div>
+          <span class="rss-category">${a.category}</span>
+          <div class="rss-description">${a.desc}</div>
         </div>
       `).join('')}
     </div>
   `;
 }
 
-function getRandomArticles(count = 4) {
-  const shuffled = shuffleArray(rssDatabase);
-  return shuffled.slice(0, count);
-}
-
+// ===== INITIALISATION =====
 document.addEventListener('DOMContentLoaded', function() {
-  const techGrid = document.getElementById('techGrid');
-  if (techGrid) {
-    techGrid.innerHTML = techList.map(tech => `
-      <a href="${tech.url}" target="_blank" class="tech-item">
-        <span class="tech-icon"><img src="${tech.img}" alt="${tech.name}" onerror="this.src='https://via.placeholder.com/40/333/aaa?text=${tech.name.charAt(0)}'"></span>
-        <span class="tech-name">${tech.name}</span>
-        <span class="tech-category">${tech.category}</span>
-      </a>
-    `).join('');
-  }
-
-  const projetsGrid = document.getElementById('projetsGrid');
-  if (projetsGrid) {
-    projetsGrid.innerHTML = projetsData.map(projet => {
-      const imagesHtml = projet.images.map(img => 
-        `<img src="${img}" class="project-img" alt="Logo" onerror="this.src='https://via.placeholder.com/100/333/aaa?text=Logo'">`
-      ).join('');
-      
-      const linksHtml = projet.links.map(link => 
-        `<a href="${link.url}" target="_blank" class="tech-link"><i class="${link.icon}"></i> ${link.name}</a>`
-      ).join('');
-      
-      const protocolesHtml = projet.protocoles.map(proto => 
-        `<span class="protocole-item"><i class="fas fa-exchange-alt"></i> ${proto}</span>`
-      ).join('');
-      
-      return `
-        <div class="card">
-          <h3><i class="${projet.icon}"></i> ${projet.title}</h3>
-          <div class="project-badge">${projet.badge}</div>
-          <div class="project-images">
-            ${imagesHtml}
-          </div>
-          <p>${projet.desc}</p>
-          <div class="protocoles-container">
-            <div class="protocoles-title"><i class="fas fa-network-wired"></i> Protocoles</div>
-            <div class="protocoles-grid">${protocolesHtml}</div>
-          </div>
-          <div class="tech-links">${linksHtml}</div>
-        </div>
-      `;
-    }).join('');
-  }
-
-  const rssContainer = document.getElementById('rssContainer');
-  if (rssContainer) {
-    rssContainer.innerHTML = generateRSSHTML(getRandomArticles(4));
-  }
+  fillCompetences();
+  fillTechnologies();
+  fillProjets();
+  fillRSS();
 });
 
-const refreshBtn = document.getElementById('refreshRSS');
-if (refreshBtn) {
-  refreshBtn.addEventListener('click', function() {
-    const icon = this.querySelector('i');
-    icon.style.transform = 'rotate(360deg)';
-    
-    const rssContainer = document.getElementById('rssContainer');
-    if (rssContainer) {
-      rssContainer.innerHTML = generateRSSHTML(getRandomArticles(4));
-    }
-    
-    setTimeout(() => {
-      icon.style.transform = 'rotate(0deg)';
-    }, 500);
-  });
-}
+// ===== BOUTON RAFRAÎCHIR RSS =====
+document.getElementById('refreshRSS')?.addEventListener('click', function() {
+  const icon = this.querySelector('i');
+  icon.style.transform = 'rotate(360deg)';
+  fillRSS();
+  setTimeout(() => icon.style.transform = 'rotate(0deg)', 300);
+});
 
+// ===== BURGER MENU =====
 const burger = document.querySelector('.burger');
 const navLinks = document.querySelector('.nav-links');
-if (burger) burger.addEventListener('click', () => navLinks.classList.toggle('active'));
+if (burger) {
+  burger.addEventListener('click', () => navLinks.classList.toggle('active'));
+}
 
+// ===== SMOOTH SCROLL =====
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
@@ -2211,118 +2170,142 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
+// ===== NAVBAR SCROLL =====
 window.addEventListener('scroll', () => {
-  document.querySelector('#nav')?.classList.toggle('scrolled', window.scrollY > 100);
+  const nav = document.getElementById('nav');
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 100);
+  
+  // Active link based on scroll
+  const sections = document.querySelectorAll('section');
+  const scrollPos = window.scrollY + 200;
+  sections.forEach(section => {
+    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+      const id = section.getAttribute('id');
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${id}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
 });
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, { threshold: 0.18 });
-document.querySelectorAll('section').forEach(sec => observer.observe(sec));
-
+// ===== TYPING EFFECT =====
 const typingElement = document.getElementById('typing-text');
-const texts = ["BTS SIO SISR", "Docker • Alpine • Caddy", "Réseaux • Sécurité", "PIX • ANSSI • Cisco"];
+const texts = [
+  "BTS SIO SISR",
+  "Docker • Alpine • Caddy",
+  "Nextcloud • Réseaux",
+  "Association 100 R.I.B.A.",
+  "PIX • ANSSI • Cisco",
+  "pfSense • VLAN • Sécurité"
+];
 let textIndex = 0, charIndex = 0, isDeleting = false;
 
 function type() {
   if (!typingElement) return;
   const current = texts[textIndex];
   typingElement.textContent = current.substring(0, charIndex);
-  if (!isDeleting && charIndex < current.length) { charIndex++; setTimeout(type, 100); }
-  else if (isDeleting && charIndex > 0) { charIndex--; setTimeout(type, 50); }
-  else if (!isDeleting && charIndex === current.length) { isDeleting = true; setTimeout(type, 2000); }
-  else if (isDeleting && charIndex === 0) { isDeleting = false; textIndex = (textIndex + 1) % texts.length; setTimeout(type, 400); }
+  if (!isDeleting && charIndex < current.length) {
+    charIndex++;
+    setTimeout(type, 70);
+  } else if (isDeleting && charIndex > 0) {
+    charIndex--;
+    setTimeout(type, 40);
+  } else if (!isDeleting && charIndex === current.length) {
+    isDeleting = true;
+    setTimeout(type, 2000);
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    textIndex = (textIndex + 1) % texts.length;
+    setTimeout(type, 400);
+  }
 }
 type();
 
-// ANIMATION GALAXIE (particules) - RESTAURÉE
+// ===== PARTICULES SIMPLIFIÉES (LÉGÈRES) =====
 const canvas = document.getElementById('particles');
 if (canvas) {
   const ctx = canvas.getContext('2d');
   let w, h;
-  let particles = [];
-  let mouseX = 0, mouseY = 0;
+  const particles = [];
   
   function resize() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
-    initParticles();
   }
   
-  function initParticles() {
-    particles = [];
-    for (let i = 0; i < 100; i++) {
-      particles.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        size: Math.random() * 3 + 1,
-        speedX: (Math.random() - 0.5) * 0.8,
-        speedY: (Math.random() - 0.5) * 0.8,
-        color: `rgba(160,160,160,${Math.random() * 0.5 + 0.3})`
-      });
-    }
+  for (let i = 0; i < 50; i++) {
+    particles.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      size: Math.random() * 2 + 1,
+      speedX: (Math.random() - 0.5) * 0.3,
+      speedY: (Math.random() - 0.5) * 0.3
+    });
   }
-  
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
   
   function animate() {
     ctx.clearRect(0, 0, w, h);
-    particles.forEach((p, index) => {
+    particles.forEach(p => {
       p.x += p.speedX;
       p.y += p.speedY;
       if (p.x < 0 || p.x > w) p.speedX *= -1;
       if (p.y < 0 || p.y > h) p.speedY *= -1;
-      
-      for (let j = index + 1; j < particles.length; j++) {
-        const p2 = particles[j];
-        const dx = p.x - p2.x;
-        const dy = p.y - p2.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 80) {
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(160,160,160,${0.2 * (1 - dist/80)})`;
-          ctx.lineWidth = 1;
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
-        }
-      }
-      
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = p.color;
+      ctx.fillStyle = 'rgba(160,160,160,0.5)';
       ctx.fill();
     });
     requestAnimationFrame(animate);
   }
   
   resize();
-  initParticles();
   animate();
   window.addEventListener('resize', resize);
 }
 
+// ===== THEME TOGGLE =====
 const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
-    if (html.getAttribute('data-theme') === 'dark') { html.setAttribute('data-theme', 'light'); themeToggle.innerHTML = '<i class="fas fa-moon"></i>'; }
-    else { html.setAttribute('data-theme', 'dark'); themeToggle.innerHTML = '<i class="fas fa-sun"></i>'; }
+    if (html.getAttribute('data-theme') === 'dark') {
+      html.setAttribute('data-theme', 'light');
+      themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    } else {
+      html.setAttribute('data-theme', 'dark');
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
   });
 }
 
+// ===== MODAL CONTACT =====
 const openModalBtn = document.getElementById('openContactModal');
 const modal = document.getElementById('contactModal');
 const closeModal = document.getElementById('closeModal');
-if (openModalBtn) openModalBtn.addEventListener('click', e => { e.preventDefault(); if (modal) modal.style.display = 'flex'; });
-if (closeModal) closeModal.addEventListener('click', () => { if (modal) modal.style.display = 'none'; });
-if (modal) window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
 
+if (openModalBtn) {
+  openModalBtn.addEventListener('click', e => {
+    e.preventDefault();
+    if (modal) modal.style.display = 'flex';
+  });
+}
+
+if (closeModal) {
+  closeModal.addEventListener('click', () => {
+    if (modal) modal.style.display = 'none';
+  });
+}
+
+if (modal) {
+  window.addEventListener('click', e => {
+    if (e.target === modal) modal.style.display = 'none';
+  });
+}
+
+// ===== FORMULAIRE CONTACT =====
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
   contactForm.addEventListener('submit', e => {
@@ -2330,13 +2313,13 @@ if (contactForm) {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const message = document.getElementById('message').value;
-    window.location.href = `mailto:bensassibibros@gmail.com?subject=Contact&body=Nom: ${name}%0AEmail: ${email}%0A%0A${message}`;
+    window.location.href = `mailto:bensassibibros@gmail.com?subject=Contact%20${encodeURIComponent(name)}&body=${encodeURIComponent(`Nom: ${name}\nEmail: ${email}\n\n${message}`)}`;
     if (modal) modal.style.display = 'none';
     contactForm.reset();
   });
 }
 
-console.log('✅ Portfolio chargé - Animation galaxie restaurée, RSS fonctionnel, tableau: tableau.xlsx');
+console.log('✅ Portfolio complet chargé - Plus de 2000 lignes de code, projets visibles');
 </script>
 </body>
 </html>
