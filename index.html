@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes"/>
   <title>Bibros Ben Sassi • BTS SIO SISR</title>
+  <meta name="description" content="Portfolio de Bibros Ben Sassi, étudiant en BTS SIO SISR spécialisé Docker, réseaux et cybersécurité">
+  <meta name="keywords" content="BTS SIO, SISR, Docker, Réseaux, Cybersécurité, GLPI, pfSense">
+  <meta name="author" content="Bibros Ben Sassi">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
     :root {
@@ -66,9 +69,67 @@
       body { zoom: 1; }
     }
 
-    html { scroll-behavior: smooth; }
+    html { 
+      scroll-behavior: smooth; 
+      scroll-padding-top: 80px;
+    }
 
-    /* RGPD BANNER */
+    /* BOUTON RETOUR EN HAUT */
+    #back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 999;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    #back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    #back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(160,160,160,0.4);
+    }
+
+    /* FILTRES PROJETS */
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .filter-btn {
+      background: var(--tech-bg);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--gradient);
+      color: white;
+      border-color: transparent;
+    }
+
+    /* BANDEAU RGPD */
     #rgpd-banner {
       position: fixed;
       bottom: 0;
@@ -77,7 +138,7 @@
       background: var(--rgpd-bg);
       color: var(--rgpd-text);
       padding: 1rem 2rem;
-      display: flex;
+      display: none;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
@@ -88,11 +149,7 @@
       transform: translateY(100%);
       animation: slideUp 0.5s forwards;
     }
-    @keyframes slideUp {
-      to { transform: translateY(0); }
-    }
-    #rgpd-banner p { margin:0; font-size:1rem; }
-    #rgpd-banner a { color: var(--accent-hover); text-decoration: underline; }
+    @keyframes slideUp { to { transform: translateY(0); } }
     #rgpd-banner button {
       background: var(--gradient);
       color: white;
@@ -101,9 +158,7 @@
       border-radius: 50px;
       font-weight: 600;
       cursor: pointer;
-      transition: 0.3s;
     }
-    #rgpd-banner button:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--accent-hover); }
 
     nav {
       position: fixed;
@@ -371,7 +426,7 @@
       padding: 9rem 3rem 7rem;
       max-width: 1600px;
       margin: 0 auto;
-      opacity: 1; /* désactivé les animations d'apparition */
+      opacity: 1;
       transform: translateY(0);
     }
 
@@ -847,6 +902,40 @@
       }
     }
 
+    /* FORMULAIRE CONTACT */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--card);
+      padding: 3rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 1rem;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent-hover);
+    }
+    .form-success {
+      text-align: center;
+      color: #4CAF50;
+      padding: 1rem;
+      display: none;
+    }
+
     .modal {
       display: none;
       position: fixed;
@@ -1272,11 +1361,14 @@
 </head>
 <body>
 
-<!-- BANDEAU RGPD AJOUTÉ -->
+<!-- BANDEAU RGPD -->
 <div id="rgpd-banner">
   <p>🍪 Ce site utilise des cookies pour améliorer votre expérience. En poursuivant, vous acceptez notre <a href="#">politique de confidentialité</a>.</p>
   <button id="accept-rgpd">Accepter</button>
 </div>
+
+<!-- BOUTON RETOUR EN HAUT -->
+<button id="back-to-top" aria-label="Retour en haut"><i class="fas fa-arrow-up"></i></button>
 
 <nav id="nav">
   <div class="nav-container">
@@ -1296,10 +1388,10 @@
         <li><a href="#projets">Projets</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="theme-toggle" id="themeToggle" title="Changer de thème">
+      <button class="theme-toggle" id="themeToggle" title="Changer de thème" aria-label="Changer de thème">
         <i class="fas fa-sun"></i>
       </button>
-      <div class="burger"><i class="fas fa-bars"></i></div>
+      <div class="burger" aria-label="Menu"><i class="fas fa-bars"></i></div>
     </div>
   </div>
 </nav>
@@ -1719,7 +1811,6 @@ site3.bibros.local { reverse_proxy site3:9000 }</code></pre>
   <h3 style="text-align:center; margin:2rem 0;">Aperçu des documents</h3>
   
   <div class="cv-tableau-container">
-    <!-- CV - prévisualisation possible car PDF -->
     <div>
       <div class="cv-preview">
         <iframe 
@@ -1732,7 +1823,6 @@ site3.bibros.local { reverse_proxy site3:9000 }</code></pre>
       </div>
     </div>
     
-    <!-- Tableau Excel - pas de prévisualisation possible, on affiche une icône -->
     <div>
       <div class="tableau-preview">
         <div class="tableau-header">
@@ -1790,18 +1880,49 @@ site3.bibros.local { reverse_proxy site3:9000 }</code></pre>
 
 <section id="projets">
   <h2>Projets réalisés au BTS</h2>
+  
+  <!-- FILTRES PROJETS -->
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">Tous</button>
+    <button class="filter-btn" data-filter="docker">Docker</button>
+    <button class="filter-btn" data-filter="reseau">Réseaux</button>
+    <button class="filter-btn" data-filter="securite">Sécurité</button>
+    <button class="filter-btn" data-filter="web">Web</button>
+  </div>
+  
   <div class="grid" id="projetsGrid"></div>
 </section>
 
 <section id="contact" style="background:var(--bg2);">
   <h2>Contact</h2>
-  <div style="text-align:center;">
-    <p style="margin:2rem 0;">Ouvert aux opportunités</p>
-    <a href="#" id="openContactModal" class="btn"><i class="fas fa-envelope"></i> Me contacter</a>
-    <div style="display:flex; justify-content:center; gap:2rem; margin:2rem 0; font-size:2rem;">
-      <a href="#" style="color:var(--accent-hover);"><i class="fab fa-linkedin"></i></a>
-      <a href="#" style="color:var(--accent-hover);"><i class="fab fa-github"></i></a>
+  
+  <!-- FORMULAIRE DE CONTACT NETLIFY -->
+  <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="contact">
+    <p style="display:none;">
+      <label>Ne pas remplir <input name="bot-field"></label>
+    </p>
+    
+    <div class="form-group">
+      <input type="text" name="nom" placeholder="Votre nom" required>
     </div>
+    <div class="form-group">
+      <input type="email" name="email" placeholder="Votre email" required>
+    </div>
+    <div class="form-group">
+      <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn" style="width:100%;">Envoyer <i class="fas fa-paper-plane"></i></button>
+    </div>
+    <div class="form-success" id="form-success">
+      Message envoyé avec succès ! Je vous répondrai rapidement.
+    </div>
+  </form>
+  
+  <div style="display:flex; justify-content:center; gap:2rem; margin:2rem 0; font-size:2rem;">
+    <a href="#" style="color:var(--accent-hover);" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="#" style="color:var(--accent-hover);" aria-label="GitHub"><i class="fab fa-github"></i></a>
   </div>
 </section>
 
@@ -1881,7 +2002,8 @@ const projetsData = [
       { name: 'Installer GLPI', url: 'https://github.com/ClarkMaltempi/GLPI', icon: 'fas fa-book-open' },
       { name: 'Doc OCS Inventory', url: 'https://wiki.ocsinventory-ng.org/', icon: 'fas fa-file-alt' }
     ],
-    protocoles: ['TCP/IP', 'HTTP', 'HTTPS', 'LDAP', 'MySQL']
+    protocoles: ['TCP/IP', 'HTTP', 'HTTPS', 'LDAP', 'MySQL'],
+    category: 'web'
   },
   { 
     icon: 'fas fa-network-wired', 
@@ -1895,7 +2017,8 @@ const projetsData = [
       { name: 'Configurer DHCP', url: 'https://wiki.debian.org/DHCP_Server', icon: 'fas fa-network-wired' },
       { name: 'Configurer DNS', url: 'https://wiki.debian.org/Bind9', icon: 'fas fa-globe' }
     ],
-    protocoles: ['DHCP', 'DNS', 'TCP/IP', 'UDP']
+    protocoles: ['DHCP', 'DNS', 'TCP/IP', 'UDP'],
+    category: 'reseau'
   },
   { 
     icon: 'fas fa-lock', 
@@ -1910,7 +2033,8 @@ const projetsData = [
       { name: 'Sécuriser Apache', url: 'https://httpd.apache.org/docs/2.4/ssl/', icon: 'fas fa-lock' },
       { name: 'Sécuriser Nginx', url: 'https://nginx.org/en/docs/http/configuring_https_servers.html', icon: 'fas fa-shield-alt' }
     ],
-    protocoles: ['HTTP', 'HTTPS', 'SSL/TLS', 'TCP/IP']
+    protocoles: ['HTTP', 'HTTPS', 'SSL/TLS', 'TCP/IP'],
+    category: 'web'
   },
   { 
     icon: 'fas fa-users-cog', 
@@ -1923,7 +2047,8 @@ const projetsData = [
     links: [
       { name: 'Installer AD DS', url: 'https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/deploy/install-active-directory-domain-services', icon: 'fab fa-microsoft' }
     ],
-    protocoles: ['LDAP', 'Kerberos', 'DNS', 'SMB', 'NTP']
+    protocoles: ['LDAP', 'Kerberos', 'DNS', 'SMB', 'NTP'],
+    category: 'reseau'
   },
   { 
     icon: 'fas fa-shield-alt', 
@@ -1936,7 +2061,8 @@ const projetsData = [
     links: [
       { name: 'Doc pfSense', url: 'https://docs.netgate.com/pfsense/en/latest/', icon: 'fas fa-fire' }
     ],
-    protocoles: ['IPsec', 'OpenVPN', 'L2TP', 'PPTP', 'NAT', 'SPI']
+    protocoles: ['IPsec', 'OpenVPN', 'L2TP', 'PPTP', 'NAT', 'SPI'],
+    category: 'securite'
   },
   { 
     icon: 'fas fa-envelope', 
@@ -1950,7 +2076,8 @@ const projetsData = [
       { name: 'Configurer Postfix', url: 'https://wiki.debian.org/Postfix', icon: 'fas fa-envelope' },
       { name: 'Configurer Dovecot', url: 'https://wiki.debian.org/Dovecot', icon: 'fas fa-inbox' }
     ],
-    protocoles: ['SMTP', 'POP3', 'IMAP', 'TLS', 'DKIM', 'SPF']
+    protocoles: ['SMTP', 'POP3', 'IMAP', 'TLS', 'DKIM', 'SPF'],
+    category: 'reseau'
   },
   { 
     icon: 'fas fa-eye', 
@@ -1964,7 +2091,8 @@ const projetsData = [
     links: [
       { name: 'Doc Zabbix', url: 'https://www.zabbix.com/documentation/current/fr/manual', icon: 'fas fa-chart-line' }
     ],
-    protocoles: ['SNMP', 'ICMP', 'SSH', 'Telnet', 'IPMI', 'JMX']
+    protocoles: ['SNMP', 'ICMP', 'SSH', 'Telnet', 'IPMI', 'JMX'],
+    category: 'reseau'
   },
   { 
     icon: 'fab fa-docker', 
@@ -1981,7 +2109,8 @@ const projetsData = [
       { name: 'Doc Caddy', url: 'https://caddyserver.com/docs/', icon: 'fas fa-reverse' },
       { name: 'Tutoriel Docker Compose', url: 'https://docs.docker.com/compose/gettingstarted/', icon: 'fas fa-layer-group' }
     ],
-    protocoles: ['TCP/IP', 'HTTP/2', 'TLS', 'gRPC', 'Container networking', 'Overlay']
+    protocoles: ['TCP/IP', 'HTTP/2', 'TLS', 'gRPC', 'Container networking', 'Overlay'],
+    category: 'docker'
   },
   { 
     icon: 'fas fa-route', 
@@ -1994,7 +2123,8 @@ const projetsData = [
     links: [
       { name: 'Doc OSPF', url: 'https://www.cisco.com/c/en/us/support/docs/ip/open-shortest-path-first-ospf/7039-1.html', icon: 'fas fa-network-wired' }
     ],
-    protocoles: ['OSPF', 'IP', 'ICMP', 'Hello protocol', 'LSA', 'SPF']
+    protocoles: ['OSPF', 'IP', 'ICMP', 'Hello protocol', 'LSA', 'SPF'],
+    category: 'reseau'
   },
   { 
     icon: 'fas fa-random', 
@@ -2007,7 +2137,8 @@ const projetsData = [
     links: [
       { name: 'Doc RIP', url: 'https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13734-5.html', icon: 'fas fa-random' }
     ],
-    protocoles: ['RIP', 'RIPv2', 'UDP', 'IP', 'Triggered updates']
+    protocoles: ['RIP', 'RIPv2', 'UDP', 'IP', 'Triggered updates'],
+    category: 'reseau'
   },
   { 
     icon: 'fas fa-sync-alt', 
@@ -2020,7 +2151,8 @@ const projetsData = [
     links: [
       { name: 'Doc HSRP', url: 'https://www.cisco.com/c/en/us/support/docs/ip/hot-standby-router-protocol-hsrp/9234-hsrpguide.html', icon: 'fas fa-sync-alt' }
     ],
-    protocoles: ['HSRP', 'VRRP', 'GLBP', 'ICMP', 'ARP', 'UDP']
+    protocoles: ['HSRP', 'VRRP', 'GLBP', 'ICMP', 'ARP', 'UDP'],
+    category: 'reseau'
   },
   { 
     icon: 'fas fa-project-diagram', 
@@ -2033,7 +2165,8 @@ const projetsData = [
     links: [
       { name: 'Doc STP', url: 'https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5.html', icon: 'fas fa-project-diagram' }
     ],
-    protocoles: ['STP', 'RSTP', 'MSTP', 'PVST+', 'BPDU', 'Bridge ID']
+    protocoles: ['STP', 'RSTP', 'MSTP', 'PVST+', 'BPDU', 'Bridge ID'],
+    category: 'reseau'
   },
   { 
     icon: 'fas fa-code-branch', 
@@ -2046,7 +2179,8 @@ const projetsData = [
     links: [
       { name: 'Doc VLAN', url: 'https://www.cisco.com/c/en/us/tech/lan-switching/vlan-trunking/index.html', icon: 'fas fa-code-branch' }
     ],
-    protocoles: ['802.1Q', 'ISL', 'VTP', 'DTP', 'CDP', 'LLDP']
+    protocoles: ['802.1Q', 'ISL', 'VTP', 'DTP', 'CDP', 'LLDP'],
+    category: 'reseau'
   }
 ];
 
@@ -2087,10 +2221,15 @@ function fillTechnologies() {
   `).join('');
 }
 
-function fillProjets() {
+function fillProjets(filter = 'all') {
   const grid = document.getElementById('projetsGrid');
   if (!grid) return;
-  grid.innerHTML = projetsData.map(p => {
+  
+  const filtered = filter === 'all' 
+    ? projetsData 
+    : projetsData.filter(p => p.category === filter);
+  
+  grid.innerHTML = filtered.map(p => {
     const images = p.images.map(img => `<img src="${img}" class="project-img" alt="logo" onerror="this.src='https://ui-avatars.com/api/?name=Logo&size=100&background=7a7a7a&color=fff'">`).join('');
     const links = p.links.map(l => `<a href="${l.url}" target="_blank" class="tech-link"><i class="${l.icon}"></i> ${l.name}</a>`).join('');
     const protos = p.protocoles.map(pr => `<span class="protocole-item"><i class="fas fa-exchange-alt"></i> ${pr}</span>`).join('');
@@ -2148,6 +2287,44 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem('rgpd_accepted', 'true');
     banner.style.display = 'none';
   });
+
+  // === FILTRES PROJETS ===
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      fillProjets(btn.dataset.filter);
+    });
+  });
+
+  // === OBSERVER POUR LES BARRES DE NIVEAU ===
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.level-bar-fill').forEach(bar => {
+          const width = bar.style.width;
+          bar.style.width = '0%';
+          setTimeout(() => { bar.style.width = width; }, 100);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.card').forEach(card => observer.observe(card));
+
+  // === BOUTON RETOUR EN HAUT ===
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 });
 
 // ===== BOUTON RAFRAÎCHIR RSS =====
@@ -2184,7 +2361,6 @@ window.addEventListener('scroll', () => {
   const nav = document.getElementById('nav');
   if (nav) nav.classList.toggle('scrolled', window.scrollY > 100);
   
-  // Active link based on scroll
   const sections = document.querySelectorAll('section');
   const scrollPos = window.scrollY + 200;
   sections.forEach(section => {
@@ -2233,7 +2409,7 @@ function type() {
 }
 type();
 
-// ===== PARTICULES SIMPLIFIÉES (LÉGÈRES) =====
+// ===== PARTICULES LÉGÈRES =====
 const canvas = document.getElementById('particles');
 if (canvas) {
   const ctx = canvas.getContext('2d');
@@ -2245,13 +2421,13 @@ if (canvas) {
     h = canvas.height = window.innerHeight;
   }
   
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 30; i++) {
     particles.push({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
       size: Math.random() * 2 + 1,
-      speedX: (Math.random() - 0.5) * 0.3,
-      speedY: (Math.random() - 0.5) * 0.3
+      speedX: (Math.random() - 0.5) * 0.2,
+      speedY: (Math.random() - 0.5) * 0.2
     });
   }
   
@@ -2314,7 +2490,7 @@ if (modal) {
   });
 }
 
-// ===== FORMULAIRE CONTACT =====
+// ===== FORMULAIRE CONTACT (ancien) =====
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
   contactForm.addEventListener('submit', e => {
@@ -2328,7 +2504,18 @@ if (contactForm) {
   });
 }
 
-console.log('✅ Portfolio complet chargé - 13 projets, 28 technologies, RGPD actif - Plus d\'erreurs 404');
+// ===== FORMULAIRE NETLIFY =====
+const netlifyForm = document.querySelector('form[data-netlify="true"]');
+if (netlifyForm) {
+  netlifyForm.addEventListener('submit', (e) => {
+    setTimeout(() => {
+      const successMsg = document.getElementById('form-success');
+      if (successMsg) successMsg.style.display = 'block';
+    }, 1000);
+  });
+}
+
+console.log('✅ Portfolio complet chargé - 13 projets, 28 technologies, RGPD, filtres, retour haut, Netlify');
 </script>
 </body>
 </html>
