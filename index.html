@@ -517,6 +517,91 @@
     /* ── SKILL PROGRESS RING (about card) ── */
     .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; justify-content: center; }
 
+    /* ── OVERVIEW DASHBOARD ── */
+    #overview-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 99998;
+      background: rgba(0,0,0,0.97);
+      overflow-y: auto;
+      padding: 5rem 2rem 3rem;
+    }
+    #overview-overlay.open { display: block; }
+    .overview-header {
+      text-align: center; margin-bottom: 2.5rem;
+    }
+    .overview-header h2 {
+      font-family: 'Space Mono', monospace; font-size: 1.8rem;
+      color: #fff; margin-bottom: 0.5rem;
+    }
+    .overview-header p { color: #888; font-size: 0.9rem; }
+    .overview-close {
+      position: fixed; top: 1.5rem; right: 2rem;
+      background: none; border: 1px solid #444; color: #fff;
+      width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s; z-index: 99999;
+    }
+    .overview-close:hover { border-color: #fff; transform: rotate(90deg); }
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .overview-card {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .overview-card:hover {
+      border-color: #666;
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+    .overview-preview {
+      width: 100%; height: 200px;
+      position: relative; overflow: hidden;
+      background: #111;
+    }
+    .overview-iframe-wrap {
+      position: absolute; top: 0; left: 0;
+      width: 250%; height: 250%;
+      transform: scale(0.4); transform-origin: top left;
+      pointer-events: none;
+    }
+    .overview-iframe-wrap iframe {
+      width: 100%; height: 100%; border: none;
+    }
+    .overview-screenshot {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.85);
+    }
+    .overview-card-body {
+      padding: 1.2rem 1.5rem;
+    }
+    .overview-card-icon {
+      font-size: 1.5rem; margin-bottom: 0.5rem;
+    }
+    .overview-card-title {
+      font-weight: 700; font-size: 1.1rem; color: #e8e8e8;
+      font-family: 'Space Mono', monospace; margin-bottom: 0.3rem;
+    }
+    .overview-card-desc {
+      font-size: 0.82rem; color: #777; line-height: 1.5;
+    }
+    .overview-card-tag {
+      display: inline-block; margin-top: 0.8rem;
+      background: #252525; border: 1px solid #333;
+      color: #888; padding: 0.2rem 0.8rem;
+      border-radius: 20px; font-size: 0.75rem;
+      font-family: 'Space Mono', monospace;
+    }
+
     /* ── TECH CATEGORY HEADER ── */
     .tech-category-section { margin: 2rem 0 0.5rem; }
     .tech-category-header { font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text2); padding: 0 0.5rem; display: flex; align-items: center; gap: 1rem; }
@@ -596,6 +681,7 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <button class="theme-toggle" id="themeToggle" title="Changer de thème"><i class="fas fa-sun"></i></button>
+      <button class="theme-toggle" id="overviewToggle" title="Vue d'ensemble" style="margin-left:0.3rem"><i class="fas fa-th"></i></button>
       <div class="burger"><i class="fas fa-bars"></i></div>
     </div>
   </div>
@@ -974,6 +1060,16 @@
   </div>
 </section>
 
+<!-- OVERVIEW DASHBOARD -->
+<div id="overview-overlay">
+  <button class="overview-close" id="overview-close"><i class="fas fa-times"></i></button>
+  <div class="overview-header">
+    <h2>Vue d'ensemble du portfolio</h2>
+    <p>Cliquez sur une section pour y accéder directement</p>
+  </div>
+  <div class="overview-grid" id="overview-grid"></div>
+</div>
+
 <!-- LIGHTBOX -->
 <div id="lightbox" onclick="this.classList.remove('open')">
   <img id="lightbox-img" src="" alt="Screenshot">
@@ -1049,7 +1145,7 @@ const projetsData = [
   { icon:'fas fa-network-wired', title:'DHCP & DNS', badge:'🌐 SERVEUR RÉSEAU', desc:"Serveur DHCP et DNS interne sur Debian 12. Distribution automatique d'adresses IP + résolution des noms locaux.", images:['https://upload.wikimedia.org/wikipedia/commons/4/4a/Debian-OpenLogo.svg'], links:[{name:'Configurer DHCP',url:'https://wiki.debian.org/DHCP_Server',icon:'fas fa-network-wired'},{name:'Configurer DNS',url:'https://wiki.debian.org/Bind9',icon:'fas fa-globe'}], protocoles:['DHCP','DNS','TCP/IP','UDP'], category:'reseau' },
   { icon:'fas fa-lock', title:'Site Web sécurisé (HTTPS)', badge:'🔐 INTRANET SÉCURISÉ', desc:"Service web interne sécurisé sur Debian 12 avec Apache/Nginx et HTTPS.", images:['https://upload.wikimedia.org/wikipedia/commons/1/10/Apache_HTTP_server_logo_%282019-present%29.svg','https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg'], links:[{name:'Sécuriser Apache',url:'https://httpd.apache.org/docs/2.4/ssl/',icon:'fas fa-lock'}], protocoles:['HTTP','HTTPS','SSL/TLS','TCP/IP'], category:'web' },
   { icon:'fas fa-users-cog', title:'Active Directory', badge:'👥 GESTION UTILISATEURS', desc:"Déploiement d'Active Directory Domain Services (AD DS) sur Windows Server.", images:['https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg','https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg'], links:[{name:'Installer AD DS',url:'https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/deploy/install-active-directory-domain-services',icon:'fab fa-microsoft'}], protocoles:['LDAP','Kerberos','DNS','SMB','NTP'], category:'reseau' },
-  { icon:'fas fa-shield-alt', title:'Sécurité et Pare-feu', badge:'🔥 pfSense', desc:"Pare-feu pfSense sur VMware. Sécurisation et gestion du trafic réseau avec règles avancées.", images:['https://upload.wikimedia.org/wikipedia/commons/b/b9/PfSense_logo.png'], links:[{name:'Doc pfSense',url:'https://docs.netgate.com/pfsense/en/latest/',icon:'fas fa-fire'}], protocoles:['IPsec','OpenVPN','L2TP','NAT','SPI'], category:'securite' },
+  { icon:'fas fa-shield-alt', title:'Sécurité et Pare-feu', badge:'🔥 pfSense', desc:"Pare-feu pfSense sur VMware. Sécurisation et gestion du trafic réseau avec règles avancées. Analyse des trames avec Wireshark.", images:['https://upload.wikimedia.org/wikipedia/commons/b/b9/PfSense_logo.png','https://upload.wikimedia.org/wikipedia/commons/b/b6/Wireshark_icon.svg'], links:[{name:'Doc pfSense',url:'https://docs.netgate.com/pfsense/en/latest/',icon:'fas fa-fire'},{name:'Doc Wireshark',url:'https://www.wireshark.org/docs/',icon:'fas fa-microscope'}], protocoles:['IPsec','OpenVPN','L2TP','NAT','SPI'], category:'securite' },
   { icon:'fas fa-envelope', title:'Serveur Mail', badge:'📧 MESSAGERIE COMPLÈTE', desc:"Serveur de messagerie complet sous Debian avec Postfix + Dovecot.", images:['https://upload.wikimedia.org/wikipedia/commons/4/4a/Debian-OpenLogo.svg'], links:[{name:'Postfix',url:'https://wiki.debian.org/Postfix',icon:'fas fa-envelope'},{name:'Dovecot',url:'https://wiki.debian.org/Dovecot',icon:'fas fa-inbox'}], protocoles:['SMTP','POP3','IMAP','TLS','DKIM','SPF'], category:'reseau' },
   { icon:'fas fa-eye', title:'Zabbix - Supervision', badge:'📊 SUPERVISION & ALERTES', desc:"Solution complète de supervision Zabbix pour le monitoring et les alertes.", images:['https://upload.wikimedia.org/wikipedia/commons/1/16/Zabbix_logo.svg','https://upload.wikimedia.org/wikipedia/commons/a/a1/Grafana_logo.svg'], links:[{name:'Doc Zabbix',url:'https://www.zabbix.com/documentation/current/fr/manual',icon:'fas fa-chart-line'}], protocoles:['SNMP','ICMP','SSH','Telnet','IPMI','JMX'], category:'reseau' },
   { icon:'fab fa-docker', title:'Infrastructure Docker', badge:'🐳 CONTENEURISATION', desc:"3 sites web déployés et isolés avec Docker, Alpine et Caddy en reverse proxy avec HTTPS automatique.", images:['https://upload.wikimedia.org/wikipedia/commons/4/4e/Docker_%28container_engine%29_logo.svg','https://upload.wikimedia.org/wikipedia/commons/e/e6/Alpine_Linux.svg','https://caddyserver.com/resources/images/caddy-logo.svg'], links:[{name:'Doc Docker',url:'https://docs.docker.com/',icon:'fab fa-docker'},{name:'Doc Caddy',url:'https://caddyserver.com/docs/',icon:'fas fa-server'},{name:'Docker Compose',url:'https://docs.docker.com/compose/gettingstarted/',icon:'fas fa-layer-group'}], protocoles:['TCP/IP','HTTP/2','TLS','gRPC','Overlay'], category:'docker' },
@@ -1376,6 +1472,57 @@ document.getElementById('themeToggle')?.addEventListener('click', () => {
   localStorage.setItem('theme', newTheme);
 });
 
+// ── OVERVIEW DASHBOARD ──
+const overviewSections = [
+  { id: 'accueil',      icon: '🏠', title: 'Accueil',           desc: 'Page d\'accueil avec animation galaxie, stats et présentation', tag: '// hero', bg: '#0d0d0d', gradient: 'linear-gradient(135deg,#1a1a1a,#2a2a2a)' },
+  { id: 'apropos',      icon: '👤', title: 'À propos',          desc: 'Profil, certifications PIX · ANSSI · Cisco, objectifs pro', tag: '// profil', bg: '#141414', gradient: 'linear-gradient(135deg,#141414,#1e2a1e)' },
+  { id: 'projets',      icon: '🛠️', title: 'Projets BTS',       desc: '13 projets : Docker, GLPI, pfSense, Active Directory, OSPF...', tag: '// réalisations', bg: '#0d0d0d', gradient: 'linear-gradient(135deg,#1a1a2e,#16213e)' },
+  { id: 'entreprises',  icon: '🏢', title: 'Entreprises',       desc: 'Oxylease (Nextcloud/pfSense) · Connect Agency (Docker/Caddy)', tag: '// expériences', bg: '#141414', gradient: 'linear-gradient(135deg,#141414,#1a1412)' },
+  { id: 'cv',           icon: '📄', title: 'CV & Synthese',     desc: 'CV PDF + Tableau de synthese E5 en aperçu intégré', tag: '// documents', bg: '#0d0d0d', gradient: 'linear-gradient(135deg,#1a0d1a,#2a1a2a)' },
+  { id: 'competences',  icon: '⚡', title: 'Compétences',       desc: 'Docker 90% · Reverse Proxy 85% · Web 80% · Sécurité 75%', tag: '// savoir-faire', bg: '#141414', gradient: 'linear-gradient(135deg,#0d1a14,#1a2a1a)' },
+  { id: 'technologies', icon: '💻', title: 'Technologies',      desc: '25+ technos : Docker · Caddy · pfSense · GLPI · Zabbix...', tag: '// stack', bg: '#0d0d0d', gradient: 'linear-gradient(135deg,#0d0d1a,#1a1a2e)' },
+  { id: 'veille',       icon: '📡', title: 'Veille Techno',     desc: 'IT-Connect · Docker Blog · TryHackMe · ANSSI · 5-7h/sem', tag: '// actualités', bg: '#141414', gradient: 'linear-gradient(135deg,#1a1214,#2a1a1a)' },
+  { id: 'contact',      icon: '✉️', title: 'Contact',           desc: 'Formulaire · LinkedIn · GitHub · bensassibibros@gmail.com', tag: '// me contacter', bg: '#0d0d0d', gradient: 'linear-gradient(135deg,#141414,#0d1a1a)' },
+];
+
+function buildOverview() {
+  const grid = document.getElementById('overview-grid');
+  if (!grid) return;
+  grid.innerHTML = overviewSections.map(s => `
+    <div class="overview-card" onclick="goToSection('${s.id}')">
+      <div class="overview-preview" style="background:${s.gradient}">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.8rem;">
+          <span style="font-size:3.5rem">${s.icon}</span>
+          <span style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#555;letter-spacing:0.2em;text-transform:uppercase">${s.tag}</span>
+        </div>
+      </div>
+      <div class="overview-card-body">
+        <div class="overview-card-title">${s.title}</div>
+        <div class="overview-card-desc">${s.desc}</div>
+        <span class="overview-card-tag">${s.tag}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function goToSection(id) {
+  document.getElementById('overview-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }, 200);
+}
+
+document.getElementById('overviewToggle')?.addEventListener('click', () => {
+  buildOverview();
+  document.getElementById('overview-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+document.getElementById('overview-close')?.addEventListener('click', () => {
+  document.getElementById('overview-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+});
+
 // ── SCREENSHOTS & LIGHTBOX ──
 function openLightbox(src) {
   document.getElementById('lightbox-img').src = src;
@@ -1388,10 +1535,8 @@ const projectScreenshots = {
     { src: 'screen-glpi.jpg',    label: 'Dashboard GLPI – Interface Super-Admin' },
   ],
   'Sécurité et Pare-feu': [
-    { src: 'pfsense.png', label: 'pfSense – Interface de connexion (192.168.1.1)' },
-  ],
-  'DHCP & DNS': [
-    { src: 'wireshark.png', label: 'Wireshark – Capture de trames réseau TCP' },
+    { src: 'pfsense.png',    label: 'pfSense – Interface de connexion (192.168.1.1)' },
+    { src: 'wireshark.png',  label: 'Wireshark – Analyse de trames réseau TCP/IP' },
   ],
 };
 
