@@ -521,6 +521,47 @@
     .tech-category-section { margin: 2rem 0 0.5rem; }
     .tech-category-header { font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text2); padding: 0 0.5rem; display: flex; align-items: center; gap: 1rem; }
     .tech-category-header::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ── SCREENSHOTS ── */
+    .screenshot-block {
+      margin: 1.2rem 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--tech-bg);
+    }
+    .screenshot-label {
+      padding: 0.5rem 1rem;
+      background: var(--tech-bg);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Space Mono', monospace;
+    }
+    .screenshot-label .dot-red { width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block; }
+    .screenshot-label .dot-yellow { width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block; }
+    .screenshot-label .dot-green { width:10px;height:10px;border-radius:50%;background:#28ca41;display:inline-block; }
+    .screenshot-img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      cursor: zoom-in;
+    }
+    .screenshot-img:hover { transform: scale(1.02); }
+    /* Lightbox */
+    #lightbox {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.92); z-index: 99999;
+      align-items: center; justify-content: center;
+      cursor: zoom-out;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; box-shadow: 0 0 60px rgba(0,0,0,0.8); }
   </style>
 </head>
 <body>
@@ -546,12 +587,12 @@
       <ul class="nav-links">
         <li><a href="#accueil" class="active">Accueil</a></li>
         <li><a href="#apropos">À propos</a></li>
+        <li><a href="#projets">Projets</a></li>
         <li><a href="#entreprises">Entreprises</a></li>
         <li><a href="#cv">CV</a></li>
         <li><a href="#competences">Compétences</a></li>
         <li><a href="#technologies">Technologies</a></li>
         <li><a href="#veille">Veille</a></li>
-        <li><a href="#projets">Projets</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <button class="theme-toggle" id="themeToggle" title="Changer de thème"><i class="fas fa-sun"></i></button>
@@ -648,6 +689,21 @@
   </div>
 </section>
 
+<!-- ── PROJETS ── -->
+<section id="projets">
+  <span class="section-chip">// réalisations</span>
+  <h2>Projets réalisés au BTS</h2>
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">Tous</button>
+    <button class="filter-btn" data-filter="docker"><i class="fab fa-docker"></i> Docker</button>
+    <button class="filter-btn" data-filter="reseau"><i class="fas fa-network-wired"></i> Réseaux</button>
+    <button class="filter-btn" data-filter="securite"><i class="fas fa-shield-alt"></i> Sécurité</button>
+    <button class="filter-btn" data-filter="web"><i class="fas fa-globe"></i> Web</button>
+  </div>
+  <div class="grid" id="projetsGrid"></div>
+</section>
+
+
 <!-- ── ENTREPRISES ── -->
 <section id="entreprises" style="background:var(--bg2)">
   <span class="section-chip">// expériences</span>
@@ -659,7 +715,7 @@
         <div style="width:56px;height:56px;background:var(--tech-bg);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem">🏢</div>
         <div>
           <h3 style="margin-bottom:0.2rem"><i class="fas fa-building"></i> OXYLEASE</h3>
-          <span class="tag">Stage 2024-2025 • 8 semaines</span>
+          <span class="tag">Stage 2024-2025</span>
         </div>
       </div>
       <p><strong>Forme juridique :</strong> SAS &nbsp;•&nbsp; <strong>SIREN :</strong> 914 886 361</p>
@@ -713,10 +769,10 @@
           </ul>
           <h4 style="margin:1.2rem 0 0.8rem;color:var(--accent-hover)">📊 Analyse SWOT</h4>
           <div class="swot-grid">
-            <div class="swot-item swot-force"><h5><i class="fas fa-plus-circle"></i> Forces</h5><ul><li>Entreprise dynamique (2022)</li><li>PME agile</li><li>DSI accessible</li></ul></div>
-            <div class="swot-item swot-faiblesse"><h5><i class="fas fa-minus-circle"></i> Faiblesses</h5><ul><li>Équipe IT réduite</li><li>Budget limité</li><li>Documentation partielle</li></ul></div>
-            <div class="swot-item swot-opportunite"><h5><i class="fas fa-arrow-up"></i> Opportunités</h5><ul><li>Croissance VTC</li><li>Mobilité connectée</li><li>Digitalisation</li></ul></div>
-            <div class="swot-item swot-menace"><h5><i class="fas fa-exclamation-triangle"></i> Menaces</h5><ul><li>Concurrence intense</li><li>Cyber-risques</li><li>Réglementation</li></ul></div>
+            <div class="swot-item swot-force"><h5><i class="fas fa-plus-circle"></i> Forces</h5><ul><li>Entreprise jeune et dynamique (créée en 2022)</li><li>PME agile avec prise de décision rapide</li><li>DSI accessible et disponible pour les stagiaires</li><li>Secteur transport en pleine expansion</li><li>Ticketing temps réel opérationnel 24h/24</li></ul></div>
+            <div class="swot-item swot-faiblesse"><h5><i class="fas fa-minus-circle"></i> Faiblesses</h5><ul><li>Équipe IT très réduite (moins de 5 personnes)</li><li>Budget informatique limité</li><li>Documentation technique incomplète</li><li>Processus de sécurité encore en développement</li><li>Pas de politique de sauvegarde formalisée</li></ul></div>
+            <div class="swot-item swot-opportunite"><h5><i class="fas fa-arrow-up"></i> Opportunités</h5><ul><li>Croissance du secteur VTC et taxis</li><li>Digitalisation croissante des transports</li><li>Solutions de mobilité connectée (IoT)</li><li>Partenariats avec des startups tech</li><li>Déploiement cloud pour les données de localisation</li></ul></div>
+            <div class="swot-item swot-menace"><h5><i class="fas fa-exclamation-triangle"></i> Menaces</h5><ul><li>Concurrence intense (Uber, Bolt, G7)</li><li>Évolution rapide des réglementations RGPD</li><li>Risques de cyberattaques sur les données clients</li><li>Dépendance vis-à-vis des applications mobiles tierces</li><li>Panne système = arrêt total de l'activité</li></ul></div>
           </div>
           <h4 style="margin:1rem 0 0.5rem;color:var(--accent-hover)">✅ Résultats :</h4>
           <ul style="color:var(--text2);font-size:0.9rem;margin-left:1rem">
@@ -734,7 +790,7 @@
         <div style="width:56px;height:56px;background:var(--tech-bg);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem">🐳</div>
         <div>
           <h3 style="margin-bottom:0.2rem"><i class="fas fa-building"></i> CONNECT AGENCY</h3>
-          <span class="tag">Stage 2025-2026 • 8 semaines</span>
+          <span class="tag">Stage 2025-2026</span>
         </div>
       </div>
       <p><strong>Forme juridique :</strong> SAS &nbsp;•&nbsp; <strong>SIREN :</strong> 913 017 091</p>
@@ -799,10 +855,10 @@
           </div>
           <h4 style="margin:1.2rem 0 0.8rem;color:var(--accent-hover)">📊 Analyse SWOT</h4>
           <div class="swot-grid">
-            <div class="swot-item swot-force"><h5><i class="fas fa-plus-circle"></i> Forces</h5><ul><li>Expertise DevOps</li><li>Infrastructure moderne</li></ul></div>
-            <div class="swot-item swot-faiblesse"><h5><i class="fas fa-minus-circle"></i> Faiblesses</h5><ul><li>Déploiements manuels</li><li>Doc à renforcer</li></ul></div>
-            <div class="swot-item swot-opportunite"><h5><i class="fas fa-arrow-up"></i> Opportunités</h5><ul><li>Adoption Docker/K8s</li><li>Marché DevOps</li></ul></div>
-            <div class="swot-item swot-menace"><h5><i class="fas fa-exclamation-triangle"></i> Menaces</h5><ul><li>Concurrence prix</li><li>Pénurie talents</li></ul></div>
+            <div class="swot-item swot-force"><h5><i class="fas fa-plus-circle"></i> Forces</h5><ul><li>Expertise technique pointue en DevOps et Docker</li><li>Équipe jeune, innovante et ouverte aux stagiaires</li><li>Infrastructure moderne entièrement conteneurisée</li><li>Adoption rapide des nouvelles technologies</li><li>Bonne culture de la documentation interne</li></ul></div>
+            <div class="swot-item swot-faiblesse"><h5><i class="fas fa-minus-circle"></i> Faiblesses</h5><ul><li>Taille réduite de l'équipe (forte dépendance individuelle)</li><li>Déploiements encore majoritairement manuels</li><li>Pas de CI/CD automatisé en place</li><li>Peu de tests automatisés sur les projets clients</li><li>Scalabilité limitée sans orchestration (Kubernetes)</li></ul></div>
+            <div class="swot-item swot-opportunite"><h5><i class="fas fa-arrow-up"></i> Opportunités</h5><ul><li>Demande croissante pour Docker et la conteneurisation</li><li>Adoption massive de Kubernetes en entreprise</li><li>Développement du marché DevOps et Cloud</li><li>Possibilité d'automatiser avec GitHub Actions / GitLab CI</li><li>Clients en recherche d'hébergement green et optimisé</li></ul></div>
+            <div class="swot-item swot-menace"><h5><i class="fas fa-exclamation-triangle"></i> Menaces</h5><ul><li>Concurrence forte sur les prix des hébergeurs</li><li>Évolution très rapide des technologies (obsolescence)</li><li>Pénurie de talents DevOps sur le marché</li><li>Risques de sécurité liés aux conteneurs mal configurés</li><li>Dépendance aux fournisseurs cloud tiers</li></ul></div>
           </div>
           <h4 style="margin:1rem 0 0.5rem;color:var(--accent-hover)">✅ Résultats :</h4>
           <ul style="color:var(--text2);font-size:0.9rem;margin-left:1rem">
@@ -819,10 +875,10 @@
 <!-- ── CV ── -->
 <section id="cv">
   <span class="section-chip">// documents</span>
-  <h2>CV & Tableau de synthèse</h2>
+  <h2>CV & Tableau de synthese</h2>
   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin:2rem 0">
     <a href="CV-Bibros-B.pdf" target="_blank" class="btn"><i class="fas fa-file-pdf"></i> Télécharger mon CV (PDF)</a>
-    <a href="tableau-synth%C3%A8se.pdf" target="_blank" class="btn btn-outline"><i class="fas fa-table"></i> Tableau de Synthèse E5</a>
+    <a href="tableau-synthese.pdf" target="_blank" class="btn btn-outline"><i class="fas fa-table"></i> Tableau de Synthese E5</a>
   </div>
   <h3 style="text-align:center;margin:2rem 0;font-size:1.2rem;color:var(--text2)">Aperçu des documents</h3>
   <div class="cv-tableau-container">
@@ -832,10 +888,10 @@
     </div>
     <div>
       <div class="tableau-preview">
-        <div class="tableau-header"><i class="fas fa-table"></i> Tableau de synthèse E5</div>
-        <iframe src="tableau-synth%C3%A8se.pdf" title="Tableau de synthèse E5"></iframe>
+        <div class="tableau-header"><i class="fas fa-table"></i> Tableau de synthese E5</div>
+        <iframe src="tableau-synthese.pdf" title="Tableau de synthese E5"></iframe>
       </div>
-      <div class="preview-label"><i class="fas fa-table" style="color:#3498db"></i> Tableau de synthèse E5</div>
+      <div class="preview-label"><i class="fas fa-table" style="color:#3498db"></i> Tableau de synthese E5</div>
     </div>
   </div>
   <p style="text-align:center;color:var(--text2);margin-top:1.5rem;font-size:0.9rem">Documents mis à jour mars 2026</p>
@@ -895,20 +951,6 @@
   </div>
 </section>
 
-<!-- ── PROJETS ── -->
-<section id="projets">
-  <span class="section-chip">// réalisations</span>
-  <h2>Projets réalisés au BTS</h2>
-  <div class="filters">
-    <button class="filter-btn active" data-filter="all">Tous</button>
-    <button class="filter-btn" data-filter="docker"><i class="fab fa-docker"></i> Docker</button>
-    <button class="filter-btn" data-filter="reseau"><i class="fas fa-network-wired"></i> Réseaux</button>
-    <button class="filter-btn" data-filter="securite"><i class="fas fa-shield-alt"></i> Sécurité</button>
-    <button class="filter-btn" data-filter="web"><i class="fas fa-globe"></i> Web</button>
-  </div>
-  <div class="grid" id="projetsGrid"></div>
-</section>
-
 <!-- ── CONTACT ── -->
 <section id="contact" style="background:var(--bg2)">
   <span class="section-chip">// me contacter</span>
@@ -931,6 +973,11 @@
     <a href="https://mail.google.com/mail/?view=cm&to=bensassibibros@gmail.com" target="_blank" style="color:var(--text2);transition:color 0.3s" onmouseover="this.style.color='#ea4335'" onmouseout="this.style.color=''" title="bensassibibros@gmail.com"><i class="fas fa-envelope"></i></a>
   </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="this.classList.remove('open')">
+  <img id="lightbox-img" src="" alt="Screenshot">
+</div>
 
 <!-- ── FOOTER ── -->
 <footer>
@@ -1080,6 +1127,7 @@ function fillProjets(filter = 'all') {
         <span class="project-badge">${p.badge}</span>
         <div class="project-images">${images}</div>
         <p style="color:var(--text2);font-size:0.9rem;margin-bottom:1rem">${p.desc}</p>
+        ${makeScreenshots(p.title)}
         <div class="protocoles-container">
           <div class="protocoles-title"><i class="fas fa-network-wired"></i> Protocoles réseau</div>
           <div class="protocoles-grid">${protos}</div>
@@ -1328,6 +1376,41 @@ document.getElementById('themeToggle')?.addEventListener('click', () => {
   localStorage.setItem('theme', newTheme);
 });
 
+// ── SCREENSHOTS & LIGHTBOX ──
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+
+const projectScreenshots = {
+  'GLPI & OCS Inventory': [
+    { src: 'screen-machine.jpg', label: 'VMs – Debian 12 & Windows Server 2022' },
+    { src: 'screen-glpi.jpg',    label: 'Dashboard GLPI – Interface Super-Admin' },
+  ],
+  'Sécurité et Pare-feu': [
+    { src: 'pfsense.png', label: 'pfSense – Interface de connexion (192.168.1.1)' },
+  ],
+  'DHCP & DNS': [
+    { src: 'wireshark.png', label: 'Wireshark – Capture de trames réseau TCP' },
+  ],
+};
+
+function makeScreenshots(title) {
+  const screens = projectScreenshots[title];
+  if (!screens) return '';
+  return screens.map(s => `
+    <div class="screenshot-block">
+      <div class="screenshot-label">
+        <span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span>
+        &nbsp;${s.label}
+      </div>
+      <img src="${s.src}" alt="${s.label}" class="screenshot-img"
+           onclick="openLightbox('${s.src}')"
+           onerror="this.parentElement.style.display='none'">
+    </div>
+  `).join('');
+}
+
 // Formspree contact form
 const FORMSPREE_ID = 'mvzwnogz';
 
@@ -1357,4 +1440,14 @@ document.getElementById('contact-form')?.addEventListener('submit', async functi
       body: formData
     });
     if (res.ok) { success.style.display = 'block'; this.reset(); }
-    else thro
+    else throw new Error();
+  } catch {
+    error.style.display = 'block';
+  } finally {
+    btn.innerHTML = 'Envoyer <i class="fas fa-paper-plane"></i>';
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
