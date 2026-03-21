@@ -56,7 +56,7 @@
       line-height: 1.7;
       overflow-x: hidden;
       transition: background 0.4s ease, color 0.4s ease;
-      zoom: 0.85;
+      zoom: 0.75;
     }
 
     @media (max-width: 600px) { body { zoom: 1; } }
@@ -292,8 +292,9 @@
     /* ── PROJECT IMAGES ── */
     .project-images {
       display: flex; justify-content: center; align-items: center;
-      gap: 1rem; flex-wrap: wrap; margin: 1.2rem 0; padding: 1.2rem;
+      gap: 1rem; flex-wrap: wrap; margin: 1.2rem 0; padding: 1rem;
       background: var(--tech-bg); border-radius: 12px; border: 1px solid var(--border);
+      min-height: unset;
     }
     .project-img { width: 72px; height: 72px; object-fit: contain; border-radius: 10px; transition: all 0.3s; }
     .project-img:hover { transform: scale(1.15); }
@@ -821,7 +822,20 @@
       
       <div style="margin:1rem 0;padding:1rem;background:var(--tech-bg);border-radius:10px;border-left:3px solid var(--accent)">
         <p style="font-weight:600;margin-bottom:0.3rem">📌 Projet principal :</p>
-        <p style="font-size:1.05rem"><strong>Création et sécurisation d'une infrastructure réseau interne pour l'association 100 R.I.B.A.</strong></p>
+        <p style="font-size:1.05rem"><strong>Création et sécurisation d'une infrastructure réseau interne avec espace collaboratif Nextcloud.</strong></p>
+      </div>
+
+      <!-- Nextcloud screenshot -->
+      <div class="screenshot-block">
+        <div class="screenshot-label">
+          <span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span>
+          &nbsp;Nextcloud – Interface déployée (thème dark)
+        </div>
+        <img src="https://raw.githubusercontent.com/mwalbeck/nextcloud-breeze-dark/master/screenshot.png"
+             alt="Nextcloud screenshot" class="screenshot-img"
+             style="max-height:180px;object-fit:cover"
+             onclick="openLightbox('https://raw.githubusercontent.com/mwalbeck/nextcloud-breeze-dark/master/screenshot.png')"
+             onerror="this.parentElement.style.display='none'">
       </div>
       
       <div style="margin:1rem 0">
@@ -898,6 +912,19 @@
         <span class="tag" style="margin-bottom:0.5rem;display:inline-block"><i class="fab fa-docker"></i> PROJET PRINCIPAL</span>
         <p style="font-weight:600;margin:0.4rem 0">Infrastructure Docker avec reverse proxy Caddy</p>
         <p style="font-size:0.9rem;color:var(--text2)">Sites web isolés avec Docker, Alpine Linux et Caddy</p>
+      </div>
+
+      <!-- iladom.fr screenshot -->
+      <div class="screenshot-block">
+        <div class="screenshot-label">
+          <span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span>
+          &nbsp;iladom.fr – Site déployé en HTTPS avec Docker
+        </div>
+        <img src="iladom-screen.png"
+             alt="iladom.fr – Site en HTTPS Docker" class="screenshot-img"
+             style="max-height:180px;object-fit:cover"
+             onclick="openLightbox('iladom-screen.png')"
+             onerror="this.parentElement.style.display='none'">
       </div>
       
       <div style="margin:1rem 0">
@@ -1142,11 +1169,11 @@ const techByCategory = [
 
 const projetsData = [
   { icon:'fas fa-server', title:'GLPI & OCS Inventory', badge:'📋 INVENTAIRE AUTOMATISÉ', desc:'Mettre en place un inventaire automatisé. Technos: Debian, GLPI, OCS Inventory, clients Windows.', images:['https://upload.wikimedia.org/wikipedia/commons/4/4a/Debian-OpenLogo.svg','https://glpi-project.org/wp-content/uploads/2022/09/logo-GLPI-750x290.png','https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg'], links:[{name:'Installer GLPI',url:'https://github.com/ClarkMaltempi/GLPI',icon:'fas fa-book-open'},{name:'Doc OCS',url:'https://wiki.ocsinventory-ng.org/',icon:'fas fa-file-alt'}], protocoles:['TCP/IP','HTTP','HTTPS','LDAP','MySQL'], category:'web' },
-  { icon:'fas fa-network-wired', title:'DHCP & DNS', badge:'🌐 SERVEUR RÉSEAU', desc:"Serveur DHCP et DNS interne sur Debian 12. Distribution automatique d'adresses IP + résolution des noms locaux.", images:['https://upload.wikimedia.org/wikipedia/commons/4/4a/Debian-OpenLogo.svg'], links:[{name:'Configurer DHCP',url:'https://wiki.debian.org/DHCP_Server',icon:'fas fa-network-wired'},{name:'Configurer DNS',url:'https://wiki.debian.org/Bind9',icon:'fas fa-globe'}], protocoles:['DHCP','DNS','TCP/IP','UDP'], category:'reseau' },
+  { icon:'fas fa-network-wired', title:'DHCP & DNS', badge:'🌐 SERVEUR RÉSEAU', desc:"Serveur DHCP et DNS interne sur Debian 12. Distribution automatique d'adresses IP + résolution des noms locaux.", images:['https://upload.wikimedia.org/wikipedia/commons/4/4a/Debian-OpenLogo.svg','https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg','https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg'], links:[{name:'Configurer DHCP',url:'https://wiki.debian.org/DHCP_Server',icon:'fas fa-network-wired'},{name:'Configurer DNS',url:'https://wiki.debian.org/Bind9',icon:'fas fa-globe'}], protocoles:['DHCP','DNS','TCP/IP','UDP'], category:'reseau' },
   { icon:'fas fa-lock', title:'Site Web sécurisé (HTTPS)', badge:'🔐 INTRANET SÉCURISÉ', desc:"Service web interne sécurisé sur Debian 12 avec Apache/Nginx et HTTPS.", images:['https://upload.wikimedia.org/wikipedia/commons/1/10/Apache_HTTP_server_logo_%282019-present%29.svg','https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg'], links:[{name:'Sécuriser Apache',url:'https://httpd.apache.org/docs/2.4/ssl/',icon:'fas fa-lock'}], protocoles:['HTTP','HTTPS','SSL/TLS','TCP/IP'], category:'web' },
   { icon:'fas fa-users-cog', title:'Active Directory', badge:'👥 GESTION UTILISATEURS', desc:"Déploiement d'Active Directory Domain Services (AD DS) sur Windows Server.", images:['https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg','https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg'], links:[{name:'Installer AD DS',url:'https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/deploy/install-active-directory-domain-services',icon:'fab fa-microsoft'}], protocoles:['LDAP','Kerberos','DNS','SMB','NTP'], category:'reseau' },
   { icon:'fas fa-shield-alt', title:'Sécurité et Pare-feu', badge:'🔥 pfSense', desc:"Pare-feu pfSense sur VMware. Sécurisation et gestion du trafic réseau avec règles avancées. Analyse des trames avec Wireshark.", images:['https://upload.wikimedia.org/wikipedia/commons/b/b9/PfSense_logo.png','https://upload.wikimedia.org/wikipedia/commons/b/b6/Wireshark_icon.svg'], links:[{name:'Doc pfSense',url:'https://docs.netgate.com/pfsense/en/latest/',icon:'fas fa-fire'},{name:'Doc Wireshark',url:'https://www.wireshark.org/docs/',icon:'fas fa-microscope'}], protocoles:['IPsec','OpenVPN','L2TP','NAT','SPI'], category:'securite' },
-  { icon:'fas fa-envelope', title:'Serveur Mail', badge:'📧 MESSAGERIE COMPLÈTE', desc:"Serveur de messagerie complet sous Debian avec Postfix + Dovecot.", images:['https://upload.wikimedia.org/wikipedia/commons/4/4a/Debian-OpenLogo.svg'], links:[{name:'Postfix',url:'https://wiki.debian.org/Postfix',icon:'fas fa-envelope'},{name:'Dovecot',url:'https://wiki.debian.org/Dovecot',icon:'fas fa-inbox'}], protocoles:['SMTP','POP3','IMAP','TLS','DKIM','SPF'], category:'reseau' },
+  { icon:'fas fa-envelope', title:'Serveur Mail', badge:'📧 MESSAGERIE COMPLÈTE', desc:"Serveur de messagerie complet sous Debian avec Postfix + Dovecot.", images:['https://upload.wikimedia.org/wikipedia/commons/4/4a/Debian-OpenLogo.svg','https://upload.wikimedia.org/wikipedia/commons/e/e9/Openlogo-debianV2.svg','https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg'], links:[{name:'Postfix',url:'https://wiki.debian.org/Postfix',icon:'fas fa-envelope'},{name:'Dovecot',url:'https://wiki.debian.org/Dovecot',icon:'fas fa-inbox'}], protocoles:['SMTP','POP3','IMAP','TLS','DKIM','SPF'], category:'reseau' },
   { icon:'fas fa-eye', title:'Zabbix - Supervision', badge:'📊 SUPERVISION & ALERTES', desc:"Solution complète de supervision Zabbix pour le monitoring et les alertes.", images:['https://upload.wikimedia.org/wikipedia/commons/1/16/Zabbix_logo.svg','https://upload.wikimedia.org/wikipedia/commons/a/a1/Grafana_logo.svg'], links:[{name:'Doc Zabbix',url:'https://www.zabbix.com/documentation/current/fr/manual',icon:'fas fa-chart-line'}], protocoles:['SNMP','ICMP','SSH','Telnet','IPMI','JMX'], category:'reseau' },
   { icon:'fab fa-docker', title:'Infrastructure Docker', badge:'🐳 CONTENEURISATION', desc:"3 sites web déployés et isolés avec Docker, Alpine et Caddy en reverse proxy avec HTTPS automatique.", images:['https://upload.wikimedia.org/wikipedia/commons/4/4e/Docker_%28container_engine%29_logo.svg','https://upload.wikimedia.org/wikipedia/commons/e/e6/Alpine_Linux.svg','https://caddyserver.com/resources/images/caddy-logo.svg'], links:[{name:'Doc Docker',url:'https://docs.docker.com/',icon:'fab fa-docker'},{name:'Doc Caddy',url:'https://caddyserver.com/docs/',icon:'fas fa-server'},{name:'Docker Compose',url:'https://docs.docker.com/compose/gettingstarted/',icon:'fas fa-layer-group'}], protocoles:['TCP/IP','HTTP/2','TLS','gRPC','Overlay'], category:'docker' },
   { icon:'fas fa-route', title:'Routage Dynamique OSPF', badge:'🔄 PROTOCOLE DE ROUTAGE', desc:"Routage dynamique OSPF sur routeurs Cisco. Configuration multi-zones et redondance.", images:['https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg'], links:[{name:'Doc OSPF',url:'https://www.cisco.com/c/en/us/support/docs/ip/open-shortest-path-first-ospf/7039-1.html',icon:'fas fa-network-wired'}], protocoles:['OSPF','IP','ICMP','Hello protocol','LSA','SPF'], category:'reseau' },
@@ -1537,6 +1564,21 @@ const projectScreenshots = {
   'Sécurité et Pare-feu': [
     { src: 'pfsense.png',    label: 'pfSense – Interface de connexion (192.168.1.1)' },
     { src: 'wireshark.png',  label: 'Wireshark – Analyse de trames réseau TCP/IP' },
+  ],
+  'Site Web sécurisé (HTTPS)': [
+    { src: 'https://i.stack.imgur.com/1NOHl.jpg', label: 'Apache – Configuration HTTPS sur Debian' },
+  ],
+  'DHCP & DNS': [
+    { src: 'https://malcolmsoto.com/assets/images/overview/overview-img4.png', label: 'DHCP & DNS – Configuration serveur réseau' },
+  ],
+  'Serveur Mail': [
+    { src: 'https://webmin.com/images/docs/screenshots/modules/light/postfix-mail-server.png', label: 'Postfix – Interface Webmin Serveur Mail' },
+  ],
+  'Active Directory': [
+    { src: 'https://www.vpsbg.eu/storage/blog/1-open-notification_UB.png', label: 'Active Directory – Gestion des utilisateurs Windows Server' },
+  ],
+  'Zabbix - Supervision': [
+    { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ7jHjIKTWG945njyO1ejTzDK-kgEmq1AF4A&s', label: 'Zabbix – Dashboard de supervision réseau' },
   ],
 };
 
