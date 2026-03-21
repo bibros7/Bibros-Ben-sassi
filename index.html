@@ -169,12 +169,14 @@
         linear-gradient(var(--border) 1px, transparent 1px),
         linear-gradient(90deg, var(--border) 1px, transparent 1px);
       background-size: 60px 60px;
-      opacity: 0.3;
+      opacity: 0.25;
+      z-index: 0;
     }
     header::after {
       content: '';
       position: absolute; inset: 0;
       background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 40%, var(--bg) 100%);
+      z-index: 0;
     }
 
     #particles { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
@@ -813,7 +815,7 @@
   <h2>CV & Tableau de synthèse</h2>
   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin:2rem 0">
     <a href="CV-Bibros-B.pdf" target="_blank" class="btn"><i class="fas fa-file-pdf"></i> Télécharger mon CV (PDF)</a>
-    <a href="tableau-synthese.pdf" target="_blank" class="btn btn-outline"><i class="fas fa-table"></i> Tableau de Synthèse E5</a>
+    <a href="tableau-synth%C3%A8se.pdf" target="_blank" class="btn btn-outline"><i class="fas fa-table"></i> Tableau de Synthèse E5</a>
   </div>
   <h3 style="text-align:center;margin:2rem 0;font-size:1.2rem;color:var(--text2)">Aperçu des documents</h3>
   <div class="cv-tableau-container">
@@ -824,7 +826,7 @@
     <div>
       <div class="tableau-preview">
         <div class="tableau-header"><i class="fas fa-table"></i> Tableau de synthèse E5</div>
-        <iframe src="tableau-synthese.pdf" title="Tableau de synthèse E5"></iframe>
+        <iframe src="tableau-synth%C3%A8se.pdf" title="Tableau de synthèse E5"></iframe>
       </div>
       <div class="preview-label"><i class="fas fa-table" style="color:#3498db"></i> Tableau de synthèse E5</div>
     </div>
@@ -1201,22 +1203,109 @@ const canvas = document.getElementById('particles');
 if (canvas) {
   const ctx = canvas.getContext('2d');
   let w, h;
-  const particles = Array.from({ length: 25 }, () => ({
-    x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight,
-    size: Math.random() * 1.5 + 0.5, speedX: (Math.random() - 0.5) * 0.15, speedY: (Math.random() - 0.5) * 0.15
+
+  // Étoiles normales
+  const stars = Array.from({ length: 180 }, () => ({
+    x: Math.random(),
+    y: Math.random(),
+    size: Math.random() * 1.8 + 0.2,
+    opacity: Math.random() * 0.7 + 0.1,
+    twinkleSpeed: Math.random() * 0.02 + 0.005,
+    twinkleDir: Math.random() > 0.5 ? 1 : -1,
+    speedX: (Math.random() - 0.5) * 0.00015,
+    speedY: (Math.random() - 0.5) * 0.00015,
+    glow: Math.random() > 0.85 // certaines étoiles brillent plus
   }));
-  function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+
+  // Étoiles filantes
+  const shootingStars = [];
+  function createShootingStar() {
+    shootingStars.push({
+      x: Math.random() * w,
+      y: Math.random() * h * 0.5,
+      len: Math.random() * 120 + 60,
+      speed: Math.random() * 8 + 6,
+      opacity: 1,
+      angle: Math.PI / 5
+    });
+  }
+  setInterval(() => { if (Math.random() > 0.4) createShootingStar(); }, 2500);
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+
   function animate() {
     ctx.clearRect(0, 0, w, h);
-    particles.forEach(p => {
-      p.x += p.speedX; p.y += p.speedY;
-      if (p.x < 0 || p.x > w) p.speedX *= -1;
-      if (p.y < 0 || p.y > h) p.speedY *= -1;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(180,180,180,0.4)'; ctx.fill();
+
+    // Nébuleuse centrale subtile
+    const nebula = ctx.createRadialGradient(w*0.5, h*0.45, 0, w*0.5, h*0.45, w*0.35);
+    nebula.addColorStop(0, 'rgba(120,120,160,0.04)');
+    nebula.addColorStop(1, 'transparent');
+    ctx.fillStyle = nebula;
+    ctx.fillRect(0, 0, w, h);
+
+    // Dessiner les étoiles
+    stars.forEach(s => {
+      // Scintillement
+      s.opacity += s.twinkleSpeed * s.twinkleDir;
+      if (s.opacity > 0.9 || s.opacity < 0.05) s.twinkleDir *= -1;
+      // Légère dérive
+      s.x += s.speedX;
+      s.y += s.speedY;
+      if (s.x < 0) s.x = 1; if (s.x > 1) s.x = 0;
+      if (s.y < 0) s.y = 1; if (s.y > 1) s.y = 0;
+
+      const px = s.x * w;
+      const py = s.y * h;
+
+      if (s.glow) {
+        // Halo lumineux
+        const grd = ctx.createRadialGradient(px, py, 0, px, py, s.size * 4);
+        grd.addColorStop(0, `rgba(220,220,255,${s.opacity * 0.6})`);
+        grd.addColorStop(1, 'transparent');
+        ctx.fillStyle = grd;
+        ctx.beginPath();
+        ctx.arc(px, py, s.size * 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.beginPath();
+      ctx.arc(px, py, s.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(220,220,255,${s.opacity})`;
+      ctx.fill();
     });
+
+    // Étoiles filantes
+    for (let i = shootingStars.length - 1; i >= 0; i--) {
+      const ss = shootingStars[i];
+      ctx.save();
+      ctx.globalAlpha = ss.opacity;
+      const grad = ctx.createLinearGradient(
+        ss.x, ss.y,
+        ss.x - Math.cos(ss.angle) * ss.len,
+        ss.y - Math.sin(ss.angle) * ss.len
+      );
+      grad.addColorStop(0, 'rgba(255,255,255,0.9)');
+      grad.addColorStop(1, 'transparent');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(ss.x, ss.y);
+      ctx.lineTo(ss.x - Math.cos(ss.angle) * ss.len, ss.y - Math.sin(ss.angle) * ss.len);
+      ctx.stroke();
+      ctx.restore();
+
+      ss.x += Math.cos(ss.angle) * ss.speed;
+      ss.y += Math.sin(ss.angle) * ss.speed;
+      ss.opacity -= 0.015;
+      if (ss.opacity <= 0 || ss.x > w || ss.y > h) shootingStars.splice(i, 1);
+    }
+
     requestAnimationFrame(animate);
   }
+
   resize(); animate();
   window.addEventListener('resize', resize);
 }
