@@ -5,1354 +5,535 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes"/>
   <title>Bibros Ben Sassi • BTS SIO SISR</title>
   <meta name="description" content="Portfolio de Bibros Ben Sassi, étudiant en BTS SIO SISR spécialisé Docker, réseaux et cybersécurité">
-  <meta name="keywords" content="BTS SIO, SISR, Docker, Réseaux, Cybersécurité, GLPI, pfSense">
-  <meta name="author" content="Bibros Ben Sassi">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #121212;
-      --bg2: #1a1a1a;
-      --text: #e5e5e5;
-      --text2: #b5b5b5;
-      --accent: #7a7a7a;
-      --accent-hover: #9a9a9a;
-      --card: #1e1e1e;
-      --border: #3a3a3a;
-      --tech-bg: #252525;
-      --gradient: linear-gradient(135deg, #6a6a6a, #8a8a8a);
-      --glow: 0 0 20px rgba(160,160,160,0.3);
+      --bg: #0d0d0d;
+      --bg2: #141414;
+      --text: #e8e8e8;
+      --text2: #a0a0a0;
+      --accent: #6e6e6e;
+      --accent-hover: #c0c0c0;
+      --card: #181818;
+      --border: #2a2a2a;
+      --tech-bg: #1e1e1e;
+      --gradient: linear-gradient(135deg, #5a5a5a, #aaaaaa);
+      --gradient-vivid: linear-gradient(135deg, #7a7a7a, #d0d0d0);
+      --glow: 0 0 30px rgba(180,180,180,0.2);
       --rss-color: #ff8c42;
       --swot-force: #2e7d32;
       --swot-faiblesse: #b71c1c;
       --swot-opportunite: #0d47a1;
       --swot-menace: #bf360c;
-      --protocole-bg: #1e2a3a;
-      --rgpd-bg: #0a0a0a;
-      --rgpd-text: #e0e0e0;
+      --protocole-bg: #131d2a;
     }
 
     [data-theme="light"] {
-      --bg: #f2f2f2;
+      --bg: #f5f5f5;
       --bg2: #ffffff;
-      --text: #2a2a2a;
-      --text2: #5a5a5a;
+      --text: #1a1a1a;
+      --text2: #555555;
       --card: #ffffff;
-      --border: #d0d0d0;
-      --tech-bg: #e8e8e8;
-      --accent: #6a6a6a;
-      --accent-hover: #4a4a4a;
-      --gradient: linear-gradient(135deg, #7a7a7a, #9a9a9a);
-      --glow: 0 0 20px rgba(100,100,100,0.2);
-      --swot-force: #2e7d32;
-      --swot-faiblesse: #b71c1c;
-      --swot-opportunite: #0d47a1;
-      --swot-menace: #bf360c;
-      --protocole-bg: #e3f2fd;
-      --rgpd-bg: #ffffff;
-      --rgpd-text: #333333;
+      --border: #e0e0e0;
+      --tech-bg: #f0f0f0;
+      --accent: #888888;
+      --accent-hover: #333333;
+      --gradient: linear-gradient(135deg, #666666, #999999);
+      --gradient-vivid: linear-gradient(135deg, #555555, #888888);
+      --glow: 0 0 30px rgba(0,0,0,0.1);
+      --protocole-bg: #e8f0fa;
     }
 
     * { margin:0; padding:0; box-sizing:border-box; }
+    
     body {
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: 'Sora', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
       overflow-x: hidden;
       transition: background 0.4s ease, color 0.4s ease;
-      zoom: 0.9;
-      -moz-transform: scale(0.9);
-      -moz-transform-origin: 0 0;
+      zoom: 0.85;
     }
 
-    @media (min-width: 2000px) {
-      body { zoom: 1; }
-    }
+    @media (max-width: 600px) { body { zoom: 1; } }
 
-    html { 
-      scroll-behavior: smooth; 
-      scroll-padding-top: 80px;
-    }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
-    /* BOUTON RETOUR EN HAUT */
+    /* ── BACK TO TOP ── */
     #back-to-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--gradient);
-      color: white;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s;
-      z-index: 999;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--gradient); color: white; border: none;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; opacity: 0; visibility: hidden;
+      transition: all 0.3s; z-index: 999;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
     }
-    #back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-    #back-to-top:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(160,160,160,0.4);
-    }
+    #back-to-top.visible { opacity: 1; visibility: visible; }
+    #back-to-top:hover { transform: translateY(-4px); box-shadow: var(--glow); }
 
-    /* FILTRES PROJETS */
-    .filters {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-    }
+    /* ── FILTERS ── */
+    .filters { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 3rem; }
     .filter-btn {
-      background: var(--tech-bg);
-      border: 1px solid var(--border);
-      color: var(--text2);
-      padding: 0.8rem 2rem;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
+      background: var(--tech-bg); border: 1px solid var(--border); color: var(--text2);
+      padding: 0.6rem 1.6rem; border-radius: 50px; font-weight: 600; cursor: pointer;
+      transition: all 0.3s; font-family: 'Sora', sans-serif; font-size: 0.9rem;
     }
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--gradient);
-      color: white;
-      border-color: transparent;
-    }
+    .filter-btn:hover, .filter-btn.active { background: var(--gradient); color: white; border-color: transparent; }
 
-    /* BANDEAU RGPD */
+    /* ── RGPD ── */
     #rgpd-banner {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--rgpd-bg);
-      color: var(--rgpd-text);
-      padding: 1rem 2rem;
-      display: none;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      z-index: 10001;
-      border-top: 2px solid var(--accent);
-      box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
-      transform: translateY(100%);
-      animation: slideUp 0.5s forwards;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--card); color: var(--text);
+      padding: 1rem 2rem; display: none;
+      justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+      z-index: 10001; border-top: 1px solid var(--border);
+      box-shadow: 0 -5px 30px rgba(0,0,0,0.5);
+      transform: translateY(100%); animation: slideUp 0.5s forwards;
     }
     @keyframes slideUp { to { transform: translateY(0); } }
     #rgpd-banner button {
-      background: var(--gradient);
-      color: white;
-      border: none;
-      padding: 0.8rem 2rem;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
+      background: var(--gradient); color: white; border: none;
+      padding: 0.6rem 1.8rem; border-radius: 50px; font-weight: 600; cursor: pointer;
     }
 
+    /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      background: rgba(18,18,18,0.92);
-      backdrop-filter: blur(16px);
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      z-index: 9999;
-      transition: all 0.4s ease;
-      animation: slideInDown 0.8s ease;
+      z-index: 9999; transition: all 0.4s ease;
     }
-
-    @keyframes slideInDown {
-      from { transform: translateY(-100%); }
-      to { transform: translateY(0); }
-    }
-
-    [data-theme="light"] nav {
-      background: rgba(242,242,242,0.92);
-      border-bottom: 1px solid #d0d0d0;
-    }
-
-    nav.scrolled {
-      background: rgba(10,10,10,0.98);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.6);
-    }
+    [data-theme="light"] nav { background: rgba(245,245,245,0.92); }
+    nav.scrolled { box-shadow: 0 8px 40px rgba(0,0,0,0.6); }
 
     .nav-container {
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 1rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      max-width: 1600px; margin: 0 auto; padding: 0.9rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
     }
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      animation: slideInLeft 0.8s ease;
-    }
+    .logo-container { display: flex; align-items: center; gap: 1rem; }
 
     .profile-photo {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--accent);
-      box-shadow: 0 0 15px rgba(120,120,120,0.5);
-      transition: all 0.5s ease;
-      animation: pulse 2s infinite;
+      width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 15px rgba(160,160,160,0.3);
+      transition: all 0.4s ease;
     }
-
-    .profile-photo:hover {
-      transform: scale(1.15) rotate(5deg);
-      box-shadow: 0 0 35px rgba(140,140,140,0.9);
-      border-color: white;
-    }
+    .profile-photo:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(200,200,200,0.6); }
 
     .logo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      transition: all 0.3s ease;
+      font-size: 1.5rem; font-weight: 800;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      font-family: 'Space Mono', monospace;
     }
 
-    .logo:hover {
-      transform: scale(1.05);
-      filter: drop-shadow(0 0 10px var(--accent));
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.2rem;
-      list-style: none;
-    }
-
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
     .nav-links a {
-      color: var(--text2);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      position: relative;
+      color: var(--text2); text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      transition: all 0.3s ease; position: relative; letter-spacing: 0.02em;
     }
-
     .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -6px;
-      left: 0;
-      background: var(--accent-hover);
-      transition: width 0.3s ease;
+      content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0;
+      background: var(--accent-hover); transition: width 0.3s ease;
     }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--accent-hover);
-      transform: translateY(-2px);
-    }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent-hover); }
 
     .theme-toggle {
-      background: none;
-      border: none;
-      font-size: 1.6rem;
-      cursor: pointer;
-      color: var(--text2);
-      transition: all 0.5s;
-      animation: rotateIn 1s ease;
+      background: none; border: 1px solid var(--border); font-size: 1.1rem;
+      cursor: pointer; color: var(--text2); transition: all 0.4s;
+      width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
     }
+    .theme-toggle:hover { color: var(--accent-hover); border-color: var(--accent-hover); transform: rotate(30deg); }
 
-    .theme-toggle:hover {
-      color: var(--accent-hover);
-      transform: rotate(180deg) scale(1.2);
-    }
+    .burger { display: none; font-size: 1.6rem; color: var(--accent-hover); cursor: pointer; }
 
-    .burger {
-      display: none;
-      font-size: 2rem;
-      color: var(--accent-hover);
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .burger:hover {
-      transform: scale(1.1);
-    }
-
+    /* ── HEADER ── */
     header {
-      height: 100vh;
-      min-height: 700px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, #1a1a1a, #121212);
+      height: 100vh; min-height: 700px;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; position: relative; overflow: hidden;
     }
 
-    [data-theme="light"] header {
-      background: linear-gradient(135deg, #f0f0f0, #e6e6e6);
+    /* Hero background grid */
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: 
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.3;
+    }
+    header::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 40%, var(--bg) 100%);
     }
 
-    #particles {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.8;
-    }
+    #particles { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 1400px;
-      padding: 2rem;
-      animation: fadeInUp 1.3s ease-out;
-    }
+    .hero-content { position: relative; z-index: 2; max-width: 1200px; padding: 2rem; }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(80px); }
-      to { opacity: 1; transform: translateY(0); }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--card); border: 1px solid var(--border);
+      padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem;
+      color: var(--text2); margin-bottom: 2rem; font-family: 'Space Mono', monospace;
+      animation: fadeInDown 0.8s ease;
     }
+    .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: pulse-green 2s infinite; }
+    @keyframes pulse-green { 0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,0.4)} 50%{box-shadow:0 0 0 6px rgba(74,222,128,0)} }
 
     .hero h1 {
-      font-size: clamp(4.2rem, 12vw, 9rem);
-      margin-bottom: 0.8rem;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: glow 3s infinite;
-      transition: all 0.3s;
-    }
-
-    .hero h1:hover {
-      transform: scale(1.02);
-      filter: drop-shadow(0 0 20px var(--accent));
+      font-size: clamp(3.5rem, 9vw, 7rem); margin-bottom: 0.5rem;
+      background: var(--gradient-vivid); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      font-family: 'Space Mono', monospace; font-weight: 700; letter-spacing: -0.02em;
+      animation: fadeInUp 1s ease 0.2s both;
     }
 
     .typing-container {
-      font-size: 2.2rem;
-      color: var(--accent-hover);
-      min-height: 3.5rem;
-      font-weight: 500;
-      margin: 1.5rem 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-      animation: slideInRight 0.8s ease 0.3s both;
+      font-size: 1.8rem; color: var(--accent-hover); min-height: 3rem;
+      font-weight: 300; margin: 1.2rem 0 3rem;
+      display: flex; justify-content: center; align-items: center; gap: 5px;
+      animation: fadeInUp 1s ease 0.4s both;
     }
-
-    .cursor {
-      width: 4px;
-      height: 1.4em;
-      background: var(--accent-hover);
-      animation: blink 0.7s infinite;
-    }
-
+    .cursor { width: 3px; height: 1.3em; background: var(--accent-hover); animation: blink 0.7s infinite; }
     @keyframes blink { 50% { opacity: 0; } }
 
+    /* Hero stats bar */
+    .hero-stats {
+      display: flex; justify-content: center; gap: 3rem; margin-bottom: 2.5rem;
+      animation: fadeInUp 1s ease 0.6s both;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat .num {
+      font-size: 2rem; font-weight: 800; font-family: 'Space Mono', monospace;
+      background: var(--gradient-vivid); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-stat .lbl { font-size: 0.8rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.1em; }
+
     .btn {
-      padding: 1.2rem 3rem;
-      background: var(--gradient);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1.15rem;
-      text-decoration: none;
-      margin: 1rem;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.9rem;
-      box-shadow: 0 10px 30px rgba(120,120,120,0.3);
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
+      padding: 1rem 2.5rem; background: var(--gradient); color: white; border: none;
+      border-radius: 6px; font-weight: 700; font-size: 1rem; text-decoration: none;
+      margin: 0.5rem; transition: all 0.3s ease; display: inline-flex; align-items: center;
+      gap: 0.8rem; position: relative; overflow: hidden; cursor: pointer;
+      font-family: 'Sora', sans-serif; letter-spacing: 0.02em;
     }
-
     .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transform: translateX(-100%); transition: transform 0.5s;
     }
+    .btn:hover::before { transform: translateX(100%); }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
+    .btn-outline { background: transparent; border: 1.5px solid var(--accent); color: var(--text); }
+    .btn-outline:hover { background: var(--gradient); color: white; border-color: transparent; }
 
-    .btn:hover::before {
-      left: 100%;
-    }
-
-    .btn:hover {
-      transform: translateY(-8px) scale(1.08);
-      box-shadow: 0 25px 50px rgba(140,140,140,0.6);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--accent);
-      color: var(--accent);
-    }
-
-    .btn-outline:hover {
-      background: var(--gradient);
-      color: white;
-      border-color: transparent;
-    }
-
-    section {
-      padding: 9rem 3rem 7rem;
-      max-width: 1600px;
-      margin: 0 auto;
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* ── SECTIONS ── */
+    section { padding: 8rem 3rem 6rem; max-width: 1600px; margin: 0 auto; }
 
     h2 {
-      text-align: center;
-      font-size: clamp(2.8rem, 7vw, 4rem);
-      margin-bottom: 4rem;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      text-align: center; font-size: clamp(2.2rem, 5vw, 3.2rem); margin-bottom: 4rem;
+      font-family: 'Space Mono', monospace; font-weight: 700;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       position: relative;
-      animation: slideInLeft 0.8s ease;
     }
-
     h2::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 3px;
-      background: var(--gradient);
-      border-radius: 3px;
-      animation: borderPulse 2s infinite;
+      content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 2px; background: var(--gradient); border-radius: 2px;
     }
 
-    .grid, .entreprises-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-      gap: 2.5rem;
+    /* Section label chip */
+    .section-chip {
+      display: block; text-align: center; margin-bottom: 1.2rem;
+      font-size: 0.75rem; color: var(--text2); text-transform: uppercase;
+      letter-spacing: 0.2em; font-family: 'Space Mono', monospace;
     }
+
+    .grid, .entreprises-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 2rem; }
 
     .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2rem;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      overflow: hidden;
-      animation: bounceIn 0.8s ease;
-      animation-fill-mode: both;
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 2rem; transition: all 0.4s ease; position: relative; overflow: hidden;
     }
-
-    .card:nth-child(1) { animation-delay: 0.1s; }
-    .card:nth-child(2) { animation-delay: 0.2s; }
-
     .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 5px;
-      background: var(--gradient);
-      transform: scaleX(0);
-      transition: transform 0.5s ease;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--gradient); transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left;
     }
+    .card:hover::before { transform: scaleX(1); }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-color: var(--accent); }
+    .card h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-bottom: 1rem; }
 
-    .card::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.5s;
-      pointer-events: none;
-    }
+    /* ── COMPETENCE IMAGES ── */
+    .competence-img { width: 36px; height: 36px; object-fit: contain; border-radius: 6px; }
 
-    .card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .card:hover::after {
-      opacity: 1;
-    }
-
-    .card:hover {
-      transform: translateY(-18px) scale(1.02);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.7);
-      border-color: var(--accent-hover);
-    }
-
-    .card:hover i, .card:hover .competence-img, .card:hover .project-img {
-      animation: pulse 1s infinite;
-    }
-
-    .competence-img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-      margin-right: 10px;
-      transition: all 0.3s;
-      filter: brightness(0.9);
-    }
-
-    [data-theme="light"] .competence-img {
-      filter: brightness(0.8);
-    }
-
-    .card:hover .competence-img {
-      transform: scale(1.1);
-      filter: brightness(1.1);
-    }
-
-    .card h3 {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .project-images {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin: 1.5rem 0;
-      padding: 1.5rem;
-      background: var(--tech-bg);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-    }
-
-    .project-img {
-      width: 80px;
-      height: 80px;
-      object-fit: contain;
-      filter: brightness(0.9) drop-shadow(0 0 5px rgba(0,0,0,0.3));
-      transition: all 0.5s;
-    }
-
-    [data-theme="light"] .project-img {
-      filter: brightness(0.8) drop-shadow(0 0 5px rgba(0,0,0,0.1));
-    }
-
-    .project-images .project-img {
-      width: 100px;
-      height: 100px;
-      transition: all 0.4s;
-    }
-
-    .project-images:hover .project-img {
-      animation: pulse 2s infinite;
-    }
-
-    .tech-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin: 1rem 0;
-      justify-content: center;
-    }
-
-    .tech-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--tech-bg);
-      border: 1px solid var(--accent);
-      color: var(--accent-hover);
-      padding: 0.5rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.4s ease;
-    }
-
-    .tech-link:hover {
-      background: var(--gradient);
-      color: white;
-      transform: translateY(-3px) scale(1.05);
-      border-color: transparent;
-      box-shadow: 0 5px 15px rgba(94,96,206,0.3);
-    }
-
-    .tech-link i {
-      font-size: 1.1rem;
-    }
-
-    [data-theme="light"] .tech-link {
-      color: var(--accent);
-    }
-
-    .protocoles-container {
-      margin: 1.5rem 0;
-      padding: 1rem;
-      background: var(--protocole-bg);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-    }
-
-    .protocoles-title {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      color: var(--accent-hover);
-      font-weight: 600;
-    }
-
-    .protocoles-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
-
-    .protocole-item {
-      background: var(--card);
-      border: 1px solid var(--accent);
-      color: var(--text);
-      padding: 0.4rem 1rem;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.3s;
-    }
-
-    .protocole-item:hover {
-      background: var(--gradient);
-      color: white;
-      transform: scale(1.05);
-      border-color: transparent;
-    }
-
-    .protocole-item i {
-      color: var(--accent-hover);
-      font-size: 0.9rem;
-    }
-
-    .protocole-item:hover i {
-      color: white;
-    }
-
-    .org-chart {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 1.5rem 0;
-      padding: 1rem;
-      background: var(--tech-bg);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-    }
-
-    .org-level {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin: 0.5rem 0;
-    }
-
-    .org-item {
-      background: var(--card);
-      border: 1px solid var(--accent);
-      border-radius: 30px;
-      padding: 0.5rem 1.2rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: all 0.3s;
-      position: relative;
-    }
-
-    .org-item.highlight {
-      background: var(--gradient);
-      color: white;
-      border-color: white;
-      transform: scale(1.05);
-      animation: pulse 2s infinite;
-    }
-
-    .org-item:hover {
-      transform: scale(1.1);
-      border-color: var(--accent-hover);
-    }
-
-    .org-connector {
-      color: var(--accent);
-      font-size: 1.2rem;
-      margin: 0 0.5rem;
-    }
-
-    .level-bar {
-      height: 8px;
-      background: var(--border);
-      border-radius: 10px;
-      margin: 1rem 0 1.5rem;
-      overflow: hidden;
-      position: relative;
-    }
-
+    /* ── LEVEL BAR ── */
+    .level-bar { height: 6px; background: var(--border); border-radius: 10px; margin: 0.8rem 0 1.2rem; overflow: hidden; }
     .level-bar-fill {
-      height: 100%;
-      background: var(--gradient);
-      border-radius: 10px;
-      width: 0%;
-      transition: width 1.5s cubic-bezier(0.2, 0.9, 0.3, 1);
-      position: relative;
-      overflow: hidden;
+      height: 100%; background: var(--gradient); border-radius: 10px; width: 0%;
+      transition: width 1.5s cubic-bezier(0.2, 0.9, 0.3, 1); position: relative;
     }
-
     .level-bar-fill::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
       animation: shimmer 2s infinite;
     }
+    @keyframes shimmer { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
 
-    .tech-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      max-width: 900px;
-      margin: 4rem auto;
+    /* ── PROJECT IMAGES ── */
+    .project-images {
+      display: flex; justify-content: center; align-items: center;
+      gap: 1rem; flex-wrap: wrap; margin: 1.2rem 0; padding: 1.2rem;
+      background: var(--tech-bg); border-radius: 12px; border: 1px solid var(--border);
     }
+    .project-img { width: 72px; height: 72px; object-fit: contain; border-radius: 10px; transition: all 0.3s; }
+    .project-img:hover { transform: scale(1.15); }
 
+    /* ── TECH LINKS ── */
+    .tech-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
+    .tech-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--tech-bg); border: 1px solid var(--border);
+      color: var(--text2); padding: 0.4rem 1rem; border-radius: 6px;
+      font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.3s;
+    }
+    .tech-link:hover { background: var(--gradient); color: white; border-color: transparent; transform: translateY(-2px); }
+
+    /* ── PROTOCOLES ── */
+    .protocoles-container { margin: 1.2rem 0; padding: 1rem; background: var(--protocole-bg); border-radius: 10px; border: 1px solid var(--border); }
+    .protocoles-title { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem; color: var(--accent-hover); font-weight: 600; font-size: 0.9rem; }
+    .protocoles-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .protocole-item {
+      background: var(--card); border: 1px solid var(--border); color: var(--text);
+      padding: 0.3rem 0.9rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 0.3rem; transition: all 0.3s; font-family: 'Space Mono', monospace;
+    }
+    .protocole-item:hover { background: var(--gradient); color: white; border-color: transparent; }
+    .protocole-item i { color: var(--accent-hover); font-size: 0.75rem; }
+    .protocole-item:hover i { color: white; }
+
+    /* ── ORG CHART ── */
+    .org-chart { display: flex; flex-direction: column; align-items: center; margin: 1.2rem 0; padding: 1rem; background: var(--tech-bg); border-radius: 12px; border: 1px solid var(--border); }
+    .org-level { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; margin: 0.4rem 0; }
+    .org-item { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 0.4rem 1.1rem; font-size: 0.85rem; font-weight: 600; transition: all 0.3s; }
+    .org-item.highlight { background: var(--gradient); color: white; border-color: transparent; }
+    .org-connector { color: var(--accent); font-size: 1rem; }
+
+    /* ── TECH GRID ── */
+    .tech-grid { display: flex; flex-direction: column; gap: 0.8rem; max-width: 900px; margin: 3rem auto; }
     .tech-item {
-      display: flex;
-      align-items: center;
-      background: var(--tech-bg);
-      border: 1px solid var(--accent);
-      border-radius: 60px;
-      padding: 0.8rem 1.8rem;
-      text-decoration: none;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      width: 100%;
-      cursor: pointer;
-      color: inherit;
+      display: flex; align-items: center; background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 0.8rem 1.5rem; text-decoration: none;
+      transition: all 0.3s ease; color: inherit; width: 100%;
     }
+    .tech-item:hover { background: var(--tech-bg); border-color: var(--accent); transform: translateX(8px); }
+    .tech-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; margin-right: 1.2rem; }
+    .tech-icon img { width: 36px; height: 36px; object-fit: contain; border-radius: 6px; transition: all 0.3s; }
+    .tech-item:hover .tech-icon img { transform: scale(1.1); }
+    .tech-name { font-weight: 600; font-size: 1.1rem; flex: 1; }
+    .tech-category { color: var(--text2); font-size: 0.85rem; font-family: 'Space Mono', monospace; }
 
-    .tech-item:hover {
-      background: var(--gradient);
-      transform: translateX(20px) scale(1.02);
-      border-color: transparent;
-    }
-
-    .tech-icon {
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 1.5rem;
-    }
-
-    .tech-icon img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-      filter: brightness(0.9);
-      transition: all 0.3s;
-    }
-
-    .tech-item:hover .tech-icon img {
-      filter: brightness(1.2) drop-shadow(0 0 5px rgba(255,255,255,0.5));
-      transform: scale(1.1);
-    }
-
-    .tech-name {
-      font-weight: 600;
-      font-size: 1.2rem;
-      flex: 1;
-    }
-
-    .tech-category {
-      color: var(--text2);
-      font-size: 0.9rem;
-      margin-left: 1rem;
-    }
-
-    .tech-item:hover .tech-category {
-      color: rgba(255,255,255,0.9);
-    }
-
-    .cv-tableau-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin: 3rem 0;
-    }
-
+    /* ── CV SECTION ── */
+    .cv-tableau-container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 3rem 0; }
     .cv-preview, .tableau-preview {
-      background: #fff;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-      height: 800px;
-      transition: all 0.5s;
-      animation: float 6s infinite;
-      border: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
+      background: #fff; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5); height: 750px;
+      transition: all 0.4s; border: 1px solid var(--border); display: flex; flex-direction: column;
     }
+    .cv-preview:hover, .tableau-preview:hover { transform: scale(1.01); box-shadow: 0 30px 70px rgba(0,0,0,0.7); }
+    .cv-preview iframe, .tableau-preview iframe { width: 100%; height: 100%; border: none; flex: 1; }
+    .tableau-header { background: var(--gradient); color: white; padding: 0.8rem 1rem; text-align: center; font-weight: 600; font-size: 0.9rem; flex-shrink: 0; }
+    .preview-label { text-align: center; margin-top: 0.8rem; font-weight: 600; color: var(--text2); font-size: 0.9rem; }
 
-    .cv-preview:hover, .tableau-preview:hover {
-      transform: scale(1.02);
-      box-shadow: 0 30px 70px rgba(0,0,0,0.9);
-      border-color: var(--accent-hover);
-    }
-
-    .cv-preview iframe, .tableau-preview iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      flex: 1;
-    }
-
-    .tableau-preview .tableau-content {
-      flex: 1;
-      padding: 0 !important;
-      display: block;
-    }
-
-    .tableau-header {
-      background: var(--gradient);
-      color: white;
-      padding: 1rem;
-      text-align: center;
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-
-    .preview-label {
-      text-align: center;
-      margin-top: 1rem;
-      font-weight: 600;
-      color: var(--accent-hover);
-    }
-
-    @media (max-width: 1200px) {
-      .cv-tableau-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      
-      .cv-preview, .tableau-preview {
-        height: 700px;
-      }
-    }
-
-    /* FORMULAIRE CONTACT */
+    /* ── CONTACT ── */
     .contact-form {
-      max-width: 600px;
-      margin: 0 auto;
-      background: var(--card);
-      padding: 3rem;
-      border-radius: 20px;
-      border: 1px solid var(--border);
+      max-width: 580px; margin: 0 auto; background: var(--card);
+      padding: 2.5rem; border-radius: 16px; border: 1px solid var(--border);
     }
-    .form-group {
-      margin-bottom: 1.5rem;
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 0.9rem 1rem; background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: 0.95rem; font-family: 'Sora', sans-serif;
+      transition: border-color 0.3s;
     }
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 1rem;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text);
-      font-size: 1rem;
-    }
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--accent-hover);
-    }
-    .form-success {
-      text-align: center;
-      color: #4CAF50;
-      padding: 1rem;
-      display: none;
-    }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-hover); }
+    .form-success { text-align: center; color: #4CAF50; padding: 1rem; display: none; }
 
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.7);
-      z-index: 10000;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(8px);
-    }
+    /* ── MODAL ── */
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 10000; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+    .modal-content { background: var(--card); border-radius: 16px; padding: 2.5rem; max-width: 600px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.8); position: relative; border: 1px solid var(--border); }
+    .close-modal { position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; cursor: pointer; color: var(--text2); transition: all 0.3s; }
+    .close-modal:hover { color: var(--accent-hover); transform: rotate(90deg); }
 
-    .modal-content {
-      background: var(--card);
-      border-radius: 20px;
-      padding: 2.5rem;
-      max-width: 600px;
-      width: 90%;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-      animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      border: 1px solid var(--border);
-    }
+    /* ── CERTIF ── */
+    .certif-container { margin: 2rem auto; padding: 1.5rem; background: var(--card); border-radius: 16px; border: 1px solid var(--border); max-width: 800px; }
+    .certif-container:hover { border-color: var(--accent); }
+    .certif-item { text-align: center; transition: all 0.3s; }
+    .certif-item:hover { transform: scale(1.05); }
+    .certif-logo { width: 56px; height: 56px; object-fit: contain; margin-bottom: 0.5rem; border-radius: 8px; }
 
-    @keyframes modalPop {
-      0% { opacity: 0; transform: scale(0.5) rotate(-5deg); }
-      70% { transform: scale(1.05) rotate(2deg); }
-      100% { opacity: 1; transform: scale(1) rotate(0); }
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 1rem;
-      right: 1.5rem;
-      font-size: 2.5rem;
-      cursor: pointer;
-      color: var(--text2);
-      transition: all 0.4s;
-    }
-
-    .close-modal:hover {
-      color: var(--accent-hover);
-      transform: rotate(90deg) scale(1.2);
-    }
-
-    .certif-container {
-      margin: 2rem auto;
-      padding: 1.5rem;
-      background: var(--card);
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      max-width: 800px;
-      transition: all 0.3s;
-      animation: borderPulse 3s infinite;
-    }
-
-    .certif-container:hover {
-      transform: scale(1.02);
-      box-shadow: var(--glow);
-    }
-
-    .certif-item {
-      text-align: center;
-      transition: all 0.3s;
-      animation: float 4s infinite;
-    }
-
-    .certif-item:nth-child(1) { animation-delay: 0s; }
-    .certif-item:nth-child(2) { animation-delay: 0.5s; }
-    .certif-item:nth-child(3) { animation-delay: 1s; }
-
-    .certif-item:hover {
-      transform: scale(1.1);
-      color: var(--accent-hover);
-    }
-
+    /* ── PROJECT BADGE ── */
     .project-badge {
-      background: var(--gradient);
-      color: white;
-      padding: 0.3rem 1rem;
-      border-radius: 30px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      display: inline-block;
-      margin: 1rem 0;
-      animation: pulse 2s infinite;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--tech-bg); border: 1px solid var(--border);
+      color: var(--text2); padding: 0.3rem 0.9rem; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 600; margin: 0.8rem 0;
+      font-family: 'Space Mono', monospace;
     }
 
-    .rss-container {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2rem;
-      margin: 3rem 0;
+    /* ── RSS ── */
+    .rss-container { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; margin: 2rem 0; }
+    .rss-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .rss-header i { color: var(--rss-color); font-size: 1.8rem; }
+    .rss-header h3 { margin: 0; color: var(--rss-color); font-size: 1.4rem; }
+    .rss-feed { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.2rem; }
+    .rss-item { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: all 0.3s; position: relative; overflow: hidden; text-align: left; }
+    .rss-item:hover { border-color: var(--rss-color); transform: translateY(-4px); }
+    .rss-item::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--rss-color); transform: scaleY(0); transition: transform 0.3s; }
+    .rss-item:hover::before { transform: scaleY(1); }
+    .rss-item h4 a { color: var(--text); text-decoration: none; font-size: 1rem; }
+    .rss-item h4 a:hover { color: var(--rss-color); }
+    .rss-meta { display: flex; gap: 1rem; font-size: 0.85rem; color: var(--text2); margin: 0.5rem 0; }
+    .rss-category { display: inline-block; background: rgba(255,140,66,0.15); color: var(--rss-color); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
+    .rss-description { color: var(--text2); font-size: 0.88rem; margin-top: 0.6rem; }
+    .rss-refresh-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--rss-color); color: white; border: none; border-radius: 8px; padding: 0.7rem 1.8rem; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s; margin-top: 1.2rem; }
+    .rss-refresh-btn:hover { background: #e67e22; transform: translateY(-2px); }
+    .rss-refresh-btn i { transition: transform 0.5s; }
+    .rss-refresh-btn:hover i { transform: rotate(180deg); }
+
+    /* ── SWOT ── */
+    .swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.2rem 0; }
+    .swot-item { padding: 1.1rem; border-radius: 10px; background: var(--bg2); border-left: 4px solid; }
+    .swot-item h5 { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; font-size: 1rem; }
+    .swot-item ul { margin-left: 1rem; color: var(--text2); font-size: 0.88rem; }
+    .swot-item li { margin: 0.4rem 0; }
+    .swot-force { border-left-color: var(--swot-force); } .swot-force h5 { color: var(--swot-force); }
+    .swot-faiblesse { border-left-color: var(--swot-faiblesse); } .swot-faiblesse h5 { color: var(--swot-faiblesse); }
+    .swot-opportunite { border-left-color: var(--swot-opportunite); } .swot-opportunite h5 { color: var(--swot-opportunite); }
+    .swot-menace { border-left-color: var(--swot-menace); } .swot-menace h5 { color: var(--swot-menace); }
+
+    /* ── DETAILS ── */
+    details { margin: 1rem 0; background: var(--tech-bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    summary { font-weight: 600; color: var(--accent-hover); cursor: pointer; padding: 1rem; display: flex; align-items: center; gap: 0.5rem; list-style: none; font-size: 0.95rem; }
+    summary::-webkit-details-marker { display: none; }
+    summary i { transition: transform 0.3s ease; }
+    details[open] summary i { transform: rotate(180deg); }
+    .details-content { padding: 1rem 1.5rem 1.5rem; border-top: 1px solid var(--border); }
+
+    /* ── SKILLS TAG ── */
+    .tag {
+      background: var(--tech-bg); border: 1px solid var(--border); color: var(--accent-hover);
+      padding: 0.25rem 0.9rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 0.3rem; font-family: 'Space Mono', monospace;
     }
 
-    .rss-container:hover {
-      border-color: var(--rss-color);
+    /* ── VEILLE SOURCES ── */
+    .veille-sources { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin: 2rem 0; }
+    .veille-source {
+      display: flex; align-items: center; gap: 0.7rem;
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 0.8rem 1.4rem; transition: all 0.3s; text-decoration: none; color: var(--text);
     }
+    .veille-source:hover { border-color: var(--accent-hover); transform: translateY(-3px); }
+    .veille-source img { width: 28px; height: 28px; object-fit: contain; border-radius: 4px; }
+    .veille-source span { font-weight: 600; font-size: 0.95rem; }
 
-    .rss-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid var(--border);
+    /* ── À PROPOS HERO IMAGE ── */
+    .apropos-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; max-width: 1200px; margin: 0 auto; }
+    .apropos-photo-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+      padding: 2rem; text-align: center; position: sticky; top: 100px;
     }
-
-    .rss-header i {
-      color: var(--rss-color);
-      font-size: 2.2rem;
+    .apropos-photo {
+      width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
+      border: 3px solid var(--accent); margin: 0 auto 1.5rem; display: block;
+      box-shadow: 0 0 30px rgba(160,160,160,0.2);
     }
+    .apropos-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.3rem; font-family: 'Space Mono', monospace; }
+    .apropos-title { color: var(--text2); font-size: 0.9rem; margin-bottom: 1.2rem; }
+    .apropos-socials { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 1.5rem; }
+    .apropos-social { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text2); text-decoration: none; transition: all 0.3s; }
+    .apropos-social:hover { border-color: var(--accent-hover); color: var(--accent-hover); }
+    .apropos-info { font-size: 0.85rem; color: var(--text2); }
+    .apropos-info p { margin: 0.4rem 0; display: flex; align-items: center; gap: 0.5rem; justify-content: center; }
+    .apropos-text { font-size: 1.05rem; color: var(--text2); }
+    .apropos-text p { margin-bottom: 1.2rem; }
 
-    .rss-header h3 {
-      margin: 0;
-      color: var(--rss-color);
-      font-size: 1.8rem;
-    }
-
-    .rss-feed {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .rss-item {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      text-align: left;
-    }
-
-    .rss-item:hover {
-      transform: translateY(-5px);
-      border-color: var(--rss-color);
-    }
-
-    .rss-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--rss-color);
-      transform: scaleY(0);
-      transition: transform 0.4s ease;
-    }
-
-    .rss-item:hover::before {
-      transform: scaleY(1);
-    }
-
-    .rss-item h4 {
-      color: var(--text);
-      font-size: 1.1rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .rss-item h4 a {
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .rss-item h4 a:hover {
-      color: var(--rss-color);
-    }
-
-    .rss-meta {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.9rem;
-      color: var(--text2);
-      margin-bottom: 0.5rem;
-    }
-
-    .rss-category {
-      display: inline-block;
-      background: rgba(255,140,66,0.2);
-      color: var(--rss-color);
-      padding: 0.2rem 1rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin: 0.5rem 0;
-    }
-
-    .rss-description {
-      color: var(--text2);
-      font-size: 0.9rem;
-      margin-top: 0.8rem;
-    }
-
-    .rss-refresh-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--rss-color);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      padding: 0.8rem 2rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 1.5rem;
-    }
-
-    .rss-refresh-btn:hover {
-      background: #e67e22;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(255,140,66,0.3);
-    }
-
-    .rss-refresh-btn i {
-      transition: transform 0.5s ease;
-    }
-
-    .rss-refresh-btn:hover i {
-      transform: rotate(180deg);
-    }
-
+    /* ── FOOTER ── */
     footer {
-      background: #0a0a0a;
-      text-align: center;
-      padding: 6rem 2rem;
-      color: var(--text2);
-      border-top: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
+      background: #080808; text-align: center; padding: 5rem 2rem;
+      color: var(--text2); border-top: 1px solid var(--border);
     }
+    .footer-logo { font-family: 'Space Mono', monospace; font-size: 1.5rem; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin: 1.5rem 0; flex-wrap: wrap; }
+    .footer-links a { color: var(--text2); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--accent-hover); }
+    .footer-bottom { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
 
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gradient);
-      animation: borderPulse 2s infinite;
-    }
+    /* ── ANIMATIONS ── */
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(160,160,160,0.3)} 50%{box-shadow:0 0 0 8px rgba(160,160,160,0)} }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
 
-    footer::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gradient);
-      animation: borderPulse 2s infinite reverse;
-    }
-
-    footer p {
-      transition: all 0.3s;
-      animation: float 5s infinite;
-    }
-
-    footer p:hover {
-      color: var(--accent-hover);
-      transform: scale(1.05);
-    }
-
+    /* ── RESPONSIVE ── */
     @media (max-width: 992px) {
-      .nav-links {
-        position: absolute;
-        top: 100%; left: 0; right: 0;
-        background: var(--bg2);
-        flex-direction: column;
-        padding: 2.5rem 1.5rem;
-        gap: 1.8rem;
-        transform: translateY(-20px);
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.4s ease;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .nav-links.active {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
-      }
-
+      .nav-links { position: absolute; top: 100%; left: 0; right: 0; background: var(--bg2); flex-direction: column; padding: 2rem 1.5rem; gap: 1.5rem; transform: translateY(-10px); opacity: 0; pointer-events: none; transition: all 0.3s ease; border-bottom: 1px solid var(--border); }
+      .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
       .burger { display: block; }
-
-      section { padding: 7rem 1.5rem 5rem; }
-
+      section { padding: 6rem 1.5rem 4rem; }
       .grid, .entreprises-grid { grid-template-columns: 1fr; }
-      
-      .tech-item:hover {
-        transform: translateX(10px);
-      }
-      
-      .project-img {
-        width: 60px;
-        height: 60px;
-      }
-      .project-images .project-img {
-        width: 80px;
-        height: 80px;
-      }
+      .apropos-layout { grid-template-columns: 1fr; }
+      .apropos-photo-card { position: static; }
+      .cv-tableau-container { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
     }
-
     @media (max-width: 600px) {
       body { zoom: 1; }
-      .hero h1 { font-size: clamp(3.2rem, 11vw, 5.5rem); }
-      .typing-container { font-size: 1.7rem; }
-      .btn { width: 100%; justify-content: center; margin: 0.8rem 0; padding: 1.3rem; font-size: 1.1rem; }
-      .profile-photo { width: 52px; height: 52px; }
-      .logo { font-size: 1.5rem; }
-      .org-level { flex-direction: column; align-items: center; }
-      .project-img {
-        width: 50px;
-        height: 50px;
-      }
-      .project-images {
-        gap: 1rem;
-        padding: 1rem;
-      }
-      .project-images .project-img {
-        width: 60px;
-        height: 60px;
-      }
-      .cv-preview, .tableau-preview {
-        height: 500px;
-      }
+      .hero h1 { font-size: clamp(2.5rem, 11vw, 4rem); }
+      .typing-container { font-size: 1.4rem; }
+      .btn { width: 100%; justify-content: center; margin: 0.5rem 0; }
+      .swot-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1rem; }
+      .hero-stat .num { font-size: 1.5rem; }
     }
 
-    details {
-      margin: 1rem 0;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    
-    summary {
-      font-weight: 600;
-      color: var(--accent-hover);
-      cursor: pointer;
-      padding: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      list-style: none;
-    }
-    
-    summary::-webkit-details-marker {
-      display: none;
-    }
-    
-    summary i {
-      transition: transform 0.3s ease;
-    }
-    
-    details[open] summary i {
-      transform: rotate(180deg);
-    }
-    
-    .details-content {
-      padding: 1rem 1.5rem 1.5rem;
-      border-top: 1px solid var(--border);
-    }
+    /* ── SKILL PROGRESS RING (about card) ── */
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; justify-content: center; }
 
-    .swot-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-    
-    .swot-item {
-      padding: 1.2rem;
-      border-radius: 12px;
-      background: var(--bg2);
-      border-left: 4px solid;
-    }
-    
-    .swot-item h5 {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.8rem;
-      font-size: 1.1rem;
-    }
-    
-    .swot-item ul {
-      margin-left: 1.2rem;
-      color: var(--text2);
-    }
-    
-    .swot-item li {
-      margin: 0.5rem 0;
-    }
-    
-    .swot-force {
-      border-left-color: var(--swot-force);
-    }
-    .swot-force h5 { color: var(--swot-force); }
-    
-    .swot-faiblesse {
-      border-left-color: var(--swot-faiblesse);
-    }
-    .swot-faiblesse h5 { color: var(--swot-faiblesse); }
-    
-    .swot-opportunite {
-      border-left-color: var(--swot-opportunite);
-    }
-    .swot-opportunite h5 { color: var(--swot-opportunite); }
-    
-    .swot-menace {
-      border-left-color: var(--swot-menace);
-    }
-    .swot-menace h5 { color: var(--swot-menace); }
+    /* ── TECH CATEGORY HEADER ── */
+    .tech-category-section { margin: 2rem 0 0.5rem; }
+    .tech-category-header { font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text2); padding: 0 0.5rem; display: flex; align-items: center; gap: 1rem; }
+    .tech-category-header::after { content: ''; flex: 1; height: 1px; background: var(--border); }
   </style>
 </head>
 <body>
 
 <!-- BANDEAU RGPD -->
 <div id="rgpd-banner">
-  <p>🍪 Ce site utilise des cookies pour améliorer votre expérience. En poursuivant, vous acceptez notre <a href="#">politique de confidentialité</a>.</p>
+  <p>🍪 Ce site utilise des cookies pour améliorer votre expérience. En poursuivant, vous acceptez notre <a href="#" style="color:var(--accent-hover)">politique de confidentialité</a>.</p>
   <button id="accept-rgpd">Accepter</button>
 </div>
 
 <!-- BOUTON RETOUR EN HAUT -->
 <button id="back-to-top" aria-label="Retour en haut"><i class="fas fa-arrow-up"></i></button>
 
+<!-- ── NAV ── -->
 <nav id="nav">
   <div class="nav-container">
     <div class="logo-container">
-      <img src="profile.PNG" alt="Bibros Ben Sassi" class="profile-photo" onerror="this.src='https://ui-avatars.com/api/?name=BBS&size=64&background=7a7a7a&color=fff'">
+      <img src="profile.PNG" alt="Bibros Ben Sassi" class="profile-photo" loading="lazy"
+           onerror="this.src='https://ui-avatars.com/api/?name=BBS&size=64&background=555&color=fff'">
       <div class="logo">Bibros Ben Sassi</div>
     </div>
-    <div style="display:flex; align-items:center; gap:2rem;">
+    <div style="display:flex;align-items:center;gap:1.5rem">
       <ul class="nav-links">
         <li><a href="#accueil" class="active">Accueil</a></li>
         <li><a href="#apropos">À propos</a></li>
@@ -1364,299 +545,238 @@
         <li><a href="#projets">Projets</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="theme-toggle" id="themeToggle" title="Changer de thème" aria-label="Changer de thème">
-        <i class="fas fa-sun"></i>
-      </button>
-      <div class="burger" aria-label="Menu"><i class="fas fa-bars"></i></div>
+      <button class="theme-toggle" id="themeToggle" title="Changer de thème"><i class="fas fa-sun"></i></button>
+      <div class="burger"><i class="fas fa-bars"></i></div>
     </div>
   </div>
 </nav>
 
+<!-- ── HEADER ── -->
 <header id="accueil">
   <canvas id="particles"></canvas>
   <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> Disponible • Alternance / CDI sept. 2026</div>
     <h1>Bibros Ben Sassi</h1>
     <div class="typing-container">
-      <span class="typing" id="typing-text"></span>
+      <span id="typing-text"></span>
       <span class="cursor"></span>
     </div>
-    <div style="margin-top: 3.5rem;">
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">2</div><div class="lbl">Stages</div></div>
+      <div class="hero-stat"><div class="num">13+</div><div class="lbl">Projets</div></div>
+      <div class="hero-stat"><div class="num">3</div><div class="lbl">Certifs</div></div>
+      <div class="hero-stat"><div class="num">BTS</div><div class="lbl">SIO SISR</div></div>
+    </div>
+    <div>
       <a href="#competences" class="btn"><i class="fas fa-cogs"></i> Mes compétences</a>
       <a href="#cv" class="btn btn-outline"><i class="fas fa-file-alt"></i> Voir mon CV</a>
     </div>
   </div>
 </header>
 
+<!-- ── À PROPOS ── -->
 <section id="apropos">
+  <span class="section-chip">// qui suis-je</span>
   <h2>À propos de moi</h2>
-  <div style="max-width:1200px; margin:0 auto; font-size:1.15rem; color:var(--text2); text-align:center;">
-    <p>Je suis étudiant en <strong>BTS Services Informatiques aux Organisations (SIO)</strong> – option <strong>SISR</strong> (Solutions d'Infrastructure, Systèmes et Réseaux), promotion 2024-2026.</p>
-    <p>Ce BTS professionnalisant forme des techniciens supérieurs capables de gérer l'ensemble du cycle de vie des infrastructures informatiques : analyse des besoins, conception, déploiement, administration, sécurisation, supervision et maintien en conditions opérationnelles.</p>
-    <p>L'option SISR est particulièrement orientée vers les infrastructures critiques : administration avancée de systèmes (Windows Server, Linux), réseaux (routage, VLAN, firewall), virtualisation, conteneurisation (Docker), supervision (Zabbix), messagerie d'entreprise (Postfix), gestion de parc et incidents (GLPI), cybersécurité opérationnelle (hardening, détection intrusions).</p>
-    
-    <div class="certif-container">
-      <h3 style="color: var(--accent-hover); margin-bottom: 1rem;">🎓 Certifications en cours</h3>
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem;">
-        <div class="certif-item">
-          <div style="font-size: 2rem; margin-bottom: 0.5rem;">📊</div>
-          <strong>PIX</strong>
-          <p style="font-size: 0.9rem;">Certification numérique</p>
-        </div>
-        <div class="certif-item">
-          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔒</div>
-          <strong>ANSSI</strong>
-          <p style="font-size: 0.9rem;">MOOC Cybersécurité</p>
-        </div>
-        <div class="certif-item">
-          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌐</div>
-          <strong>Cisco CCNA</strong>
-          <p style="font-size: 0.9rem;">Introduction to Networks</p>
-        </div>
+  <div class="apropos-layout">
+    <!-- PHOTO CARD -->
+    <div class="apropos-photo-card">
+      <img src="profile.PNG" alt="Bibros Ben Sassi" class="apropos-photo"
+           onerror="this.src='https://ui-avatars.com/api/?name=BBS&size=180&background=555&color=fff'">
+      <div class="apropos-name">Bibros Ben Sassi</div>
+      <div class="apropos-title">BTS SIO SISR • Promo 2024-2026</div>
+      <div class="apropos-socials">
+        <a href="#" class="apropos-social"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="apropos-social"><i class="fab fa-github"></i></a>
+        <a href="mailto:contact@example.com" class="apropos-social"><i class="fas fa-envelope"></i></a>
       </div>
-      <p style="margin-top: 1rem; color: var(--text2);">En cours d'obtention - 2026</p>
+      <div class="apropos-info">
+        <p><i class="fas fa-map-marker-alt"></i> Île-de-France</p>
+        <p><i class="fas fa-graduation-cap"></i> Disponible sept. 2026</p>
+        <p><i class="fas fa-clock"></i> Veille : 5-7h/semaine</p>
+      </div>
+      <div class="skill-tags" style="margin-top:1.5rem">
+        <span class="tag">Docker</span>
+        <span class="tag">Linux</span>
+        <span class="tag">Réseaux</span>
+        <span class="tag">SISR</span>
+        <span class="tag">DevOps</span>
+      </div>
+      <a href="CV-Bibros-B.pdf" class="btn" style="width:100%;justify-content:center;margin-top:1.5rem;font-size:0.9rem">
+        <i class="fas fa-download"></i> Télécharger CV
+      </a>
     </div>
+    <!-- TEXT CONTENT -->
+    <div class="apropos-text">
+      <p>Je suis étudiant en <strong>BTS Services Informatiques aux Organisations (SIO)</strong> – option <strong>SISR</strong> (Solutions d'Infrastructure, Systèmes et Réseaux), promotion 2024-2026.</p>
+      <p>Ce BTS professionnalisant forme des techniciens supérieurs capables de gérer l'ensemble du cycle de vie des infrastructures informatiques : analyse des besoins, conception, déploiement, administration, sécurisation, supervision et maintien en conditions opérationnelles.</p>
+      <p>L'option SISR est particulièrement orientée vers les infrastructures critiques : administration avancée de systèmes (Windows Server, Linux), réseaux (routage, VLAN, firewall), virtualisation, conteneurisation (Docker), supervision (Zabbix), messagerie d'entreprise (Postfix), gestion de parc et incidents (GLPI), cybersécurité opérationnelle.</p>
+      
+      <div class="certif-container">
+        <h3 style="color:var(--accent-hover);margin-bottom:1rem;font-size:1.1rem">🎓 Certifications en cours</h3>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem">
+          <div class="certif-item">
+            <img src="https://upload.wikimedia.org/wikipedia/fr/0/01/Pix_logo_2021.svg" alt="PIX" class="certif-logo" onerror="this.outerHTML='<div style=\'font-size:2rem;margin-bottom:0.5rem\'>📊</div>'">
+            <strong>PIX</strong>
+            <p style="font-size:0.85rem;color:var(--text2)">Certification numérique</p>
+          </div>
+          <div class="certif-item">
+            <img src="https://www.ssi.gouv.fr/uploads/2014/08/logo-anssi-fr.svg" alt="ANSSI" class="certif-logo" style="background:#fff;padding:4px;border-radius:6px" onerror="this.outerHTML='<div style=\'font-size:2rem;margin-bottom:0.5rem\'>🔒</div>'">
+            <strong>ANSSI</strong>
+            <p style="font-size:0.85rem;color:var(--text2)">MOOC Cybersécurité</p>
+          </div>
+          <div class="certif-item">
+            <img src="https://cdn.simpleicons.org/cisco/1BA0D7" alt="Cisco CCNA" class="certif-logo" onerror="this.outerHTML='<div style=\'font-size:2rem;margin-bottom:0.5rem\'>🌐</div>'">
+            <strong>Cisco CCNA</strong>
+            <p style="font-size:0.85rem;color:var(--text2)">Introduction to Networks</p>
+          </div>
+        </div>
+        <p style="margin-top:1rem;color:var(--text2);font-size:0.9rem">En cours d'obtention - 2026</p>
+      </div>
 
-    <p>Mon objectif professionnel : intégrer une équipe infrastructure/sécurité en alternance ou CDI à partir de septembre 2026, pour contribuer à des projets concrets (migration cloud, durcissement systèmes, automatisation, monitoring avancé) tout en poursuivant ma montée en compétences.</p>
+      <p>Mon objectif professionnel : intégrer une équipe infrastructure/sécurité en alternance ou CDI à partir de septembre 2026, pour contribuer à des projets concrets (migration cloud, durcissement systèmes, automatisation, monitoring avancé).</p>
+    </div>
   </div>
 </section>
 
-<section id="entreprises">
+<!-- ── ENTREPRISES ── -->
+<section id="entreprises" style="background:var(--bg2)">
+  <span class="section-chip">// expériences</span>
   <h2>Expériences en entreprise</h2>
   <div class="entreprises-grid">
     <!-- OXYLEASE -->
     <div class="card">
-      <h3><i class="fas fa-building"></i> OXYLEASE</h3>
-      <p><strong>Forme juridique :</strong> SAS</p>
-      <p><strong>SIREN :</strong> 914 886 361</p>
-      <p style="color:var(--accent-hover); margin:0.5rem 0;"><i class="fas fa-map-pin"></i> 99 Avenue Achille Peretti, 92200 Neuilly-sur-Seine</p>
-      <p><strong>Activité principale :</strong> Transports de voyageurs par taxis (NAF 49.32Z / 49.33G)</p>
-      <p><strong>Date de création :</strong> 10/06/2022</p>
-      <p><strong>Catégorie :</strong> PME (2023)</p>
-      <p><strong>Stage BTS SIO SISR</strong> • 2024-2025 (8 semaines)</p>
-      <p><strong><i class="fas fa-users"></i> Service :</strong> Direction des Systèmes d'Information (DSI)</p>
-      <p><strong><i class="fas fa-user-tie"></i> Position :</strong> Stagiaire infrastructure réseau</p>
-      
-      <div style="margin: 1.5rem 0;">
-        <p><strong><i class="fas fa-sitemap"></i> Organigramme DSI OXYLEASE</strong></p>
-        <div class="org-chart">
-          <div class="org-level">
-            <span class="org-item">Directeur SI</span>
-          </div>
-          <div class="org-connector">↓</div>
-          <div class="org-level">
-            <span class="org-item">Resp. Infrastructure</span>
-            <span class="org-item">Resp. Applications</span>
-          </div>
-          <div class="org-connector">↓</div>
-          <div class="org-level">
-            <span class="org-item">Admin réseau</span>
-            <span class="org-item highlight">Stagiaire (Moi)</span>
-            <span class="org-item">Support N2</span>
-          </div>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
+        <div style="width:56px;height:56px;background:var(--tech-bg);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem">🏢</div>
+        <div>
+          <h3 style="margin-bottom:0.2rem"><i class="fas fa-building"></i> OXYLEASE</h3>
+          <span class="tag">Stage 2024-2025 • 8 semaines</span>
         </div>
       </div>
+      <p><strong>Forme juridique :</strong> SAS &nbsp;•&nbsp; <strong>SIREN :</strong> 914 886 361</p>
+      <p style="color:var(--accent-hover);margin:0.5rem 0"><i class="fas fa-map-pin"></i> 99 Av. Achille Peretti, 92200 Neuilly-sur-Seine</p>
+      <p><strong>Activité :</strong> Transports de voyageurs par taxis (NAF 49.32Z)</p>
+      <p><strong>Service :</strong> Direction des Systèmes d'Information (DSI)</p>
+      <p><strong>Position :</strong> Stagiaire infrastructure réseau</p>
+
+      <!-- Tech logos -->
+      <div class="project-images" style="margin:1.2rem 0">
+        <img src="https://avatars.githubusercontent.com/u/69568?s=200&v=4" class="project-img" alt="pfSense" title="pfSense">
+        <img src="https://cdn.simpleicons.org/nextcloud/0082C9" class="project-img" alt="Nextcloud" title="Nextcloud">
+        <img src="https://cdn.simpleicons.org/linux/FCC624" class="project-img" alt="Linux" title="Linux">
+        <img src="https://cdn.simpleicons.org/mariadb/C0765A" class="project-img" alt="MariaDB" title="MariaDB">
+        <img src="https://cdn.simpleicons.org/nginx/009639" class="project-img" alt="Nginx" title="Nginx">
+      </div>
       
-      <div style="margin:1.5rem 0; padding:1rem; background:var(--tech-bg); border-radius:12px; border-left:4px solid var(--accent);">
-        <p style="font-weight:600; margin-bottom:0.5rem;">📌 Projet principal :</p>
-        <p style="font-size:1.1rem;"><strong>Création et sécurisation d'une infrastructure réseau interne pour l'association 100 R.I.B.A.</strong></p>
+      <div style="margin:1rem 0;padding:1rem;background:var(--tech-bg);border-radius:10px;border-left:3px solid var(--accent)">
+        <p style="font-weight:600;margin-bottom:0.3rem">📌 Projet principal :</p>
+        <p style="font-size:1.05rem"><strong>Création et sécurisation d'une infrastructure réseau interne pour l'association 100 R.I.B.A.</strong></p>
+      </div>
+      
+      <div style="margin:1rem 0">
+        <p style="font-weight:600;margin-bottom:0.5rem"><i class="fas fa-sitemap"></i> Organigramme DSI</p>
+        <div class="org-chart">
+          <div class="org-level"><span class="org-item">Directeur SI</span></div>
+          <div class="org-connector">↓</div>
+          <div class="org-level"><span class="org-item">Resp. Infrastructure</span><span class="org-item">Resp. Applications</span></div>
+          <div class="org-connector">↓</div>
+          <div class="org-level"><span class="org-item">Admin réseau</span><span class="org-item highlight">Stagiaire (Moi)</span><span class="org-item">Support N2</span></div>
+        </div>
       </div>
       
       <details>
-        <summary>
-          <i class="fas fa-chevron-down"></i> Voir plus de détails
-        </summary>
+        <summary><i class="fas fa-chevron-down"></i> Voir plus de détails</summary>
         <div class="details-content">
-          <h4 style="margin:1.2rem 0 0.5rem; color:var(--accent-hover);">🎯 Objectifs du projet :</h4>
-          <ul style="color:var(--text2); font-size:0.95rem; margin-bottom:1.2rem;">
-            <li>Conception d'une architecture réseau complète pour l'association</li>
-            <li>Mise en place d'un espace collaboratif sécurisé (cloud interne)</li>
-            <li>Déploiement de services centralisés et collaboratifs</li>
+          <h4 style="margin:1rem 0 0.5rem;color:var(--accent-hover)">🎯 Objectifs :</h4>
+          <ul style="color:var(--text2);font-size:0.9rem;margin-left:1rem">
+            <li>Conception d'une architecture réseau complète</li>
+            <li>Mise en place d'un espace collaboratif sécurisé</li>
+            <li>Déploiement de services centralisés</li>
           </ul>
-          
-          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🛠️ Mes missions principales :</h4>
-          <ul style="color:var(--text2); font-size:0.95rem;">
-            <li><strong>Gestion et résolution d'incidents</strong> sur les systèmes de ticketing et tracking en temps réel</li>
-            <li><strong>Maintenance du parc informatique</strong> (mises à jour Windows)</li>
-            <li><strong>Participation à la sécurisation</strong> des connexions mobiles et des données de localisation</li>
-            <li><strong>Documentation des procédures techniques</strong> et formation utilisateurs</li>
-            <li><strong>Architecture réseau</strong> : Conception et déploiement d'une infrastructure réseau interne avec VLANs et segmentation</li>
-            <li><strong>Cloud collaboratif</strong> : Installation et configuration de Nextcloud pour le partage de fichiers sécurisé</li>
-            <li><strong>Sécurisation</strong> : Mise en place de règles firewall (pfSense), durcissement des accès et chiffrement</li>
-            <li><strong>Services centralisés</strong> : Déploiement de services collaboratifs (agenda partagé, gestion de documents)</li>
-            <li><strong>Base de données</strong> : Configuration MariaDB pour Nextcloud avec sauvegardes automatisées</li>
-            <li><strong>Serveur web</strong> : Configuration Apache/Nginx pour l'hébergement de Nextcloud</li>
+          <h4 style="margin:1rem 0 0.5rem;color:var(--accent-hover)">🛠️ Missions principales :</h4>
+          <ul style="color:var(--text2);font-size:0.9rem;margin-left:1rem">
+            <li>Gestion et résolution d'incidents (ticketing)</li>
+            <li>Maintenance du parc informatique</li>
+            <li>Architecture réseau avec VLANs et segmentation</li>
+            <li>Installation et config Nextcloud</li>
+            <li>Règles firewall pfSense, durcissement des accès</li>
+            <li>Configuration MariaDB avec sauvegardes automatisées</li>
           </ul>
-          
-          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🔧 Stack technique détaillée :</h4>
-          <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin:1rem 0;">
-            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">pfSense</span>
-            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Nextcloud</span>
-            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">VLAN</span>
-            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Firewall</span>
-            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Linux</span>
-            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Apache</span>
-            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Nginx</span>
-            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">MariaDB</span>
-            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">PHP</span>
-            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">SSL/TLS</span>
-            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Windows</span>
-            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Ticketing</span>
-            <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.3rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:600;">Tracking</span>
-          </div>
-
-          <h4 style="margin:1.5rem 0 1rem; color:var(--accent-hover);">📊 Analyse SWOT de l'entreprise</h4>
+          <h4 style="margin:1.2rem 0 0.8rem;color:var(--accent-hover)">📊 Analyse SWOT</h4>
           <div class="swot-grid">
-            <div class="swot-item swot-force">
-              <h5><i class="fas fa-plus-circle"></i> Forces</h5>
-              <ul>
-                <li>Jeune entreprise dynamique (créée en 2022)</li>
-                <li>Spécialisation dans un secteur de niche (transports taxis)</li>
-                <li>Structure PME agile, décisions rapides</li>
-                <li>Équipe DSI motivée et accessible</li>
-              </ul>
-            </div>
-            <div class="swot-item swot-faiblesse">
-              <h5><i class="fas fa-minus-circle"></i> Faiblesses</h5>
-              <ul>
-                <li>Taille réduite de l'équipe IT (moins de 5 personnes)</li>
-                <li>Processus de sécurité encore en développement</li>
-                <li>Documentation technique partielle</li>
-                <li>Budget limité pour les équipements</li>
-              </ul>
-            </div>
-            <div class="swot-item swot-opportunite">
-              <h5><i class="fas fa-arrow-up"></i> Opportunités</h5>
-              <ul>
-                <li>Croissance du secteur des VTC et taxis</li>
-                <li>Digitalisation croissante des transports</li>
-                <li>Développement de solutions de mobilité connectée</li>
-                <li>Partenariats avec des startups technologiques</li>
-              </ul>
-            </div>
-            <div class="swot-item swot-menace">
-              <h5><i class="fas fa-exclamation-triangle"></i> Menaces</h5>
-              <ul>
-                <li>Concurrence intense dans le secteur des transports</li>
-                <li>Évolution rapide des réglementations</li>
-                <li>Risques de cybersécurité accrus</li>
-                <li>Dépendance vis-à-vis des applications mobiles</li>
-              </ul>
-            </div>
+            <div class="swot-item swot-force"><h5><i class="fas fa-plus-circle"></i> Forces</h5><ul><li>Entreprise dynamique (2022)</li><li>PME agile</li><li>DSI accessible</li></ul></div>
+            <div class="swot-item swot-faiblesse"><h5><i class="fas fa-minus-circle"></i> Faiblesses</h5><ul><li>Équipe IT réduite</li><li>Budget limité</li><li>Documentation partielle</li></ul></div>
+            <div class="swot-item swot-opportunite"><h5><i class="fas fa-arrow-up"></i> Opportunités</h5><ul><li>Croissance VTC</li><li>Mobilité connectée</li><li>Digitalisation</li></ul></div>
+            <div class="swot-item swot-menace"><h5><i class="fas fa-exclamation-triangle"></i> Menaces</h5><ul><li>Concurrence intense</li><li>Cyber-risques</li><li>Réglementation</li></ul></div>
           </div>
-          
-          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">📊 Résultats obtenus :</h4>
-          <ul style="color:var(--text2); font-size:0.95rem;">
+          <h4 style="margin:1rem 0 0.5rem;color:var(--accent-hover)">✅ Résultats :</h4>
+          <ul style="color:var(--text2);font-size:0.9rem;margin-left:1rem">
             <li>Infrastructure sécurisée et segmentée (VLANs)</li>
-            <li>Cloud Nextcloud accessible en interne avec authentification</li>
-            <li>Sauvegardes automatiques chiffrées</li>
-            <li>Documentation technique et guides utilisateurs</li>
-            <li>Formation des membres de l'association</li>
-            <li>Résolution efficace des incidents sur les systèmes de ticketing</li>
-            <li>Sécurisation renforcée des connexions mobiles</li>
+            <li>Nextcloud avec authentification et sauvegardes</li>
+            <li>Documentation et formation utilisateurs</li>
           </ul>
         </div>
       </details>
-      
-      <p style="margin-top:1.5rem; color:var(--text2); font-style:italic; border-top:1px solid var(--border); padding-top:1rem;">
-        <i class="fas fa-quote-left"></i> Création et sécurisation d'une infrastructure réseau interne avec espace collaboratif (Nextcloud) pour l'association 100 R.I.B.A.
-      </p>
     </div>
 
     <!-- CONNECT AGENCY -->
     <div class="card">
-      <h3><i class="fas fa-building"></i> CONNECT AGENCY</h3>
-      <p><strong>Forme juridique :</strong> SAS</p>
-      <p><strong>SIREN :</strong> 913 017 091</p>
-      <p style="color:var(--accent-hover); margin:0.5rem 0;"><i class="fas fa-map-pin"></i> 15 Boulevard Péreire, 75017 Paris</p>
-      <p><strong>Activité principale :</strong> Commerce de détail d'ordinateurs, périphériques et logiciels (NAF 47.41Z / 47.40Y)</p>
-      <p><strong>Date de création :</strong> 07/04/2022</p>
-      <p><strong>Catégorie :</strong> PME (2023)</p>
-      <p><strong>Stage BTS SIO SISR</strong> • 2025-2026 (8 semaines)</p>
-      <p><strong><i class="fas fa-users"></i> Service :</strong> Pôle Infrastructure & Développement</p>
-      <p><strong><i class="fas fa-user-tie"></i> Position :</strong> Stagiaire DevOps / Infrastructure</p>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
+        <div style="width:56px;height:56px;background:var(--tech-bg);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem">🐳</div>
+        <div>
+          <h3 style="margin-bottom:0.2rem"><i class="fas fa-building"></i> CONNECT AGENCY</h3>
+          <span class="tag">Stage 2025-2026 • 8 semaines</span>
+        </div>
+      </div>
+      <p><strong>Forme juridique :</strong> SAS &nbsp;•&nbsp; <strong>SIREN :</strong> 913 017 091</p>
+      <p style="color:var(--accent-hover);margin:0.5rem 0"><i class="fas fa-map-pin"></i> 15 Bd Péreire, 75017 Paris</p>
+      <p><strong>Activité :</strong> Commerce d'ordinateurs & périphériques (NAF 47.41Z)</p>
+      <p><strong>Service :</strong> Pôle Infrastructure & Développement</p>
+      <p><strong>Position :</strong> Stagiaire DevOps / Infrastructure</p>
+
+      <!-- Tech logos -->
+      <div class="project-images" style="margin:1.2rem 0">
+        <img src="https://cdn.simpleicons.org/docker/2496ED" class="project-img" alt="Docker" title="Docker">
+        <img src="https://cdn.simpleicons.org/alpinelinux/0D597F" class="project-img" alt="Alpine" title="Alpine Linux">
+        <img src="https://avatars.githubusercontent.com/u/14127342?s=200&v=4" class="project-img" alt="Caddy" title="Caddy">
+        <img src="https://cdn.simpleicons.org/html5/E34F26" class="project-img" alt="HTML5" title="HTML5">
+        <img src="https://cdn.simpleicons.org/php/777BB4" class="project-img" alt="PHP" title="PHP">
+      </div>
       
-      <div style="margin: 1.5rem 0;">
-        <p><strong><i class="fas fa-sitemap"></i> Organigramme Pôle Infrastructure</strong></p>
+      <div style="margin:1rem 0;padding:1rem;background:var(--tech-bg);border-radius:10px;border-left:3px solid #2496ED">
+        <span class="tag" style="margin-bottom:0.5rem;display:inline-block"><i class="fab fa-docker"></i> PROJET PRINCIPAL</span>
+        <p style="font-weight:600;margin:0.4rem 0">Infrastructure Docker avec reverse proxy Caddy</p>
+        <p style="font-size:0.9rem;color:var(--text2)">Sites web isolés avec Docker, Alpine Linux et Caddy</p>
+      </div>
+      
+      <div style="margin:1rem 0">
+        <p style="font-weight:600;margin-bottom:0.5rem"><i class="fas fa-sitemap"></i> Organigramme Pôle Infrastructure</p>
         <div class="org-chart">
-          <div class="org-level">
-            <span class="org-item">Chef de projet</span>
-          </div>
+          <div class="org-level"><span class="org-item">Chef de projet</span></div>
           <div class="org-connector">↓</div>
-          <div class="org-level">
-            <span class="org-item">Lead Dev</span>
-            <span class="org-item">Ops Manager</span>
-          </div>
+          <div class="org-level"><span class="org-item">Lead Dev</span><span class="org-item">Ops Manager</span></div>
           <div class="org-connector">↓</div>
-          <div class="org-level">
-            <span class="org-item">Développeurs</span>
-            <span class="org-item highlight">Stagiaire (Moi)</span>
-            <span class="org-item">Admin sys</span>
-          </div>
+          <div class="org-level"><span class="org-item">Développeurs</span><span class="org-item highlight">Stagiaire (Moi)</span><span class="org-item">Admin sys</span></div>
         </div>
       </div>
       
-      <div style="margin:1.5rem 0; padding:1rem; background:var(--tech-bg); border-radius:12px; border-left:4px solid var(--accent);">
-        <span class="project-badge"><i class="fab fa-docker"></i> PROJET PRINCIPAL</span>
-        <p style="font-weight:600; margin:0.5rem 0;">📌 Infrastructure Docker avec reverse proxy Caddy</p>
-        <p style="font-size:1rem;"><strong>Conception et déploiement de sites web isolés avec Docker, Alpine Linux et Caddy</strong></p>
-      </div>
-      
       <details>
-        <summary>
-          <i class="fas fa-chevron-down"></i> Voir plus de détails
-        </summary>
+        <summary><i class="fas fa-chevron-down"></i> Voir plus de détails</summary>
         <div class="details-content">
-          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🎯 Objectifs :</h4>
-          <ul style="color:var(--text2); font-size:0.95rem;">
-            <li>Créer une infrastructure modulaire pour héberger plusieurs sites web</li>
-            <li>Isoler chaque site dans son propre conteneur Docker</li>
-            <li>Mettre en place un reverse proxy Caddy pour gérer le HTTPS automatiquement</li>
-            <li>Optimiser les images avec Alpine Linux (ultra-légères ~5-15MB)</li>
+          <h4 style="margin:1rem 0 0.5rem;color:var(--accent-hover)">🎯 Objectifs :</h4>
+          <ul style="color:var(--text2);font-size:0.9rem;margin-left:1rem">
+            <li>Infrastructure modulaire pour plusieurs sites</li>
+            <li>Isoler chaque site dans son propre conteneur</li>
+            <li>Reverse proxy Caddy avec HTTPS automatique</li>
+            <li>Optimiser les images avec Alpine (~5-15MB)</li>
           </ul>
-          
-          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🏗️ Architecture mise en place :</h4>
-          <div style="display:flex; flex-direction:column; gap:0.5rem; background:var(--card); padding:1rem; border-radius:12px; margin:1rem 0;">
-            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-              <span style="background:var(--accent); color:white; padding:0.2rem 0.8rem; border-radius:20px;">Site 1</span>
-              <i class="fas fa-arrow-right"></i>
-              <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Alpine + PHP</span>
-              <i class="fas fa-arrow-right"></i>
-              <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Caddy</span>
+          <h4 style="margin:1rem 0 0.5rem;color:var(--accent-hover)">📄 Exemple de configuration :</h4>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1rem 0">
+            <div style="background:var(--tech-bg);padding:0.6rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.5rem">
+              <img src="https://cdn.simpleicons.org/docker/2496ED" style="width:18px;height:18px">
+              <span style="font-weight:600;font-size:0.9rem">docker-compose.yml</span>
             </div>
-            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-              <span style="background:var(--accent); color:white; padding:0.2rem 0.8rem; border-radius:20px;">Site 2</span>
-              <i class="fas fa-arrow-right"></i>
-              <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Alpine + PHP</span>
-              <i class="fas fa-arrow-right"></i>
-              <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Caddy</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-              <span style="background:var(--accent); color:white; padding:0.2rem 0.8rem; border-radius:20px;">Site 3</span>
-              <i class="fas fa-arrow-right"></i>
-              <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Alpine + PHP</span>
-              <i class="fas fa-arrow-right"></i>
-              <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.2rem 0.8rem; border-radius:50px; font-size:0.7rem;">Caddy</span>
-            </div>
-          </div>
-          
-          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🛠️ Réalisations techniques :</h4>
-          <ul style="color:var(--text2); font-size:0.95rem;">
-            <li><strong>Création de 3 sites web</strong> : Site vitrine (HTML/CSS/JS), Blog (PHP/MySQL), Portfolio (HTML/CSS/JS)</li>
-            <li><strong>Dockerfile Alpine</strong> : Optimisation multi-stage pour des images ~15MB</li>
-            <li><strong>Configuration Caddy</strong> : Reverse proxy avec HTTPS automatique (Let's Encrypt)</li>
-            <li><strong>docker-compose.yml</strong> : Orchestration des 3 conteneurs + Caddy</li>
-            <li><strong>Sécurisation</strong> : Utilisateur non-root, réseaux internes, volumes isolés</li>
-            <li><strong>Déploiement</strong> : Mise en production sur serveur dédié</li>
-          </ul>
-          
-          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">📄 Exemple de configuration :</h4>
-
-          <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; margin: 1rem 0; overflow: hidden;">
-            <div style="background: var(--tech-bg); padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem;">
-              <i class="fab fa-docker" style="color: var(--accent-hover);"></i>
-              <span style="font-weight: 600; color: var(--text);">docker-compose.yml</span>
-            </div>
-            <pre style="margin: 0; padding: 1.2rem; background: var(--bg); color: var(--text); font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.5; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code style="color: var(--text);">services:
+            <pre style="margin:0;padding:1rem;color:var(--text);font-family:'Space Mono',monospace;font-size:0.82rem;line-height:1.6;overflow-x:auto"><code>services:
   site1:
     build: ./site1
     networks: [webnet]
@@ -1668,518 +788,246 @@
     ports: [80:80, 443:443]
     volumes: [./Caddyfile:/etc/caddy/Caddyfile]</code></pre>
           </div>
-
-          <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; margin: 1rem 0; overflow: hidden;">
-            <div style="background: var(--tech-bg); padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem;">
-              <i class="fas fa-file-alt" style="color: var(--accent-hover);"></i>
-              <span style="font-weight: 600; color: var(--text);">Caddyfile</span>
-            </div>
-            <pre style="margin: 0; padding: 1.2rem; background: var(--bg); color: var(--text); font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.5; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code style="color: var(--text);">site1.bibros.local { reverse_proxy site1:9000 }
-site2.bibros.local { reverse_proxy site2:9000 }
-site3.bibros.local { reverse_proxy site3:9000 }</code></pre>
-          </div>
-
-          <h4 style="margin:1.5rem 0 1rem; color:var(--accent-hover);">📊 Analyse SWOT de l'entreprise</h4>
+          <h4 style="margin:1.2rem 0 0.8rem;color:var(--accent-hover)">📊 Analyse SWOT</h4>
           <div class="swot-grid">
-            <div class="swot-item swot-force">
-              <h5><i class="fas fa-plus-circle"></i> Forces</h5>
-              <ul>
-                <li>Expertise technique pointue (DevOps, Docker, Caddy)</li>
-                <li>Équipe jeune et innovante</li>
-                <li>Bonne connaissance des technologies web</li>
-                <li>Infrastructure moderne et conteneurisée</li>
-              </ul>
-            </div>
-            <div class="swot-item swot-faiblesse">
-              <h5><i class="fas fa-minus-circle"></i> Faiblesses</h5>
-              <ul>
-                <li>Taille réduite de l'équipe</li>
-                <li>Processus de déploiement encore manuels</li>
-                <li>Documentation technique à renforcer</li>
-                <li>Peu de certifications formelles</li>
-              </ul>
-            </div>
-            <div class="swot-item swot-opportunite">
-              <h5><i class="fas fa-arrow-up"></i> Opportunités</h5>
-              <ul>
-                <li>Demande croissante pour les infrastructures Docker</li>
-                <li>Adoption massive de Kubernetes</li>
-                <li>Développement du marché DevOps</li>
-                <li>Partenariats avec des éditeurs de logiciels</li>
-              </ul>
-            </div>
-            <div class="swot-item swot-menace">
-              <h5><i class="fas fa-exclamation-triangle"></i> Menaces</h5>
-              <ul>
-                <li>Concurrence sur les prix dans le commerce de détail</li>
-                <li>Évolution rapide des technologies</li>
-                <li>Pénurie de talents DevOps</li>
-                <li>Dépendance vis-à-vis des fournisseurs cloud</li>
-              </ul>
-            </div>
+            <div class="swot-item swot-force"><h5><i class="fas fa-plus-circle"></i> Forces</h5><ul><li>Expertise DevOps</li><li>Infrastructure moderne</li></ul></div>
+            <div class="swot-item swot-faiblesse"><h5><i class="fas fa-minus-circle"></i> Faiblesses</h5><ul><li>Déploiements manuels</li><li>Doc à renforcer</li></ul></div>
+            <div class="swot-item swot-opportunite"><h5><i class="fas fa-arrow-up"></i> Opportunités</h5><ul><li>Adoption Docker/K8s</li><li>Marché DevOps</li></ul></div>
+            <div class="swot-item swot-menace"><h5><i class="fas fa-exclamation-triangle"></i> Menaces</h5><ul><li>Concurrence prix</li><li>Pénurie talents</li></ul></div>
           </div>
-          
-          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">🔧 Technologies utilisées :</h4>
-          <div style="display:flex; flex-wrap:wrap; gap:0.8rem; margin:1rem 0;">
-            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-              <i class="fab fa-docker"></i> Docker
-            </span>
-            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-              <i class="fab fa-alpine"></i> Alpine
-            </span>
-            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-              <i class="fas fa-reverse"></i> Caddy
-            </span>
-            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-              <i class="fab fa-php"></i> PHP
-            </span>
-            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-              <i class="fab fa-html5"></i> HTML5
-            </span>
-            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-              <i class="fab fa-css3-alt"></i> CSS3
-            </span>
-            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-              <i class="fab fa-js"></i> JavaScript
-            </span>
-            <span style="background: var(--tech-bg); border: 1px solid var(--accent); color: var(--accent-hover); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-              <i class="fas fa-database"></i> MySQL
-            </span>
-          </div>
-          
-          <h4 style="margin:1rem 0 0.5rem; color:var(--accent-hover);">📊 Résultats obtenus :</h4>
-          <ul style="color:var(--text2); font-size:0.95rem;">
-            <li>3 sites web déployés et accessibles en HTTPS</li>
-            <li>Images Docker optimisées (15MB au lieu de 100MB+)</li>
+          <h4 style="margin:1rem 0 0.5rem;color:var(--accent-hover)">✅ Résultats :</h4>
+          <ul style="color:var(--text2);font-size:0.9rem;margin-left:1rem">
+            <li>3 sites déployés et accessibles en HTTPS</li>
+            <li>Images Docker optimisées (15MB vs 100MB+)</li>
             <li>Infrastructure reproductible avec docker-compose</li>
-            <li>Isolation totale entre les sites (sécurité renforcée)</li>
-            <li>HTTPS automatique géré par Caddy</li>
           </ul>
         </div>
       </details>
-      
-      <p style="margin-top:1.5rem; color:var(--text2); font-style:italic; border-top:1px solid var(--border); padding-top:1rem;">
-        <i class="fas fa-quote-left"></i> Conception et déploiement d'une infrastructure Docker avec Alpine et Caddy en reverse proxy pour héberger plusieurs sites web
-      </p>
     </div>
   </div>
 </section>
 
+<!-- ── CV ── -->
 <section id="cv">
+  <span class="section-chip">// documents</span>
   <h2>CV & Tableau de synthèse</h2>
-
-  <div class="download-buttons" style="display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; margin:3rem 0;">
-    <a href="CV-Bibros-B.pdf"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="btn">
-      <i class="fas fa-file-pdf"></i> Télécharger mon CV (PDF)
-    </a>
-    <a href="tableau-synthese.pdf"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="btn"
-       style="background:var(--gradient);">
-      <i class="fas fa-table"></i> Télécharger le Tableau de Synthèse E5
-    </a>
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin:2rem 0">
+    <a href="CV-Bibros-B.pdf" target="_blank" class="btn"><i class="fas fa-file-pdf"></i> Télécharger mon CV (PDF)</a>
+    <a href="tableau-synthese.pdf"_blank" class="btn btn-outline"><i class="fas fa-table"></i> Tableau de Synthèse E5</a>
   </div>
-
-  <h3 style="text-align:center; margin:2rem 0;">Aperçu des documents</h3>
-  
+  <h3 style="text-align:center;margin:2rem 0;font-size:1.2rem;color:var(--text2)">Aperçu des documents</h3>
   <div class="cv-tableau-container">
-    <!-- CV - prévisualisation avec iframe -->
     <div>
-      <div class="cv-preview">
-        <iframe 
-          src="CV-Bibros-B.pdf"
-          title="CV Bibros Ben Sassi">
-        </iframe>
-      </div>
-      <div class="preview-label">
-        <i class="fas fa-file-pdf"></i> CV - Bibros Ben Sassi
-      </div>
+      <div class="cv-preview"><iframe src="CV-Bibros-B.pdf" title="CV Bibros Ben Sassi"></iframe></div>
+      <div class="preview-label"><i class="fas fa-file-pdf" style="color:#e74c3c"></i> CV - Bibros Ben Sassi</div>
     </div>
-    
-    <!-- Tableau - avec iframe comme le CV -->
     <div>
       <div class="tableau-preview">
-        <div class="tableau-header">
-          <i class="fas fa-table"></i> Tableau de synthèse E5
-        </div>
-        <div class="tableau-content" style="padding: 0;">
-          <iframe 
-            src="tableau-synthese.pdf"
-            title="Tableau de synthèse E5"
-            style="width: 100%; height: 100%; border: none;">
-          </iframe>
-        </div>
+        <div class="tableau-header"><i class="fas fa-table"></i> Tableau de synthèse E5</div>
+        <iframe src="tableau-synthese.pdf" title="Tableau de synthèse E5"></iframe>
       </div>
-      <div class="preview-label">
-        <i class="fas fa-table"></i> Tableau de synthèse E5 (PDF)
-      </div>
+      <div class="preview-label"><i class="fas fa-table" style="color:#3498db"></i> Tableau de synthèse E5</div>
     </div>
   </div>
-
-  <p style="text-align:center; color:var(--text2); margin:2rem 0; font-size:1rem;">
-    Documents mis à jour mars 2026 – Disponibles en téléchargement ci-dessus
-  </p>
+  <p style="text-align:center;color:var(--text2);margin-top:1.5rem;font-size:0.9rem">Documents mis à jour mars 2026</p>
 </section>
 
-<section id="competences" style="background:var(--bg2);">
+<!-- ── COMPÉTENCES ── -->
+<section id="competences" style="background:var(--bg2)">
+  <span class="section-chip">// savoir-faire</span>
   <h2>Mes compétences</h2>
   <div class="grid" id="competencesGrid"></div>
 </section>
 
+<!-- ── TECHNOLOGIES ── -->
 <section id="technologies">
+  <span class="section-chip">// stack technique</span>
   <h2>Technologies maîtrisées</h2>
   <div class="tech-grid" id="techGrid"></div>
 </section>
 
-<section id="veille">
+<!-- ── VEILLE ── -->
+<section id="veille" style="background:var(--bg2)">
+  <span class="section-chip">// actualités</span>
   <h2>Veille technologique</h2>
-  <div style="max-width:1200px; margin:0 auto; font-size:1.1rem; color:var(--text2); text-align:center;">
-    <p>5-7h/semaine : Docker, Alpine, Caddy, cybersécurité, Nextcloud.</p>
-    <div style="margin-top:2rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem;">
-      <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.5rem 1.5rem; border-radius:50px; font-weight:600; display:inline-flex; align-items:center; gap:0.5rem; justify-content:center;">IT-Connect</span>
-      <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.5rem 1.5rem; border-radius:50px; font-weight:600; display:inline-flex; align-items:center; gap:0.5rem; justify-content:center;">Docker Blog</span>
-      <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.5rem 1.5rem; border-radius:50px; font-weight:600; display:inline-flex; align-items:center; gap:0.5rem; justify-content:center;">NetworkChuck</span>
-      <span style="background:var(--tech-bg); border:1px solid var(--accent); color:var(--accent-hover); padding:0.5rem 1.5rem; border-radius:50px; font-weight:600; display:inline-flex; align-items:center; gap:0.5rem; justify-content:center;">TryHackMe</span>
+  <div style="max-width:1200px;margin:0 auto;text-align:center">
+    <p style="color:var(--text2);margin-bottom:2rem">5-7h/semaine : Docker, Alpine, Caddy, cybersécurité, Nextcloud.</p>
+    
+    <!-- Sources avec logos -->
+    <div class="veille-sources">
+      <a href="https://www.it-connect.fr" target="_blank" class="veille-source">
+        <img src="https://www.it-connect.fr/favicon.ico" alt="IT-Connect" onerror="this.src='https://ui-avatars.com/api/?name=IT&size=28&background=4169e1&color=fff'">
+        <span>IT-Connect</span>
+      </a>
+      <a href="https://www.docker.com/blog/" target="_blank" class="veille-source">
+        <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker Blog">
+        <span>Docker Blog</span>
+      </a>
+      <a href="https://www.youtube.com/@NetworkChuck" target="_blank" class="veille-source">
+        <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="NetworkChuck">
+        <span>NetworkChuck</span>
+      </a>
+      <a href="https://tryhackme.com" target="_blank" class="veille-source">
+        <img src="https://tryhackme.com/favicon.ico" alt="TryHackMe" onerror="this.src='https://ui-avatars.com/api/?name=THM&size=28&background=1e2a4a&color=fff'">
+        <span>TryHackMe</span>
+      </a>
+      <a href="https://github.com" target="_blank" class="veille-source">
+        <img src="https://cdn.simpleicons.org/github/888" alt="GitHub">
+        <span>GitHub</span>
+      </a>
+      <a href="https://www.ssi.gouv.fr" target="_blank" class="veille-source">
+        <img src="https://www.ssi.gouv.fr/favicon.ico" alt="ANSSI" onerror="this.src='https://ui-avatars.com/api/?name=AN&size=28&background=002654&color=fff'">
+        <span>ANSSI</span>
+      </a>
     </div>
 
     <div class="rss-container" id="rssContainer"></div>
-    <button class="rss-refresh-btn" id="refreshRSS">
-      <i class="fas fa-sync-alt"></i> Actualiser les articles
-    </button>
+    <button class="rss-refresh-btn" id="refreshRSS"><i class="fas fa-sync-alt"></i> Actualiser les articles</button>
   </div>
 </section>
 
+<!-- ── PROJETS ── -->
 <section id="projets">
+  <span class="section-chip">// réalisations</span>
   <h2>Projets réalisés au BTS</h2>
-  
-  <!-- FILTRES PROJETS -->
   <div class="filters">
     <button class="filter-btn active" data-filter="all">Tous</button>
-    <button class="filter-btn" data-filter="docker">Docker</button>
-    <button class="filter-btn" data-filter="reseau">Réseaux</button>
-    <button class="filter-btn" data-filter="securite">Sécurité</button>
-    <button class="filter-btn" data-filter="web">Web</button>
+    <button class="filter-btn" data-filter="docker"><i class="fab fa-docker"></i> Docker</button>
+    <button class="filter-btn" data-filter="reseau"><i class="fas fa-network-wired"></i> Réseaux</button>
+    <button class="filter-btn" data-filter="securite"><i class="fas fa-shield-alt"></i> Sécurité</button>
+    <button class="filter-btn" data-filter="web"><i class="fas fa-globe"></i> Web</button>
   </div>
-  
   <div class="grid" id="projetsGrid"></div>
 </section>
 
-<section id="contact" style="background:var(--bg2);">
+<!-- ── CONTACT ── -->
+<section id="contact" style="background:var(--bg2)">
+  <span class="section-chip">// me contacter</span>
   <h2>Contact</h2>
-  
-  <!-- FORMULAIRE DE CONTACT NETLIFY -->
   <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
     <input type="hidden" name="form-name" value="contact">
-    <p style="display:none;">
-      <label>Ne pas remplir <input name="bot-field"></label>
-    </p>
-    
-    <div class="form-group">
-      <input type="text" name="nom" placeholder="Votre nom" required>
-    </div>
-    <div class="form-group">
-      <input type="email" name="email" placeholder="Votre email" required>
-    </div>
-    <div class="form-group">
-      <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn" style="width:100%;">Envoyer <i class="fas fa-paper-plane"></i></button>
-    </div>
-    <div class="form-success" id="form-success">
-      Message envoyé avec succès ! Je vous répondrai rapidement.
-    </div>
+    <p style="display:none"><label>Ne pas remplir <input name="bot-field"></label></p>
+    <div class="form-group"><input type="text" name="nom" placeholder="Votre nom" required></div>
+    <div class="form-group"><input type="email" name="email" placeholder="Votre email" required></div>
+    <div class="form-group"><textarea name="message" rows="5" placeholder="Votre message" required></textarea></div>
+    <div class="form-group"><button type="submit" class="btn" style="width:100%;justify-content:center">Envoyer <i class="fas fa-paper-plane"></i></button></div>
+    <div class="form-success" id="form-success">Message envoyé avec succès ! Je vous répondrai rapidement.</div>
   </form>
-  
-  <div style="display:flex; justify-content:center; gap:2rem; margin:2rem 0; font-size:2rem;">
-    <a href="#" style="color:var(--accent-hover);" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-    <a href="#" style="color:var(--accent-hover);" aria-label="GitHub"><i class="fab fa-github"></i></a>
+  <div style="display:flex;justify-content:center;gap:1.5rem;margin:2rem 0;font-size:1.8rem">
+    <a href="#" style="color:var(--text2);transition:color 0.3s" onmouseover="this.style.color='#0077b5'" onmouseout="this.style.color=''"><i class="fab fa-linkedin"></i></a>
+    <a href="#" style="color:var(--text2);transition:color 0.3s" onmouseover="this.style.color='var(--accent-hover)'" onmouseout="this.style.color=''"><i class="fab fa-github"></i></a>
   </div>
 </section>
 
+<!-- ── FOOTER ── -->
 <footer>
-  <p>© 2026 Bibros Ben Sassi – BTS SIO SISR</p>
-  <p style="margin-top:0.5rem;">PIX • ANSSI • Cisco • Nextcloud • pfSense • Docker • Caddy</p>
+  <div class="footer-logo">Bibros Ben Sassi</div>
+  <p style="color:var(--text2);font-size:0.9rem;margin-bottom:1rem">BTS SIO SISR • Promo 2024-2026</p>
+  <div class="footer-links">
+    <a href="#accueil">Accueil</a>
+    <a href="#apropos">À propos</a>
+    <a href="#entreprises">Entreprises</a>
+    <a href="#cv">CV</a>
+    <a href="#competences">Compétences</a>
+    <a href="#projets">Projets</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Bibros Ben Sassi &nbsp;•&nbsp; PIX • ANSSI • Cisco • Nextcloud • pfSense • Docker • Caddy</p>
+  </div>
 </footer>
 
-<div id="contactModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" id="closeModal">&times;</span>
-    <h2>Envoyer un message</h2>
-    <form id="contactForm">
-      <input type="text" id="name" placeholder="Nom" required style="width:100%; padding:1rem; margin-bottom:1rem; border-radius:8px; border:1px solid var(--border); background:var(--bg2); color:var(--text);">
-      <input type="email" id="email" placeholder="Email" required style="width:100%; padding:1rem; margin-bottom:1rem; border-radius:8px; border:1px solid var(--border); background:var(--bg2); color:var(--text);">
-      <textarea id="message" placeholder="Message" rows="4" required style="width:100%; padding:1rem; margin-bottom:1rem; border-radius:8px; border:1px solid var(--border); background:var(--bg2); color:var(--text);"></textarea>
-      <button type="submit" class="btn" style="width:100%;"><i class="fas fa-paper-plane"></i> Envoyer</button>
-    </form>
-  </div>
-</div>
-
 <script>
-// ===== DONNÉES COMPLÈTES =====
+// ===== DONNÉES =====
 const competencesData = [
-  { icon: 'fab fa-docker', title: 'Docker & Alpine', level: 90, items: ['Dockerfile, Compose, Alpine', 'Volumes, networks, secrets', 'Multi-stage builds'] },
-  { icon: 'fas fa-reverse', title: 'Reverse Proxy', level: 85, items: ['Caddy (HTTPS auto)', 'Nginx, Apache', 'Let\'s Encrypt'] },
-  { icon: 'fab fa-html5', title: 'Développement Web', level: 80, items: ['HTML5, CSS3, JS', 'PHP, MySQL', 'Sites responsives'] },
-  { icon: 'fas fa-shield-alt', title: 'Sécurité & Réseaux', level: 75, items: ['pfSense, VLAN, firewall', 'CrowdSec, hardening', 'ANSSI (en cours)'] },
-  { icon: 'fas fa-cloud', title: 'Cloud & Services', level: 80, items: ['Nextcloud (install/config)', 'Services collaboratifs', 'MariaDB, sauvegardes'] },
-  { icon: 'fab fa-git-alt', title: 'Outils & Certifs', level: 85, items: ['Git, GitHub, Bash', 'GLPI, ITIL', 'PIX, Cisco (en cours)'] }
+  { icon:'fab fa-docker',    img:'https://cdn.simpleicons.org/docker/2496ED',         title:'Docker & Alpine',    level:90, items:['Dockerfile, Compose, Alpine','Volumes, networks, secrets','Multi-stage builds'] },
+  { icon:'fas fa-server',    img:'https://avatars.githubusercontent.com/u/14127342?s=200&v=4', title:'Reverse Proxy', level:85, items:['Caddy (HTTPS auto)','Nginx, Apache',"Let's Encrypt"] },
+  { icon:'fab fa-html5',     img:'https://cdn.simpleicons.org/html5/E34F26',           title:'Développement Web',  level:80, items:['HTML5, CSS3, JS','PHP, MySQL','Sites responsives'] },
+  { icon:'fas fa-shield-alt',img:'https://avatars.githubusercontent.com/u/69568?s=200&v=4', title:'Sécurité & Réseaux', level:75, items:['pfSense, VLAN, firewall','CrowdSec, hardening','ANSSI (en cours)'] },
+  { icon:'fas fa-cloud',     img:'https://cdn.simpleicons.org/nextcloud/0082C9',       title:'Cloud & Services',   level:80, items:['Nextcloud (install/config)','Services collaboratifs','MariaDB, sauvegardes'] },
+  { icon:'fab fa-git-alt',   img:'https://cdn.simpleicons.org/git/F05032',             title:'Outils & Certifs',   level:85, items:['Git, GitHub, Bash','GLPI, ITIL','PIX, Cisco (en cours)'] }
 ];
 
-const techList = [
-  { name: 'Docker', cat: 'Conteneurisation', url: 'https://docker.com/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
-  { name: 'Alpine', cat: 'Linux', url: 'https://alpinelinux.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/alpine/alpine-original.svg' },
-  { name: 'Caddy', cat: 'Reverse Proxy', url: 'https://caddyserver.com/', img: 'https://caddyserver.com/favicon.ico' },
-  { name: 'Nginx', cat: 'Web Server', url: 'https://nginx.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg' },
-  { name: 'Apache', cat: 'Web Server', url: 'https://httpd.apache.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg' },
-  { name: 'PHP', cat: 'Backend', url: 'https://php.net/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg' },
-  { name: 'HTML5', cat: 'Frontend', url: 'https://developer.mozilla.org/fr/docs/Web/HTML', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
-  { name: 'CSS3', cat: 'Frontend', url: 'https://developer.mozilla.org/fr/docs/Web/CSS', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
-  { name: 'JavaScript', cat: 'Frontend', url: 'https://developer.mozilla.org/fr/docs/Web/JavaScript', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
-  { name: 'Nextcloud', cat: 'Cloud', url: 'https://nextcloud.com/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextcloud/nextcloud-original.svg' },
-  { name: 'MariaDB', cat: 'Base de données', url: 'https://mariadb.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg' },
-  { name: 'Windows Server', cat: 'OS', url: 'https://www.microsoft.com/fr-fr/windows-server', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg' },
-  { name: 'Linux', cat: 'OS', url: 'https://linux.org/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
-  { name: 'pfSense', cat: 'Firewall', url: 'https://pfsense.org/', img: 'https://www.pfsense.org/favicon.ico' },
-  { name: 'CrowdSec', cat: 'Sécurité', url: 'https://crowdsec.net/', img: 'https://www.crowdsec.net/favicon.ico' },
-  { name: 'Active Directory', cat: 'Annuaire', url: 'https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg' },
-  { name: 'Zabbix', cat: 'Supervision', url: 'https://zabbix.com/', img: 'https://www.zabbix.com/favicon.ico' },
-  { name: 'GLPI', cat: 'ITSM', url: 'https://glpi-project.org/', img: 'https://glpi-project.org/favicon.ico' },
-  { name: 'PIX', cat: 'Certification', url: 'https://pix.fr/', img: 'https://pix.fr/favicon.ico' },
-  { name: 'ANSSI', cat: 'Certification', url: 'https://www.ssi.gouv.fr/', img: 'https://www.ssi.gouv.fr/favicon.ico' },
-  { name: 'Cisco', cat: 'Réseaux', url: 'https://cisco.com/', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
-  { name: 'OSPF', cat: 'Protocole routage', url: 'https://www.cisco.com/c/en/us/support/docs/ip/open-shortest-path-first-ospf/7039-1.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
-  { name: 'RIP', cat: 'Protocole routage', url: 'https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13734-5.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
-  { name: 'HSRP', cat: 'Haute dispo', url: 'https://www.cisco.com/c/en/us/support/docs/ip/hot-standby-router-protocol-hsrp/9234-hsrpguide.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
-  { name: 'STP', cat: 'Spanning Tree', url: 'https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
-  { name: 'VLAN', cat: 'Segmentation', url: 'https://www.cisco.com/c/en/us/tech/lan-switching/vlan-trunking/index.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg' },
-  { name: 'VRRP', cat: 'Redondance', url: 'https://datatracker.ietf.org/doc/html/rfc5798', img: 'https://www.rfc-editor.org/favicon.ico' },
-  { name: 'NAT', cat: 'Traduction', url: 'https://www.cisco.com/c/en/us/support/docs/ip/network-address-translation-nat/26704-nat-faq-00.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
-  { name: 'IPsec', cat: 'VPN', url: 'https://www.cisco.com/c/en/us/support/docs/security-vpn/ipsec-negotiation-ike-protocols/216285-understanding-ipsec-protocols.html', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' }
+const techByCategory = [
+  { cat: 'Conteneurisation & Cloud', items: [
+    { name:'Docker',      url:'https://docker.com/',         img:'https://cdn.simpleicons.org/docker/2496ED' },
+    { name:'Alpine Linux',url:'https://alpinelinux.org/',    img:'https://cdn.simpleicons.org/alpinelinux/0D597F' },
+    { name:'Nextcloud',   url:'https://nextcloud.com/',      img:'https://cdn.simpleicons.org/nextcloud/0082C9' },
+  ]},
+  { cat: 'Serveurs Web & Proxy', items: [
+    { name:'Caddy',       url:'https://caddyserver.com/',    img:'https://avatars.githubusercontent.com/u/14127342?s=200&v=4' },
+    { name:'Nginx',       url:'https://nginx.org/',          img:'https://cdn.simpleicons.org/nginx/009639' },
+    { name:'Apache',      url:'https://httpd.apache.org/',   img:'https://cdn.simpleicons.org/apache/D22128' },
+  ]},
+  { cat: 'Développement', items: [
+    { name:'PHP',         url:'https://php.net/',            img:'https://cdn.simpleicons.org/php/777BB4' },
+    { name:'HTML5',       url:'https://developer.mozilla.org/fr/docs/Web/HTML', img:'https://cdn.simpleicons.org/html5/E34F26' },
+    { name:'CSS3',        url:'https://developer.mozilla.org/fr/docs/Web/CSS',  img:'https://cdn.simpleicons.org/css3/1572B6' },
+    { name:'JavaScript',  url:'https://developer.mozilla.org/fr/docs/Web/JavaScript', img:'https://cdn.simpleicons.org/javascript/F7DF1E' },
+  ]},
+  { cat: 'Systèmes & Bases de données', items: [
+    { name:'Linux',       url:'https://linux.org/',          img:'https://cdn.simpleicons.org/linux/FCC624' },
+    { name:'Windows Server', url:'https://www.microsoft.com/fr-fr/windows-server', img:'https://cdn.simpleicons.org/windows/0078D6' },
+    { name:'MariaDB',     url:'https://mariadb.org/',        img:'https://cdn.simpleicons.org/mariadb/C0765A' },
+    { name:'Git',         url:'https://git-scm.com/',        img:'https://cdn.simpleicons.org/git/F05032' },
+  ]},
+  { cat: 'Réseaux & Sécurité', items: [
+    { name:'pfSense',     url:'https://pfsense.org/',        img:'https://avatars.githubusercontent.com/u/69568?s=200&v=4' },
+    { name:'CrowdSec',    url:'https://crowdsec.net/',       img:'https://avatars.githubusercontent.com/u/60936742?s=200&v=4' },
+    { name:'Cisco',       url:'https://cisco.com/',          img:'https://cdn.simpleicons.org/cisco/1BA0D7' },
+    { name:'Active Directory', url:'https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/', img:'https://cdn.simpleicons.org/microsoftazure/0078D4' },
+  ]},
+  { cat: 'Supervision & ITSM', items: [
+    { name:'Zabbix',      url:'https://zabbix.com/',         img:'https://avatars.githubusercontent.com/u/6817920?s=200&v=4' },
+    { name:'GLPI',        url:'https://glpi-project.org/',   img:'https://avatars.githubusercontent.com/u/685338?s=200&v=4' },
+    { name:'Grafana',     url:'https://grafana.com/',        img:'https://cdn.simpleicons.org/grafana/F46800' },
+  ]},
 ];
 
 const projetsData = [
-  { 
-    icon: 'fas fa-server', 
-    title: 'GLPI & OCS Inventory', 
-    badge: '📋 INVENTAIRE AUTOMATISÉ', 
-    desc: 'Mettre en place un inventaire automatisé. Technos: Debian, GLPI, OCS Inventory, clients Windows. Résultat: Remontée automatique des configurations + export de rapports.',
-    images: [
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg',
-      'https://glpi-project.org/favicon.ico',
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg'
-    ],
-    links: [
-      { name: 'Installer GLPI', url: 'https://github.com/ClarkMaltempi/GLPI', icon: 'fas fa-book-open' },
-      { name: 'Doc OCS Inventory', url: 'https://wiki.ocsinventory-ng.org/', icon: 'fas fa-file-alt' }
-    ],
-    protocoles: ['TCP/IP', 'HTTP', 'HTTPS', 'LDAP', 'MySQL'],
-    category: 'web'
-  },
-  { 
-    icon: 'fas fa-network-wired', 
-    title: 'DHCP & DNS', 
-    badge: '🌐 SERVEUR RÉSEAU', 
-    desc: 'Mettre en place sur Debian 12 un serveur DHCP et DNS interne. Réalisation: Distribution automatique d\'adresses IP + résolution des noms locaux.',
-    images: [
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg'
-    ],
-    links: [
-      { name: 'Configurer DHCP', url: 'https://wiki.debian.org/DHCP_Server', icon: 'fas fa-network-wired' },
-      { name: 'Configurer DNS', url: 'https://wiki.debian.org/Bind9', icon: 'fas fa-globe' }
-    ],
-    protocoles: ['DHCP', 'DNS', 'TCP/IP', 'UDP'],
-    category: 'reseau'
-  },
-  { 
-    icon: 'fas fa-lock', 
-    title: 'Site Web sécurisé (HTTPS)', 
-    badge: '🔐 INTRANET SÉCURISÉ', 
-    desc: 'Service web interne sécurisé sur Debian 12. Réalisation: Installation serveur web (Apache/Nginx), déploiement page intranet, configuration HTTPS.',
-    images: [
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg',
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg'
-    ],
-    links: [
-      { name: 'Sécuriser Apache', url: 'https://httpd.apache.org/docs/2.4/ssl/', icon: 'fas fa-lock' },
-      { name: 'Sécuriser Nginx', url: 'https://nginx.org/en/docs/http/configuring_https_servers.html', icon: 'fas fa-shield-alt' }
-    ],
-    protocoles: ['HTTP', 'HTTPS', 'SSL/TLS', 'TCP/IP'],
-    category: 'web'
-  },
-  { 
-    icon: 'fas fa-users-cog', 
-    title: 'Active Directory', 
-    badge: '👥 GESTION UTILISATEURS', 
-    desc: 'Déploiement d\'un domaine d\'entreprise. Réalisation: Installation et configuration d\'Active Directory Domain Services (AD DS) sur Windows Server.',
-    images: [
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg'
-    ],
-    links: [
-      { name: 'Installer AD DS', url: 'https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/deploy/install-active-directory-domain-services', icon: 'fab fa-microsoft' }
-    ],
-    protocoles: ['LDAP', 'Kerberos', 'DNS', 'SMB', 'NTP'],
-    category: 'reseau'
-  },
-  { 
-    icon: 'fas fa-shield-alt', 
-    title: 'Sécurité et Pare-feu', 
-    badge: '🔥 pfSense', 
-    desc: 'Mettre en place un pare-feu pfSense sur VMware. Réalisation: Sécurisation et gestion du trafic réseau.',
-    images: [
-      'https://www.pfsense.org/favicon.ico'
-    ],
-    links: [
-      { name: 'Doc pfSense', url: 'https://docs.netgate.com/pfsense/en/latest/', icon: 'fas fa-fire' }
-    ],
-    protocoles: ['IPsec', 'OpenVPN', 'L2TP', 'PPTP', 'NAT', 'SPI'],
-    category: 'securite'
-  },
-  { 
-    icon: 'fas fa-envelope', 
-    title: 'Serveur Mail', 
-    badge: '📧 MESSAGERIE COMPLÈTE', 
-    desc: 'Serveur de messagerie complet sous Debian. Réalisation: Installation et configuration des services d\'envoi, réception et protection des courriels.',
-    images: [
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg'
-    ],
-    links: [
-      { name: 'Configurer Postfix', url: 'https://wiki.debian.org/Postfix', icon: 'fas fa-envelope' },
-      { name: 'Configurer Dovecot', url: 'https://wiki.debian.org/Dovecot', icon: 'fas fa-inbox' }
-    ],
-    protocoles: ['SMTP', 'POP3', 'IMAP', 'TLS', 'DKIM', 'SPF'],
-    category: 'reseau'
-  },
-  { 
-    icon: 'fas fa-eye', 
-    title: 'Zabbix - Supervision', 
-    badge: '📊 SUPERVISION & ALERTES', 
-    desc: 'Mettre en place une solution complète de supervision. Réalisation: Installation et configuration de Zabbix pour la supervision et les alertes.',
-    images: [
-      'https://www.zabbix.com/favicon.ico',
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg'
-    ],
-    links: [
-      { name: 'Doc Zabbix', url: 'https://www.zabbix.com/documentation/current/fr/manual', icon: 'fas fa-chart-line' }
-    ],
-    protocoles: ['SNMP', 'ICMP', 'SSH', 'Telnet', 'IPMI', 'JMX'],
-    category: 'reseau'
-  },
-  { 
-    icon: 'fab fa-docker', 
-    title: 'Infrastructure Docker', 
-    badge: '🐳 CONTENEURISATION', 
-    desc: 'Déploiement de sites web isolés avec Docker, Alpine et Caddy. Réalisation: 3 sites (HTML/CSS/JS/PHP) avec reverse proxy Caddy et HTTPS automatique.',
-    images: [
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/alpine/alpine-original.svg',
-      'https://caddyserver.com/favicon.ico'
-    ],
-    links: [
-      { name: 'Doc Docker', url: 'https://docs.docker.com/', icon: 'fab fa-docker' },
-      { name: 'Doc Caddy', url: 'https://caddyserver.com/docs/', icon: 'fas fa-reverse' },
-      { name: 'Tutoriel Docker Compose', url: 'https://docs.docker.com/compose/gettingstarted/', icon: 'fas fa-layer-group' }
-    ],
-    protocoles: ['TCP/IP', 'HTTP/2', 'TLS', 'gRPC', 'Container networking', 'Overlay'],
-    category: 'docker'
-  },
-  { 
-    icon: 'fas fa-route', 
-    title: 'Routage Dynamique OSPF', 
-    badge: '🔄 PROTOCOLE DE ROUTAGE', 
-    desc: 'Mise en place d\'un routage dynamique OSPF sur routeurs Cisco. Réalisation: Configuration d\'OSPF dans une topologie multi-zones, optimisation des métriques, et redondance des liens.',
-    images: [
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg'
-    ],
-    links: [
-      { name: 'Doc OSPF', url: 'https://www.cisco.com/c/en/us/support/docs/ip/open-shortest-path-first-ospf/7039-1.html', icon: 'fas fa-network-wired' }
-    ],
-    protocoles: ['OSPF', 'IP', 'ICMP', 'Hello protocol', 'LSA', 'SPF'],
-    category: 'reseau'
-  },
-  { 
-    icon: 'fas fa-random', 
-    title: 'Routage RIP', 
-    badge: '🔄 PROTOCOLE DE ROUTAGE', 
-    desc: 'Configuration du protocole de routage RIP (Routing Information Protocol) sur routeurs Cisco. Réalisation: Mise en place de RIP v2 avec authentification, redistribution de routes.',
-    images: [
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg'
-    ],
-    links: [
-      { name: 'Doc RIP', url: 'https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13734-5.html', icon: 'fas fa-random' }
-    ],
-    protocoles: ['RIP', 'RIPv2', 'UDP', 'IP', 'Triggered updates'],
-    category: 'reseau'
-  },
-  { 
-    icon: 'fas fa-sync-alt', 
-    title: 'HSRP - Redondance de passerelle', 
-    badge: '🔄 HAUTE DISPONIBILITÉ', 
-    desc: 'Mise en place du protocole HSRP (Hot Standby Router Protocol) pour assurer la redondance de la passerelle par défaut. Réalisation: Configuration de plusieurs routeurs en cluster de basculement.',
-    images: [
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg'
-    ],
-    links: [
-      { name: 'Doc HSRP', url: 'https://www.cisco.com/c/en/us/support/docs/ip/hot-standby-router-protocol-hsrp/9234-hsrpguide.html', icon: 'fas fa-sync-alt' }
-    ],
-    protocoles: ['HSRP', 'VRRP', 'GLBP', 'ICMP', 'ARP', 'UDP'],
-    category: 'reseau'
-  },
-  { 
-    icon: 'fas fa-project-diagram', 
-    title: 'STP - Spanning Tree Protocol', 
-    badge: '🌳 PRÉVENTION DES BOUCLES', 
-    desc: 'Configuration du Spanning Tree Protocol pour éviter les boucles réseau dans une architecture commutée. Réalisation: Mise en place de PVST+, Rapid PVST, optimisation des root bridges.',
-    images: [
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg'
-    ],
-    links: [
-      { name: 'Doc STP', url: 'https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5.html', icon: 'fas fa-project-diagram' }
-    ],
-    protocoles: ['STP', 'RSTP', 'MSTP', 'PVST+', 'BPDU', 'Bridge ID'],
-    category: 'reseau'
-  },
-  { 
-    icon: 'fas fa-code-branch', 
-    title: 'VLAN & Trunking', 
-    badge: '🔀 SEGMENTATION RÉSEAU', 
-    desc: 'Configuration de VLANs et de trunks 802.1Q pour segmenter le réseau. Réalisation: Création de VLANs, configuration des ports en mode access/trunk, routage inter-VLAN.',
-    images: [
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg'
-    ],
-    links: [
-      { name: 'Doc VLAN', url: 'https://www.cisco.com/c/en/us/tech/lan-switching/vlan-trunking/index.html', icon: 'fas fa-code-branch' }
-    ],
-    protocoles: ['802.1Q', 'ISL', 'VTP', 'DTP', 'CDP', 'LLDP'],
-    category: 'reseau'
-  }
+  { icon:'fas fa-server', title:'GLPI & OCS Inventory', badge:'📋 INVENTAIRE AUTOMATISÉ', desc:'Mettre en place un inventaire automatisé. Technos: Debian, GLPI, OCS Inventory, clients Windows.', images:['https://cdn.simpleicons.org/debian/A81D33','https://avatars.githubusercontent.com/u/685338?s=200&v=4','https://cdn.simpleicons.org/windows/0078D6'], links:[{name:'Installer GLPI',url:'https://github.com/ClarkMaltempi/GLPI',icon:'fas fa-book-open'},{name:'Doc OCS',url:'https://wiki.ocsinventory-ng.org/',icon:'fas fa-file-alt'}], protocoles:['TCP/IP','HTTP','HTTPS','LDAP','MySQL'], category:'web' },
+  { icon:'fas fa-network-wired', title:'DHCP & DNS', badge:'🌐 SERVEUR RÉSEAU', desc:"Serveur DHCP et DNS interne sur Debian 12. Distribution automatique d'adresses IP + résolution des noms locaux.", images:['https://cdn.simpleicons.org/debian/A81D33'], links:[{name:'Configurer DHCP',url:'https://wiki.debian.org/DHCP_Server',icon:'fas fa-network-wired'},{name:'Configurer DNS',url:'https://wiki.debian.org/Bind9',icon:'fas fa-globe'}], protocoles:['DHCP','DNS','TCP/IP','UDP'], category:'reseau' },
+  { icon:'fas fa-lock', title:'Site Web sécurisé (HTTPS)', badge:'🔐 INTRANET SÉCURISÉ', desc:"Service web interne sécurisé sur Debian 12 avec Apache/Nginx et HTTPS.", images:['https://cdn.simpleicons.org/apache/D22128','https://cdn.simpleicons.org/nginx/009639'], links:[{name:'Sécuriser Apache',url:'https://httpd.apache.org/docs/2.4/ssl/',icon:'fas fa-lock'}], protocoles:['HTTP','HTTPS','SSL/TLS','TCP/IP'], category:'web' },
+  { icon:'fas fa-users-cog', title:'Active Directory', badge:'👥 GESTION UTILISATEURS', desc:"Déploiement d'Active Directory Domain Services (AD DS) sur Windows Server.", images:['https://cdn.simpleicons.org/windows/0078D6','https://cdn.simpleicons.org/microsoftazure/0078D4'], links:[{name:'Installer AD DS',url:'https://learn.microsoft.com/fr-fr/windows-server/identity/ad-ds/deploy/install-active-directory-domain-services',icon:'fab fa-microsoft'}], protocoles:['LDAP','Kerberos','DNS','SMB','NTP'], category:'reseau' },
+  { icon:'fas fa-shield-alt', title:'Sécurité et Pare-feu', badge:'🔥 pfSense', desc:"Pare-feu pfSense sur VMware. Sécurisation et gestion du trafic réseau avec règles avancées.", images:['https://avatars.githubusercontent.com/u/69568?s=200&v=4'], links:[{name:'Doc pfSense',url:'https://docs.netgate.com/pfsense/en/latest/',icon:'fas fa-fire'}], protocoles:['IPsec','OpenVPN','L2TP','NAT','SPI'], category:'securite' },
+  { icon:'fas fa-envelope', title:'Serveur Mail', badge:'📧 MESSAGERIE COMPLÈTE', desc:"Serveur de messagerie complet sous Debian avec Postfix + Dovecot.", images:['https://cdn.simpleicons.org/debian/A81D33'], links:[{name:'Postfix',url:'https://wiki.debian.org/Postfix',icon:'fas fa-envelope'},{name:'Dovecot',url:'https://wiki.debian.org/Dovecot',icon:'fas fa-inbox'}], protocoles:['SMTP','POP3','IMAP','TLS','DKIM','SPF'], category:'reseau' },
+  { icon:'fas fa-eye', title:'Zabbix - Supervision', badge:'📊 SUPERVISION & ALERTES', desc:"Solution complète de supervision Zabbix pour le monitoring et les alertes.", images:['https://avatars.githubusercontent.com/u/6817920?s=200&v=4','https://cdn.simpleicons.org/grafana/F46800'], links:[{name:'Doc Zabbix',url:'https://www.zabbix.com/documentation/current/fr/manual',icon:'fas fa-chart-line'}], protocoles:['SNMP','ICMP','SSH','Telnet','IPMI','JMX'], category:'reseau' },
+  { icon:'fab fa-docker', title:'Infrastructure Docker', badge:'🐳 CONTENEURISATION', desc:"3 sites web déployés et isolés avec Docker, Alpine et Caddy en reverse proxy avec HTTPS automatique.", images:['https://cdn.simpleicons.org/docker/2496ED','https://cdn.simpleicons.org/alpinelinux/0D597F','https://avatars.githubusercontent.com/u/14127342?s=200&v=4'], links:[{name:'Doc Docker',url:'https://docs.docker.com/',icon:'fab fa-docker'},{name:'Doc Caddy',url:'https://caddyserver.com/docs/',icon:'fas fa-server'},{name:'Docker Compose',url:'https://docs.docker.com/compose/gettingstarted/',icon:'fas fa-layer-group'}], protocoles:['TCP/IP','HTTP/2','TLS','gRPC','Overlay'], category:'docker' },
+  { icon:'fas fa-route', title:'Routage Dynamique OSPF', badge:'🔄 PROTOCOLE DE ROUTAGE', desc:"Routage dynamique OSPF sur routeurs Cisco. Configuration multi-zones et redondance.", images:['https://cdn.simpleicons.org/cisco/1BA0D7'], links:[{name:'Doc OSPF',url:'https://www.cisco.com/c/en/us/support/docs/ip/open-shortest-path-first-ospf/7039-1.html',icon:'fas fa-network-wired'}], protocoles:['OSPF','IP','ICMP','Hello protocol','LSA','SPF'], category:'reseau' },
+  { icon:'fas fa-random', title:'Routage RIP', badge:'🔄 PROTOCOLE DE ROUTAGE', desc:"Configuration du protocole RIP v2 sur routeurs Cisco avec authentification.", images:['https://cdn.simpleicons.org/cisco/1BA0D7'], links:[{name:'Doc RIP',url:'https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13734-5.html',icon:'fas fa-random'}], protocoles:['RIP','RIPv2','UDP','IP','Triggered updates'], category:'reseau' },
+  { icon:'fas fa-sync-alt', title:'HSRP - Redondance de passerelle', badge:'🔄 HAUTE DISPONIBILITÉ', desc:"Protocole HSRP pour la redondance de la passerelle par défaut sur plusieurs routeurs.", images:['https://cdn.simpleicons.org/cisco/1BA0D7'], links:[{name:'Doc HSRP',url:'https://www.cisco.com/c/en/us/support/docs/ip/hot-standby-router-protocol-hsrp/9234-hsrpguide.html',icon:'fas fa-sync-alt'}], protocoles:['HSRP','VRRP','GLBP','ICMP','ARP','UDP'], category:'reseau' },
+  { icon:'fas fa-project-diagram', title:'STP - Spanning Tree Protocol', badge:'🌳 PRÉVENTION DES BOUCLES', desc:"Configuration STP pour éviter les boucles réseau. Mise en place de PVST+, Rapid PVST.", images:['https://cdn.simpleicons.org/cisco/1BA0D7'], links:[{name:'Doc STP',url:'https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5.html',icon:'fas fa-project-diagram'}], protocoles:['STP','RSTP','MSTP','PVST+','BPDU','Bridge ID'], category:'reseau' },
+  { icon:'fas fa-code-branch', title:'VLAN & Trunking', badge:'🔀 SEGMENTATION RÉSEAU', desc:"Configuration de VLANs et trunks 802.1Q. Routage inter-VLAN.", images:['https://cdn.simpleicons.org/cisco/1BA0D7'], links:[{name:'Doc VLAN',url:'https://www.cisco.com/c/en/us/tech/lan-switching/vlan-trunking/index.html',icon:'fas fa-code-branch'}], protocoles:['802.1Q','ISL','VTP','DTP','CDP','LLDP'], category:'reseau' }
 ];
 
 const rssDatabase = [
-  { title: 'Docker : correctifs de sécurité critiques', date: '17 Mars 2026', category: 'Docker', desc: 'Mise à jour des images de base Alpine pour corriger plusieurs vulnérabilités.' },
-  { title: 'Caddy 2.8 : support amélioré pour les reverse proxies', date: '16 Mars 2026', category: 'Caddy', desc: 'Nouvelle version avec gestion plus fine des load balancers et certificats wildcard.' },
-  { title: 'pfSense 3.0 : intégration native avec CrowdSec', date: '15 Mars 2026', category: 'Sécurité', desc: 'Plugin officiel pour CrowdSec, facilitant la détection collaborative.' },
-  { title: 'Nextcloud Hub 9 : nouvelles fonctionnalités de collaboration', date: '14 Mars 2026', category: 'Cloud', desc: 'Workflows améliorés, intégration avec les providers externes.' },
-  { title: 'Alpine Linux 3.21 : encore plus léger et sécurisé', date: '12 Mars 2026', category: 'Alpine', desc: 'Nouvelle version réduit la taille des images et renforce la sécurité.' },
-  { title: 'Vulnérabilité VLAN : correctifs urgents à déployer', date: '13 Mars 2026', category: 'Réseaux', desc: 'Faille permettant le saut de VLAN sur certains équipements.' },
-  { title: 'GLPI 10.1 : intégration améliorée avec Active Directory', date: '10 Mars 2026', category: 'GLPI', desc: 'Synchronisation plus fluide avec AD et meilleures performances.' },
-  { title: 'Zabbix 7.0 : nouvelles fonctionnalités de monitoring', date: '8 Mars 2026', category: 'Zabbix', desc: 'Tableaux de bord améliorés et alertes prédictives.' },
-  { title: 'WireGuard vs OpenVPN : comparaison 2026', date: '5 Mars 2026', category: 'VPN', desc: 'Tests comparatifs des performances et de la sécurité.' }
+  { title:'Docker : correctifs de sécurité critiques', date:'17 Mars 2026', category:'Docker', desc:"Mise à jour des images de base Alpine pour corriger plusieurs vulnérabilités." },
+  { title:'Caddy 2.8 : support amélioré pour les reverse proxies', date:'16 Mars 2026', category:'Caddy', desc:'Nouvelle version avec gestion plus fine des load balancers et certificats wildcard.' },
+  { title:'pfSense 3.0 : intégration native avec CrowdSec', date:'15 Mars 2026', category:'Sécurité', desc:'Plugin officiel pour CrowdSec, facilitant la détection collaborative.' },
+  { title:'Nextcloud Hub 9 : nouvelles fonctionnalités de collaboration', date:'14 Mars 2026', category:'Cloud', desc:'Workflows améliorés, intégration avec les providers externes.' },
+  { title:'Alpine Linux 3.21 : encore plus léger et sécurisé', date:'12 Mars 2026', category:'Alpine', desc:'Nouvelle version réduit la taille des images et renforce la sécurité.' },
+  { title:'Vulnérabilité VLAN : correctifs urgents à déployer', date:'13 Mars 2026', category:'Réseaux', desc:'Faille permettant le saut de VLAN sur certains équipements.' },
+  { title:'GLPI 10.1 : intégration améliorée avec Active Directory', date:'10 Mars 2026', category:'GLPI', desc:'Synchronisation plus fluide avec AD et meilleures performances.' },
+  { title:'Zabbix 7.0 : nouvelles fonctionnalités de monitoring', date:'8 Mars 2026', category:'Zabbix', desc:'Tableaux de bord améliorés et alertes prédictives.' }
 ];
 
-// ===== FONCTIONS DE GÉNÉRATION =====
+// ===== RENDU =====
 function fillCompetences() {
   const grid = document.getElementById('competencesGrid');
   if (!grid) return;
   grid.innerHTML = competencesData.map(c => `
     <div class="card">
-      <h3><i class="${c.icon}"></i> ${c.title}</h3>
+      <h3>
+        <img src="${c.img}" alt="${c.title}" class="competence-img" loading="lazy"
+             onerror="this.outerHTML='<i class=&quot;${c.icon}&quot; style=&quot;font-size:1.5rem&quot;></i>'">
+        ${c.title}
+      </h3>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.3rem">
+        <span style="font-size:0.8rem;color:var(--text2)">Niveau</span>
+        <span style="font-size:0.85rem;font-weight:700;font-family:'Space Mono',monospace;color:var(--accent-hover)">${c.level}%</span>
+      </div>
       <div class="level-bar"><div class="level-bar-fill" style="width:${c.level}%"></div></div>
-      <ul>${c.items.map(i => `<li>${i}</li>`).join('')}</ul>
+      <ul style="color:var(--text2);font-size:0.9rem;margin-left:1rem">${c.items.map(i => `<li>${i}</li>`).join('')}</ul>
     </div>
   `).join('');
 }
@@ -2187,38 +1035,42 @@ function fillCompetences() {
 function fillTechnologies() {
   const grid = document.getElementById('techGrid');
   if (!grid) return;
-  grid.innerHTML = techList.map(t => `
-    <a href="${t.url}" target="_blank" class="tech-item">
-      <span class="tech-icon"><img src="${t.img}" alt="${t.name}" onerror="this.src='https://ui-avatars.com/api/?name=${t.name.charAt(0)}&size=40&background=7a7a7a&color=fff'"></span>
-      <span class="tech-name">${t.name}</span>
-      <span class="tech-category">${t.cat}</span>
-    </a>
+  grid.innerHTML = techByCategory.map(cat => `
+    <div class="tech-category-section">
+      <div class="tech-category-header">${cat.cat}</div>
+      ${cat.items.map(t => `
+        <a href="${t.url}" target="_blank" class="tech-item">
+          <span class="tech-icon">
+            <img src="${t.img}" alt="${t.name}" loading="lazy"
+                 onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(t.name.charAt(0))}&size=40&background=555&color=fff'">
+          </span>
+          <span class="tech-name">${t.name}</span>
+          <i class="fas fa-external-link-alt" style="color:var(--text2);font-size:0.8rem"></i>
+        </a>
+      `).join('')}
+    </div>
   `).join('');
 }
 
 function fillProjets(filter = 'all') {
   const grid = document.getElementById('projetsGrid');
   if (!grid) return;
-  
-  const filtered = filter === 'all' 
-    ? projetsData 
-    : projetsData.filter(p => p.category === filter);
-  
+  const filtered = filter === 'all' ? projetsData : projetsData.filter(p => p.category === filter);
   grid.innerHTML = filtered.map(p => {
-    const images = p.images.map(img => `<img src="${img}" class="project-img" alt="logo" onerror="this.src='https://ui-avatars.com/api/?name=Logo&size=100&background=7a7a7a&color=fff'">`).join('');
+    const images = p.images.map(img => `<img src="${img}" class="project-img" alt="logo" loading="lazy" onerror="this.src='https://ui-avatars.com/api/?name=?&size=72&background=555&color=fff'">`).join('');
     const links = p.links.map(l => `<a href="${l.url}" target="_blank" class="tech-link"><i class="${l.icon}"></i> ${l.name}</a>`).join('');
-    const protos = p.protocoles.map(pr => `<span class="protocole-item"><i class="fas fa-exchange-alt"></i> ${pr}</span>`).join('');
+    const protos = p.protocoles.map(pr => `<span class="protocole-item"><i class="fas fa-circle" style="font-size:0.4rem"></i> ${pr}</span>`).join('');
     return `
       <div class="card">
-        <h3><i class="${p.icon}"></i> ${p.title}</h3>
-        <div class="project-badge">${p.badge}</div>
+        <h3><i class="${p.icon}" style="color:var(--accent-hover)"></i> ${p.title}</h3>
+        <span class="project-badge">${p.badge}</span>
         <div class="project-images">${images}</div>
-        <p>${p.desc}</p>
+        <p style="color:var(--text2);font-size:0.9rem;margin-bottom:1rem">${p.desc}</p>
         <div class="protocoles-container">
-          <div class="protocoles-title"><i class="fas fa-network-wired"></i> Protocoles réseau implémentés</div>
+          <div class="protocoles-title"><i class="fas fa-network-wired"></i> Protocoles réseau</div>
           <div class="protocoles-grid">${protos}</div>
         </div>
-        <div class="tech-links">${links}</div>
+        <div class="tech-links" style="margin-top:1rem">${links}</div>
       </div>
     `;
   }).join('');
@@ -2243,44 +1095,42 @@ function fillRSS() {
   `;
 }
 
-// ===== INITIALISATION =====
+// ===== INIT =====
 document.addEventListener('DOMContentLoaded', function() {
   fillCompetences();
   fillTechnologies();
   fillProjets();
   fillRSS();
 
-  // === RGPD ===
+  // Thème
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  document.getElementById('themeToggle').innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+
+  // RGPD
   const banner = document.getElementById('rgpd-banner');
-  const acceptBtn = document.getElementById('accept-rgpd');
-  if (!localStorage.getItem('rgpd_accepted')) {
-    banner.style.display = 'flex';
-  } else {
-    banner.style.display = 'none';
-  }
-  acceptBtn.addEventListener('click', () => {
+  if (!localStorage.getItem('rgpd_accepted')) banner.style.display = 'flex';
+  document.getElementById('accept-rgpd').addEventListener('click', () => {
     localStorage.setItem('rgpd_accepted', 'true');
     banner.style.display = 'none';
   });
 
-  // === FILTRES PROJETS ===
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  filterBtns.forEach(btn => {
+  // Filtres projets
+  document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       fillProjets(btn.dataset.filter);
     });
   });
 
-  // === OBSERVER POUR LES BARRES DE NIVEAU ===
-  const observer = new IntersectionObserver((entries) => {
+  // Observer barres
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.querySelectorAll('.level-bar-fill').forEach(bar => {
-          const width = bar.style.width;
-          bar.style.width = '0%';
-          setTimeout(() => { bar.style.width = width; }, 100);
+          const w = bar.style.width; bar.style.width = '0%';
+          setTimeout(() => { bar.style.width = w; }, 100);
         });
         observer.unobserve(entry.target);
       }
@@ -2288,209 +1138,99 @@ document.addEventListener('DOMContentLoaded', function() {
   }, { threshold: 0.2 });
   document.querySelectorAll('.card').forEach(card => observer.observe(card));
 
-  // === BOUTON RETOUR EN HAUT ===
-  const backToTop = document.getElementById('back-to-top');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 500) {
-      backToTop.classList.add('visible');
-    } else {
-      backToTop.classList.remove('visible');
-    }
-  });
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  // Retour en haut
+  const btt = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 500));
+  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 });
 
-// ===== BOUTON RAFRAÎCHIR RSS =====
+// Refresh RSS
 document.getElementById('refreshRSS')?.addEventListener('click', function() {
-  const icon = this.querySelector('i');
-  icon.style.transform = 'rotate(360deg)';
+  this.querySelector('i').style.transform = 'rotate(360deg)';
   fillRSS();
-  setTimeout(() => icon.style.transform = 'rotate(0deg)', 300);
+  setTimeout(() => this.querySelector('i').style.transform = '', 500);
 });
 
-// ===== BURGER MENU =====
+// Burger
 const burger = document.querySelector('.burger');
 const navLinks = document.querySelector('.nav-links');
-if (burger) {
-  burger.addEventListener('click', () => navLinks.classList.toggle('active'));
-}
+if (burger) burger.addEventListener('click', () => navLinks.classList.toggle('active'));
 
-// ===== SMOOTH SCROLL =====
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     const target = document.querySelector(link.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-      navLinks?.classList.remove('active');
-      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-      link.classList.add('active');
-    }
+    if (target) { target.scrollIntoView({ behavior: 'smooth' }); navLinks?.classList.remove('active'); }
   });
 });
 
-// ===== NAVBAR SCROLL =====
+// Nav scroll + active
 window.addEventListener('scroll', () => {
-  const nav = document.getElementById('nav');
-  if (nav) nav.classList.toggle('scrolled', window.scrollY > 100);
-  
-  const sections = document.querySelectorAll('section');
-  const scrollPos = window.scrollY + 200;
-  sections.forEach(section => {
-    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+  document.getElementById('nav')?.classList.toggle('scrolled', window.scrollY > 100);
+  document.querySelectorAll('section').forEach(section => {
+    if (window.scrollY + 200 >= section.offsetTop && window.scrollY + 200 < section.offsetTop + section.offsetHeight) {
       const id = section.getAttribute('id');
       document.querySelectorAll('.nav-links a').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${id}`) {
-          link.classList.add('active');
-        }
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
       });
     }
   });
 });
 
-// ===== TYPING EFFECT =====
+// Typing effect
 const typingElement = document.getElementById('typing-text');
-const texts = [
-  "BTS SIO SISR",
-  "Docker • Alpine • Caddy",
-  "Nextcloud • Réseaux",
-  "Association 100 R.I.B.A.",
-  "PIX • ANSSI • Cisco",
-  "pfSense • VLAN • Sécurité"
-];
+const texts = ["BTS SIO SISR","Docker • Alpine • Caddy","Nextcloud • Réseaux","pfSense • VLAN • Sécurité","PIX • ANSSI • Cisco","Infrastructure & DevOps"];
 let textIndex = 0, charIndex = 0, isDeleting = false;
-
 function type() {
   if (!typingElement) return;
   const current = texts[textIndex];
   typingElement.textContent = current.substring(0, charIndex);
-  if (!isDeleting && charIndex < current.length) {
-    charIndex++;
-    setTimeout(type, 70);
-  } else if (isDeleting && charIndex > 0) {
-    charIndex--;
-    setTimeout(type, 40);
-  } else if (!isDeleting && charIndex === current.length) {
-    isDeleting = true;
-    setTimeout(type, 2000);
-  } else if (isDeleting && charIndex === 0) {
-    isDeleting = false;
-    textIndex = (textIndex + 1) % texts.length;
-    setTimeout(type, 400);
-  }
+  if (!isDeleting && charIndex < current.length) { charIndex++; setTimeout(type, 65); }
+  else if (isDeleting && charIndex > 0) { charIndex--; setTimeout(type, 35); }
+  else if (!isDeleting && charIndex === current.length) { isDeleting = true; setTimeout(type, 2000); }
+  else { isDeleting = false; textIndex = (textIndex + 1) % texts.length; setTimeout(type, 400); }
 }
 type();
 
-// ===== PARTICULES LÉGÈRES =====
+// Particules
 const canvas = document.getElementById('particles');
 if (canvas) {
   const ctx = canvas.getContext('2d');
   let w, h;
-  const particles = [];
-  
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-  }
-  
-  for (let i = 0; i < 30; i++) {
-    particles.push({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      size: Math.random() * 2 + 1,
-      speedX: (Math.random() - 0.5) * 0.2,
-      speedY: (Math.random() - 0.5) * 0.2
-    });
-  }
-  
+  const particles = Array.from({ length: 25 }, () => ({
+    x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight,
+    size: Math.random() * 1.5 + 0.5, speedX: (Math.random() - 0.5) * 0.15, speedY: (Math.random() - 0.5) * 0.15
+  }));
+  function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
   function animate() {
     ctx.clearRect(0, 0, w, h);
     particles.forEach(p => {
-      p.x += p.speedX;
-      p.y += p.speedY;
+      p.x += p.speedX; p.y += p.speedY;
       if (p.x < 0 || p.x > w) p.speedX *= -1;
       if (p.y < 0 || p.y > h) p.speedY *= -1;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(160,160,160,0.5)';
-      ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(180,180,180,0.4)'; ctx.fill();
     });
     requestAnimationFrame(animate);
   }
-  
-  resize();
-  animate();
+  resize(); animate();
   window.addEventListener('resize', resize);
 }
 
-// ===== THEME TOGGLE =====
-const themeToggle = document.getElementById('themeToggle');
-const html = document.documentElement;
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    if (html.getAttribute('data-theme') === 'dark') {
-      html.setAttribute('data-theme', 'light');
-      themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-    } else {
-      html.setAttribute('data-theme', 'dark');
-      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    }
-  });
-}
+// Theme toggle
+document.getElementById('themeToggle')?.addEventListener('click', () => {
+  const html = document.documentElement;
+  const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  localStorage.setItem('theme', newTheme);
+});
 
-// ===== MODAL CONTACT =====
-const openModalBtn = document.getElementById('openContactModal');
-const modal = document.getElementById('contactModal');
-const closeModal = document.getElementById('closeModal');
-
-if (openModalBtn) {
-  openModalBtn.addEventListener('click', e => {
-    e.preventDefault();
-    if (modal) modal.style.display = 'flex';
-  });
-}
-
-if (closeModal) {
-  closeModal.addEventListener('click', () => {
-    if (modal) modal.style.display = 'none';
-  });
-}
-
-if (modal) {
-  window.addEventListener('click', e => {
-    if (e.target === modal) modal.style.display = 'none';
-  });
-}
-
-// ===== FORMULAIRE CONTACT (ancien) =====
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-    window.location.href = `mailto:bensassibibros@gmail.com?subject=Contact%20${encodeURIComponent(name)}&body=${encodeURIComponent(`Nom: ${name}\nEmail: ${email}\n\n${message}`)}`;
-    if (modal) modal.style.display = 'none';
-    contactForm.reset();
-  });
-}
-
-// ===== FORMULAIRE NETLIFY =====
-const netlifyForm = document.querySelector('form[data-netlify="true"]');
-if (netlifyForm) {
-  netlifyForm.addEventListener('submit', (e) => {
-    setTimeout(() => {
-      const successMsg = document.getElementById('form-success');
-      if (successMsg) successMsg.style.display = 'block';
-    }, 1000);
-  });
-}
-
-console.log('✅ Portfolio complet chargé - 13 projets, 28 technologies, RGPD, filtres, retour haut, Netlify');
+// Netlify form
+document.querySelector('form[data-netlify="true"]')?.addEventListener('submit', () => {
+  setTimeout(() => { const el = document.getElementById('form-success'); if (el) el.style.display = 'block'; }, 1000);
+});
 </script>
 </body>
 </html>
