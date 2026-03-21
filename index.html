@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes"/>
   <title>Bibros Ben Sassi • BTS SIO SISR</title>
   <meta name="description" content="Portfolio de Bibros Ben Sassi, étudiant en BTS SIO SISR spécialisé Docker, réseaux et cybersécurité">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+  <link rel="icon" href="profile.PNG" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -56,7 +56,7 @@
       line-height: 1.7;
       overflow-x: hidden;
       transition: background 0.4s ease, color 0.4s ease;
-      zoom: 0.78;
+      zoom: 0.82;
     }
 
     @media (max-width: 600px) { body { zoom: 1; } }
@@ -113,14 +113,14 @@
     nav.scrolled { box-shadow: 0 8px 40px rgba(0,0,0,0.6); }
 
     .nav-container {
-      max-width: 1600px; margin: 0 auto; padding: 0.9rem 3rem;
+      max-width: 1600px; margin: 0 auto; padding: 1.1rem 3rem;
       display: flex; justify-content: space-between; align-items: center;
     }
 
     .logo-container { display: flex; align-items: center; gap: 1rem; }
 
     .profile-photo {
-      width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
+      width: 58px; height: 58px; border-radius: 50%; object-fit: cover;
       border: 2px solid var(--accent);
       box-shadow: 0 0 15px rgba(160,160,160,0.3);
       transition: all 0.4s ease;
@@ -128,14 +128,14 @@
     .profile-photo:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(200,200,200,0.6); }
 
     .logo {
-      font-size: 1.5rem; font-weight: 800;
+      font-size: 1.7rem; font-weight: 800;
       background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       font-family: 'Space Mono', monospace;
     }
 
     .nav-links { display: flex; gap: 1.8rem; list-style: none; }
     .nav-links a {
-      color: var(--text2); text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      color: var(--text2); text-decoration: none; font-weight: 600; font-size: 1.05rem;
       transition: all 0.3s ease; position: relative; letter-spacing: 0.02em;
     }
     .nav-links a::after {
@@ -298,10 +298,15 @@
     }
     .project-img { width: 72px; height: 72px; object-fit: contain; border-radius: 10px; transition: all 0.3s; }
     .project-img:hover { transform: scale(1.15); }
-    /* Logos larges (pfSense, Zabbix, GLPI, CrowdSec) : on les laisse respirer */
+    /* Logos larges */
     .project-img[alt="pfSense"], .project-img[alt="Zabbix"],
-    .project-img[alt="GLPI"], .project-img[alt="CrowdSec"] {
+    .project-img[alt="CrowdSec"], .project-img[alt="Nginx"],
+    .project-img[alt="Apache"], .project-img[alt="MariaDB"] {
       width: 110px; height: 48px; object-fit: contain;
+    }
+    /* GLPI encore plus large */
+    .project-img[alt="GLPI"] {
+      width: 140px; height: 56px; object-fit: contain;
     }
 
     /* ── TECH LINKS ── */
@@ -914,7 +919,7 @@
         <p style="font-size:0.9rem;color:var(--text2)">Sites web isolés avec Docker, Alpine Linux et Caddy</p>
       </div>
 
-      <!-- iladom.fr screenshot -->
+      <!-- iladom.fr screenshots -->
       <div class="screenshot-block">
         <div class="screenshot-label">
           <span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span>
@@ -924,6 +929,17 @@
              alt="iladom.fr – Site en HTTPS Docker" class="screenshot-img"
              style="max-height:180px;object-fit:cover"
              onclick="openLightbox('iladom-screen.png')"
+             onerror="this.parentElement.style.display='none'">
+      </div>
+      <div class="screenshot-block">
+        <div class="screenshot-label">
+          <span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span>
+          &nbsp;iladom.fr – Dashboard administration (Vue d'ensemble)
+        </div>
+        <img src="iladom-dashboard.png"
+             alt="iladom.fr – Dashboard admin" class="screenshot-img"
+             style="max-height:180px;object-fit:cover"
+             onclick="openLightbox('iladom-dashboard.png')"
              onerror="this.parentElement.style.display='none'">
       </div>
       
@@ -948,23 +964,146 @@
             <li>Reverse proxy Caddy avec HTTPS automatique</li>
             <li>Optimiser les images avec Alpine (~5-15MB)</li>
           </ul>
-          <h4 style="margin:1rem 0 0.5rem;color:var(--accent-hover)">📄 Exemple de configuration :</h4>
+          <h4 style="margin:1rem 0 0.5rem;color:var(--accent-hover)">📄 Configurations réelles du projet :</h4>
+
+          <!-- docker-compose.yml -->
           <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1rem 0">
             <div style="background:var(--tech-bg);padding:0.6rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.5rem">
               <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Docker_%28container_engine%29_logo.svg" style="width:18px;height:18px">
               <span style="font-weight:600;font-size:0.9rem">docker-compose.yml</span>
             </div>
-            <pre style="margin:0;padding:1rem;color:var(--text);font-family:'Space Mono',monospace;font-size:0.82rem;line-height:1.6;overflow-x:auto"><code>services:
-  site1:
-    build: ./site1
-    networks: [webnet]
-  site2:
-    build: ./site2
-    networks: [webnet]
+            <pre style="margin:0;padding:1rem;color:var(--text);font-family:'Space Mono',monospace;font-size:0.75rem;line-height:1.6;overflow-x:auto"><code>services:
+  # ── Site 1 : iladom.fr ──────────────────────────
+  iladom_app:
+    build:
+      context: ./iladom
+      dockerfile: Dockerfile
+    container_name: iladom_app
+    restart: unless-stopped
+    depends_on: [iladom_db]
+    volumes:
+      - ./iladom/public:/var/www/html/public
+      - ./iladom/src:/var/www/html/src
+      - ./iladom/public/uploads:/var/www/html/public/uploads
+    environment:
+      DB_HOST: iladom_db
+      DB_NAME: iladom_db
+      DB_USER: root
+      DB_PASSWORD: votre_mot_de_passe_root_ici
+    networks: [proxy-net]
+
+  iladom_db:
+    image: mysql:8.0
+    container_name: iladom_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: votre_mot_de_passe_root_ici
+      MYSQL_DATABASE: iladom_db
+    volumes:
+      - iladom_db_data:/var/lib/mysql
+      - ./iladom/schema_mysql.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    networks: [proxy-net]
+
+  # ── Site 2 : idealdrive.fr ──────────────────────
+  idealdrive_app:
+    build:
+      context: ./idealdrive
+      dockerfile: Dockerfile
+    container_name: idealdrive_app
+    restart: unless-stopped
+    volumes:
+      - ./idealdrive/public:/var/www/html/public
+    networks: [proxy-net]
+
+  # ── Site 3 : horizondemenagement.fr ────────────
+  horizon_app:
+    build:
+      context: ./horizondemenagement
+      dockerfile: Dockerfile
+    container_name: horizon_app
+    restart: unless-stopped
+    volumes:
+      - ./horizondemenagement/public:/var/www/html/public
+    networks: [proxy-net]
+
+  # ── Reverse proxy Caddy ─────────────────────────
   caddy:
-    image: caddy:alpine
-    ports: [80:80, 443:443]
-    volumes: [./Caddyfile:/etc/caddy/Caddyfile]</code></pre>
+    image: caddy:2-alpine
+    container_name: caddy
+    restart: unless-stopped
+    ports: ["80:80", "443:443", "443:443/udp"]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks: [proxy-net]
+
+networks:
+  proxy-net:
+    driver: bridge
+
+volumes:
+  iladom_db_data:
+  caddy_data:
+  caddy_config:</code></pre>
+          </div>
+
+          <!-- Caddyfile -->
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1rem 0">
+            <div style="background:var(--tech-bg);padding:0.6rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.5rem">
+              <img src="https://caddyserver.com/resources/images/caddy-logo.svg" style="width:18px;height:18px">
+              <span style="font-weight:600;font-size:0.9rem">Caddyfile</span>
+            </div>
+            <pre style="margin:0;padding:1rem;color:var(--text);font-family:'Space Mono',monospace;font-size:0.75rem;line-height:1.6;overflow-x:auto"><code>iladom.fr www.iladom.fr {
+    encode gzip zstd
+    php_fastcgi iladom_app:9000
+    file_server
+    log { output file /var/log/caddy/iladom.log }
+}
+
+idealdrive.fr www.idealdrive.fr {
+    encode gzip zstd
+    php_fastcgi idealdrive_app:9000
+    file_server
+    log { output file /var/log/caddy/idealdrive.log }
+}
+
+horizondemenagement.fr www.horizondemenagement.fr {
+    encode gzip zstd
+    php_fastcgi horizon_app:9000
+    file_server
+    log { output file /var/log/caddy/horizon.log }
+}</code></pre>
+          </div>
+
+          <!-- Dockerfile -->
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1rem 0">
+            <div style="background:var(--tech-bg);padding:0.6rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.5rem">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Docker_%28container_engine%29_logo.svg" style="width:18px;height:18px">
+              <span style="font-weight:600;font-size:0.9rem">Dockerfile</span>
+            </div>
+            <pre style="margin:0;padding:1rem;color:var(--text);font-family:'Space Mono',monospace;font-size:0.75rem;line-height:1.6;overflow-x:auto"><code>FROM php:8.2-fpm-alpine
+
+RUN apk add --no-cache \
+    libpng-dev libjpeg-turbo-dev freetype-dev libzip-dev zip git \
+    &amp;&amp; docker-php-ext-configure gd --with-freetype --with-jpeg \
+    &amp;&amp; docker-php-ext-install -j$(nproc) pdo_mysql gd zip \
+    &amp;&amp; apk del --no-cache .build-deps
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www/html
+COPY . .
+
+RUN chown -R www-data:www-data /var/www/html \
+    &amp;&amp; chmod -R 755 /var/www/html/public
+
+RUN if [ -f composer.json ]; then \
+    composer install --no-dev --optimize-autoloader; fi
+
+USER www-data
+EXPOSE 9000
+CMD ["php-fpm"]</code></pre>
           </div>
           <h4 style="margin:1.2rem 0 0.8rem;color:var(--accent-hover)">📊 Analyse SWOT</h4>
           <div class="swot-grid">
@@ -1240,7 +1379,28 @@ function fillProjets(filter = 'all') {
   if (!grid) return;
   const filtered = filter === 'all' ? projetsData : projetsData.filter(p => p.category === filter);
   grid.innerHTML = filtered.map(p => {
-    const images = p.images.map(img => `<img src="${img}" class="project-img" alt="logo" loading="lazy" onerror="this.style.display='none'">`).join('');
+    const logoNames = {
+      'PfSense_logo': 'pfSense', 'Zabbix_logo': 'Zabbix',
+      'logo-GLPI': 'GLPI', 'GLPI-750': 'GLPI',
+      'CrowdSec': 'CrowdSec', 'crowdsec': 'CrowdSec',
+      'Nginx_logo': 'Nginx', 'Apache_HTTP': 'Apache',
+      'Docker_%28': 'Docker', 'docker_%28': 'Docker',
+      'Alpine_Linux': 'Alpine', 'Nextcloud_Logo': 'Nextcloud',
+      'Debian-OpenLogo': 'Debian', 'Tux': 'Linux',
+      'Windows_logo': 'Windows', 'MariaDB': 'MariaDB',
+      'Cisco_logo': 'Cisco', 'Git-logo': 'Git',
+      'PHP-logo': 'PHP', 'HTML5_logo': 'HTML5',
+      'CSS3_logo': 'CSS3', 'JavaScript_logo': 'JS',
+      'Grafana_logo': 'Grafana', 'Wireshark': 'Wireshark',
+      'Microsoft_Azure': 'Active Directory', 'caddy-logo': 'Caddy',
+    };
+    function getAlt(url) {
+      for (const [key, name] of Object.entries(logoNames)) {
+        if (url.includes(key)) return name;
+      }
+      return 'logo';
+    }
+    const images = p.images.map(img => `<img src="${img}" class="project-img" alt="${getAlt(img)}" loading="lazy" onerror="this.style.display='none'">`).join('');
     const links = p.links.map(l => `<a href="${l.url}" target="_blank" class="tech-link"><i class="${l.icon}"></i> ${l.name}</a>`).join('');
     const protos = p.protocoles.map(pr => `<span class="protocole-item"><i class="fas fa-circle" style="font-size:0.4rem"></i> ${pr}</span>`).join('');
     return `
@@ -1575,6 +1735,10 @@ const projectScreenshots = {
   ],
   'Active Directory': [
     { src: 'https://www.vpsbg.eu/storage/blog/1-open-notification_UB.png', label: 'Active Directory – Gestion des utilisateurs Windows Server' },
+  ],
+  'Infrastructure Docker': [
+    { src: 'iladom-screen.png',     label: 'iladom.fr – Site 1 déployé en HTTPS avec Docker' },
+    { src: 'iladom-dashboard.png',  label: 'iladom.fr – Dashboard administration' },
   ],
   'Zabbix - Supervision': [
     { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ7jHjIKTWG945njyO1ejTzDK-kgEmq1AF4A&s', label: 'Zabbix – Dashboard de supervision réseau' },
