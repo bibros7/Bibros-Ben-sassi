@@ -950,7 +950,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ===== DONNÉES =====
 const competencesData = [
   { icon:'fab fa-docker',    img:'https://upload.wikimedia.org/wikipedia/commons/4/4e/Docker_%28container_engine%29_logo.svg',         title:'Docker & Alpine',    level:90, items:['Dockerfile, Compose, Alpine','Volumes, networks, secrets','Multi-stage builds'] },
@@ -1357,14 +1357,4 @@ document.getElementById('contact-form')?.addEventListener('submit', async functi
       body: formData
     });
     if (res.ok) { success.style.display = 'block'; this.reset(); }
-    else throw new Error();
-  } catch {
-    error.style.display = 'block';
-  } finally {
-    btn.innerHTML = 'Envoyer <i class="fas fa-paper-plane"></i>';
-    btn.disabled = false;
-  }
-});
-</script>
-</body>
-</html>
+    else thro
