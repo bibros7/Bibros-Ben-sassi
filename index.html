@@ -1248,10 +1248,15 @@ document.getElementById('contact-form')?.addEventListener('submit', async functi
   error.style.display = 'none';
 
   try {
+    const formData = new FormData();
+    formData.append('nom', nom);
+    formData.append('email', email);
+    formData.append('message', message);
+
     const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ nom, email, message })
+      headers: { 'Accept': 'application/json' },
+      body: formData
     });
     if (res.ok) { success.style.display = 'block'; this.reset(); }
     else throw new Error();
