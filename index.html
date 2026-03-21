@@ -555,7 +555,7 @@
 <header id="accueil">
   <canvas id="particles"></canvas>
   <div class="hero-content">
-    <div class="hero-badge"><span class="dot"></span> Disponible • Alternance / CDI sept. 2026</div>
+    <div class="hero-badge"><span class="dot"></span> Disponible • Alternance sept. 2026</div>
     <h1>Bibros Ben Sassi</h1>
     <div class="typing-container">
       <span id="typing-text"></span>
@@ -588,7 +588,7 @@
       <div class="apropos-socials">
         <a href="#" class="apropos-social"><i class="fab fa-linkedin"></i></a>
         <a href="#" class="apropos-social"><i class="fab fa-github"></i></a>
-        <a href="mailto:contact@example.com" class="apropos-social"><i class="fas fa-envelope"></i></a>
+        <a href="/cdn-cgi/l/email-protection#660509081207051226031e070b160a034805090b" class="apropos-social"><i class="fas fa-envelope"></i></a>
       </div>
       <div class="apropos-info">
         <p><i class="fas fa-map-marker-alt"></i> Île-de-France</p>
@@ -600,7 +600,7 @@
         <span class="tag">Linux</span>
         <span class="tag">Réseaux</span>
         <span class="tag">SISR</span>
-        <span class="tag">DevOps</span>
+        <span class="tag">Sécurité</span>
       </div>
       <a href="CV-Bibros-B.pdf" class="btn" style="width:100%;justify-content:center;margin-top:1.5rem;font-size:0.9rem">
         <i class="fas fa-download"></i> Télécharger CV
@@ -634,7 +634,7 @@
         <p style="margin-top:1rem;color:var(--text2);font-size:0.9rem">En cours d'obtention - 2026</p>
       </div>
 
-      <p>Mon objectif professionnel : intégrer une équipe infrastructure/sécurité en alternance ou CDI à partir de septembre 2026, pour contribuer à des projets concrets (migration cloud, durcissement systèmes, automatisation, monitoring avancé).</p>
+      <p>Mon objectif professionnel : intégrer une équipe infrastructure/sécurité en alternance à partir de septembre 2026, pour contribuer à des projets concrets (migration cloud, durcissement systèmes, automatisation, monitoring avancé).</p>
     </div>
   </div>
 </section>
@@ -813,7 +813,7 @@
   <h2>CV & Tableau de synthèse</h2>
   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin:2rem 0">
     <a href="CV-Bibros-B.pdf" target="_blank" class="btn"><i class="fas fa-file-pdf"></i> Télécharger mon CV (PDF)</a>
-    <a href="tableau-synthese.pdf"_blank" class="btn btn-outline"><i class="fas fa-table"></i> Tableau de Synthèse E5</a>
+    <a href="tableau-synth%C3%A8se.pdf" target="_blank" class="btn btn-outline"><i class="fas fa-table"></i> Tableau de Synthèse E5</a>
   </div>
   <h3 style="text-align:center;margin:2rem 0;font-size:1.2rem;color:var(--text2)">Aperçu des documents</h3>
   <div class="cv-tableau-container">
@@ -824,7 +824,7 @@
     <div>
       <div class="tableau-preview">
         <div class="tableau-header"><i class="fas fa-table"></i> Tableau de synthèse E5</div>
-        <iframe src="tableau-synthese.pdf" title="Tableau de synthèse E5"></iframe>
+        <iframe src="tableau-synth%C3%A8se.pdf" title="Tableau de synthèse E5"></iframe>
       </div>
       <div class="preview-label"><i class="fas fa-table" style="color:#3498db"></i> Tableau de synthèse E5</div>
     </div>
@@ -904,14 +904,17 @@
 <section id="contact" style="background:var(--bg2)">
   <span class="section-chip">// me contacter</span>
   <h2>Contact</h2>
-  <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-    <input type="hidden" name="form-name" value="contact">
-    <p style="display:none"><label>Ne pas remplir <input name="bot-field"></label></p>
-    <div class="form-group"><input type="text" name="nom" placeholder="Votre nom" required></div>
-    <div class="form-group"><input type="email" name="email" placeholder="Votre email" required></div>
-    <div class="form-group"><textarea name="message" rows="5" placeholder="Votre message" required></textarea></div>
-    <div class="form-group"><button type="submit" class="btn" style="width:100%;justify-content:center">Envoyer <i class="fas fa-paper-plane"></i></button></div>
-    <div class="form-success" id="form-success">Message envoyé avec succès ! Je vous répondrai rapidement.</div>
+  <form class="contact-form" id="contact-form">
+    <div class="form-group"><input type="text" id="nom" placeholder="Votre nom" required></div>
+    <div class="form-group"><input type="email" id="email" placeholder="Votre email" required></div>
+    <div class="form-group"><textarea id="message" rows="5" placeholder="Votre message" required></textarea></div>
+    <div class="form-group">
+      <button type="submit" class="btn" style="width:100%;justify-content:center" id="submit-btn">
+        Envoyer <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+    <div class="form-success" id="form-success">✅ Message envoyé avec succès ! Je vous répondrai rapidement.</div>
+    <div class="form-error" id="form-error" style="display:none;text-align:center;color:#e74c3c;padding:1rem">❌ Erreur lors de l'envoi. Réessayez ou contactez-moi directement.</div>
   </form>
   <div style="display:flex;justify-content:center;gap:1.5rem;margin:2rem 0;font-size:1.8rem">
     <a href="#" style="color:var(--text2);transition:color 0.3s" onmouseover="this.style.color='#0077b5'" onmouseout="this.style.color=''"><i class="fab fa-linkedin"></i></a>
@@ -937,7 +940,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ===== DONNÉES =====
 const competencesData = [
   { icon:'fab fa-docker',    img:'https://cdn.simpleicons.org/docker/2496ED',         title:'Docker & Alpine',    level:90, items:['Dockerfile, Compose, Alpine','Volumes, networks, secrets','Multi-stage builds'] },
@@ -1227,9 +1230,37 @@ document.getElementById('themeToggle')?.addEventListener('click', () => {
   localStorage.setItem('theme', newTheme);
 });
 
-// Netlify form
-document.querySelector('form[data-netlify="true"]')?.addEventListener('submit', () => {
-  setTimeout(() => { const el = document.getElementById('form-success'); if (el) el.style.display = 'block'; }, 1000);
+// Formspree contact form
+const FORMSPREE_ID = 'mvzwnogz';
+
+document.getElementById('contact-form')?.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const success = document.getElementById('form-success');
+  const error = document.getElementById('form-error');
+  const nom = document.getElementById('nom').value;
+  const email = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi...';
+  btn.disabled = true;
+  success.style.display = 'none';
+  error.style.display = 'none';
+
+  try {
+    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ nom, email, message })
+    });
+    if (res.ok) { success.style.display = 'block'; this.reset(); }
+    else throw new Error();
+  } catch {
+    error.style.display = 'block';
+  } finally {
+    btn.innerHTML = 'Envoyer <i class="fas fa-paper-plane"></i>';
+    btn.disabled = false;
+  }
 });
 </script>
 </body>
